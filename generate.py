@@ -151,6 +151,11 @@ def main():
         "",
     ])
 
+    # Verify the data section marker exists before replacing
+    if not re.search(r'const MINI_MATCHES=', html):
+        print("ERROR: Could not find 'const MINI_MATCHES=' in index.html — HTML structure may have changed.", file=sys.stderr)
+        sys.exit(1)
+
     # Replace everything from "const MINI_MATCHES=" up to "const NOW = new Date();"
     new_html = re.sub(
         r'const MINI_MATCHES=.*?(?=const NOW = new Date\(\);)',
@@ -158,10 +163,6 @@ def main():
         html,
         flags=re.DOTALL,
     )
-
-    if new_html == html:
-        print("WARNING: Regex found no match — HTML structure may have changed.", file=sys.stderr)
-        sys.exit(1)
 
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(new_html)
