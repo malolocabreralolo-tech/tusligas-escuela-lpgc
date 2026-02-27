@@ -151,9 +151,9 @@ def main():
         "",
     ])
 
-    # Replace everything from "const MINI_MATCHES=" up to "// ── STATE"
+    # Replace everything from "const MINI_MATCHES=" up to "const NOW = new Date();"
     new_html = re.sub(
-        r'const MINI_MATCHES=.*?(?=// ── STATE)',
+        r'const MINI_MATCHES=.*?(?=const NOW = new Date\(\);)',
         new_data + "\n",
         html,
         flags=re.DOTALL,
