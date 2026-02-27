@@ -869,12 +869,8 @@ function openTeam(teamId,league){
     <div class="mstat"><div class="v">${played}</div><div class="l">Jugados</div></div>
     <div class="mstat"><div class="v">${pend}</div><div class="l">Pendientes</div></div>`;
 
-  const sorted=[...myMatches].sort((a,b)=>{
-    const dA=validDate(a.m.d)?new Date(a.m.d):null,dB=validDate(b.m.d)?new Date(b.m.d):null;
-    const fA=dA&&dA>=NOW,fB=dB&&dB>=NOW;
-    if(fA&&!fB)return -1;if(!fA&&fB)return 1;
-    if(dA&&dB)return dA-dB;return 0;
-  });
+  const jornIdx=new Map(allRounds.map((j,i)=>[j,i]));
+  const sorted=[...myMatches].sort((a,b)=>jornIdx.get(a.jorn)-jornIdx.get(b.jorn));
 
   let html="";
   for(const{jorn,m}of sorted){
