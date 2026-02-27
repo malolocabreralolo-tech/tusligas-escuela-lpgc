@@ -1,0 +1,34 @@
+name: Auto-update match data
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'   # Every Monday at 06:00 UTC
+  workflow_dispatch:        # Allow manual trigger from GitHub UI
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch fresh data and regenerate index.html
+        run: python generate.py
+
+      - name: Commit and push if data changed
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "GitHub Actions"
+          git add index.html
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Auto-update match data $(date +%Y-%m-%d)"
+            git push
+          fi
