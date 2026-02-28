@@ -693,7 +693,8 @@ const MT={1103:"C.F. UNION VIERA A",1104:"C.F. UNION VIERA B",1106:"CF Veteranos
 const PT={1100:{n:"C.F. UNION VIERA A",g:"A"},1101:{n:"C.F. UNION VIERA B",g:"A"},1102:{n:"C.F. UNION VIERA C",g:"B"},1107:{n:"CF VETERANOS DEL PILAR A",g:"A"},1108:{n:"VETERANOS DEL PILAR B",g:"B"},1109:{n:"VETERANOS DEL PILAR C",g:"B"},1110:{n:"VETERANOS DEL PILAR D",g:"B"},1112:{n:"AD HURACAN",g:"B"},1113:{n:"C.D HEIDELBERG",g:"B"},1114:{n:"REAL SPORTING SAN JOSE",g:"A"},1116:{n:"UD TAMARACEITE",g:"A"},1118:{n:"CD GUINIGUADA APOLINARIO",g:"A"},1119:{n:"FUNDACIÓN CANARIA GUINIGUADA",g:"B"},1123:{n:"UD LAS PALMAS A",g:"A"},1124:{n:"UD LAS PALMAS B",g:"A"},1125:{n:"UD LAS PALMAS C",g:"A"},1126:{n:"UD LAS PALMAS D",g:"B"},1127:{n:"UD LAS PALMAS E",g:"B"},1128:{n:"UD LAS PALMAS F",g:"B"},1135:{n:"ATL. GRAN CANARIA",g:"A"},1137:{n:"REAL CLUB VICTORIA",g:"A"},1139:{n:"U.D. PEDRO HIDALGO",g:"A"},1140:{n:"CORAZÓN DE MARÍA A",g:"A"},1141:{n:"CORAZÓN DE MARÍA B",g:"A"},1142:{n:"CORAZÓN DE MARÍA D",g:"B"},1143:{n:"CORAZÓN DE MARÍA C",g:"B"},1144:{n:"ATLÉTICO ISLETA",g:"B"},1150:{n:"ACODETTI CF",g:"A"},1151:{n:"ARBOL BONITO MIGUEL LEON",g:"B"},1152:{n:"U.D. SAN LAZARO",g:"B"},1161:{n:"INTER CANARIAS",g:"B"},1163:{n:"CD LOMO BLANCO",g:"A"}};
 
 // ── FAVOURITES (mini) ─────────────────────────────────────
-const FAVES_MINI=new Set([1159]);// 1159=AD HURACAN (equipo actual)
+const FAVES_MINI=new Set([1159]);// 1159=AD HURACAN mini (equipo actual)
+const FAVES_PRE =new Set([1112]);// 1112=AD HURACAN pre  (equipo actual)
 const FAVES_DIM=new Set([1120]); // 1120=UD LAS PALMAS A (equipo anterior)
 
 // ── STATE ─────────────────────────────────────────────────
@@ -770,8 +771,8 @@ function renderJorn(league,idx){
     const isPlayed=d&&d<NOW;
     const isNext=m===firstUpcoming;
     const cls=isBye?"bye":isPlayed?"played":isNext?"nxt":"";
-    const hFav=league==="mini"&&FAVES_MINI.has(m.h);
-    const vFav=league==="mini"&&FAVES_MINI.has(m.v);
+    const hFav=(league==="mini"&&FAVES_MINI.has(m.h))||(league==="pre"&&FAVES_PRE.has(m.h));
+    const vFav=(league==="mini"&&FAVES_MINI.has(m.v))||(league==="pre"&&FAVES_PRE.has(m.v));
     const hDim=league==="mini"&&FAVES_DIM.has(m.h);
     const vDim=league==="mini"&&FAVES_DIM.has(m.v);
     const isFav=hFav||vFav;
