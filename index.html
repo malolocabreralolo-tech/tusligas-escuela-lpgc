@@ -711,12 +711,17 @@ function avCls(id,league){if(league==="mini")return"m";const g=(PT[id]||{}).g;re
 // ── JORNADAS ──────────────────────────────────────────────
 function getJorns(league){
   if(league==="mini")return MINI_MATCHES;
-  const allGroups=[...new Set(PRE_MATCHES.map(j=>j.g))];
-  if(allGroups.length===1)return PRE_MATCHES;
-  const gA_id=PRE_MATCHES.find(j=>j.m.some(m=>m.h===1100||m.v===1100||m.h===1123||m.v===1123))?.g;
-  const gB_id=allGroups.find(g=>g!==gA_id);
-  const targetId=S.pre.grp==="A"?gA_id:gB_id;
-  return PRE_MATCHES.filter(j=>j.g===targetId);
+  return PRE_MATCHES.map(j=>({
+    ...j,
+    m:j.m.filter(m=>m.s===10||(PT[m.h]?.g===S.pre.grp&&PT[m.v]?.g===S.pre.grp))
+  })).filter(j=>j.m.some(m=>m.s!==10));
+}
+function bestIdx(data){
+  let best=0;
+  for(let i=0;i<data.length;i++){
+    if(data[i].m.some(m=>validDate(m.d)&&new Date(m.d)<NOW))best=i;
+  }
+  return best;
 }
 
 function buildSel(league){
@@ -822,7 +827,7 @@ function switchGrp(g){
   S.pre.grp=g;
   document.getElementById("gA").className="gfbtn"+(g==="A"?" on-a":"");
   document.getElementById("gB").className="gfbtn"+(g==="B"?" on-b":"");
-  S.pre.jIdx=0;buildSel("pre");renderJorn("pre",0);
+  buildSel("pre");const idx=bestIdx(getJorns("pre"));S.pre.jIdx=idx;renderJorn("pre",idx);
 }
 
 // ── TEAMS ─────────────────────────────────────────────────
@@ -922,15 +927,6 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeMod();closeDr(
 
 // ── INIT ──────────────────────────────────────────────────
 (function init(){
-  function bestIdx(data){
-    let best=0;
-    for(let i=0;i<data.length;i++){
-      const hasDate=data[i].m.some(m=>validDate(m.d));
-      if(hasDate)best=i;
-      if(data[i].m.some(m=>validDate(m.d)&&new Date(m.d)>=NOW)){best=i;break;}
-    }
-    return best;
-  }
   S.mini.jIdx=bestIdx(MINI_MATCHES);
   buildSel("mini");renderJorn("mini",S.mini.jIdx);renderTeams("mini");
   buildSel("pre");S.pre.jIdx=bestIdx(getJorns("pre"));buildSel("pre");renderJorn("pre",S.pre.jIdx);renderTeams("pre");
