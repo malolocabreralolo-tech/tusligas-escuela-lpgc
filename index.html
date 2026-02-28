@@ -248,8 +248,8 @@
       border:1.5px solid var(--b2);background:var(--c2);color:var(--t3);
       cursor:pointer;transition:all .2s;font-family:inherit;letter-spacing:.1px
     }
-    .gfbtn.on-a{background:rgba(99,102,241,.15);border-color:#818cf8;color:#c7d2fe}
-    .gfbtn.on-b{background:var(--pre-g);border-color:var(--pre);color:var(--pre-l)}
+    .gfbtn.on-a{background:var(--pre-g);border-color:var(--pre);color:var(--pre-l)}
+    .gfbtn.on-b{background:rgba(99,102,241,.15);border-color:#818cf8;color:#c7d2fe}
 
     /* ══════════════════════════════════════════
        MATCH CARD  ← big redesign
@@ -717,10 +717,11 @@ function getJorns(league){
   })).filter(j=>j.m.some(m=>m.s!==10));
 }
 function bestIdx(data){
-  let best=0;
   for(let i=0;i<data.length;i++){
-    if(data[i].m.some(m=>validDate(m.d)&&new Date(m.d)<NOW))best=i;
+    if(data[i].m.some(m=>validDate(m.d)&&new Date(m.d)>=NOW))return i;
   }
+  let best=0;
+  for(let i=0;i<data.length;i++){if(data[i].m.some(m=>validDate(m.d)))best=i;}
   return best;
 }
 
@@ -827,7 +828,7 @@ function switchGrp(g){
   S.pre.grp=g;
   document.getElementById("gA").className="gfbtn"+(g==="A"?" on-a":"");
   document.getElementById("gB").className="gfbtn"+(g==="B"?" on-b":"");
-  buildSel("pre");const idx=bestIdx(getJorns("pre"));S.pre.jIdx=idx;renderJorn("pre",idx);
+  buildSel("pre");const idx=bestIdx(getJorns("pre"));S.pre.jIdx=idx;renderJorn("pre",idx);renderTeams("pre");
 }
 
 // ── TEAMS ─────────────────────────────────────────────────
@@ -835,7 +836,7 @@ function renderTeams(league){
   const el=document.getElementById(`${league}-teams`);
   const entries=league==="mini"
     ?Object.entries(MT).map(([id,n])=>[id,{n,g:""}])
-    :Object.entries(PT).map(([id,t])=>[id,t]);
+    :Object.entries(PT).filter(([,t])=>t.g===S.pre.grp).map(([id,t])=>[id,t]);
   entries.sort((a,b)=>a[1].n.localeCompare(b[1].n,"es"));
   el.innerHTML=entries.map(([id,t])=>{
     const g=t.g||"";
