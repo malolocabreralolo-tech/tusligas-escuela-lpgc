@@ -63,41 +63,28 @@ def build_mt(tournament_data):
 
 
 def build_pt(tournament_data, existing_pt=None):
-    """Build PT = {teamId: {n:"Name", g:"A"|"B"}} from tournament 87.
-
-    Tries to get group assignments from the API groups structure.
-    Falls back to existing_pt group assignments if API doesn't provide groups.
-    """
+    """Build PT = {teamId: {n:"Name", g:"A"|"B"}} using teamGroups mapping."""
     pt = {}
+    # Build group letter map: idGroup -> last letter of name ("GRUPO A" -> "A")
+    group_letter = {}
+    for g in tournament_data.get("groups", []):
+        name = g.get("name", "")
+        letter = name.strip()[-1].upper() if name.strip() else "A"
+        if letter not in ("A", "B", "C", "D"):
+            letter = "A"
+        group_letter[g["id"]] = letter
 
-    # Try various group structure keys the API might use
-    groups = (
-        tournament_data.get("groups")
-        or tournament_data.get("roundGroups")
-        or tournament_data.get("groupsRounds")
-        or []
-    )
+    # Build team -> group mapping from teamGroups
+    team_group = {}
+    for tg in tournament_data.get("teamGroups", []):
+        tid = tg["idTeam"]
+        gid = tg["idGroup"]
+        team_group[tid] = group_letter.get(gid, "A")
 
-    if groups:
-        for group in groups:
-            gname = group.get("name", "")
-            # Extract last letter of group name: "Grupo A" → "A", "B" → "B"
-            gletter = gname.strip()[-1].upper() if gname.strip() else "A"
-            if gletter not in ("A", "B", "C", "D"):
-                gletter = "A"
-            for team in group.get("teams", []):
-                pt[team["id"]] = {"n": team["name"], "g": gletter}
-
-    if not pt:
-        # Fallback: use existing group assignments for known teams
-        for team in tournament_data.get("teams", []):
-            tid = team["id"]
-            g = "A"
-            if existing_pt:
-                entry = existing_pt.get(tid) or existing_pt.get(str(tid))
-                if entry:
-                    g = entry.get("g", "A") if isinstance(entry, dict) else "A"
-            pt[tid] = {"n": team["name"], "g": g}
+    for team in tournament_data.get("teams", []):
+        tid = team["id"]
+        g = team_group.get(tid, "A")
+        pt[tid] = {"n": team["name"], "g": g}
 
     return pt
 
