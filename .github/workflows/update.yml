@@ -20,7 +20,7 @@ jobs:
           python-version: '3.11'
 
       - name: Fetch fresh data and regenerate index.html
-        run: python generate.py
+        run: python scripts/generate.py
 
       - name: Commit and push if data changed
         run: |
