@@ -22,11 +22,14 @@ jobs:
       - name: Fetch fresh data and regenerate index.html
         run: python scripts/generate.py
 
+      - name: Check Huracán matches and notify on changes
+        run: python scripts/notify_huracan.py
+
       - name: Commit and push if data changed
         run: |
           git config user.email "action@github.com"
           git config user.name "GitHub Actions"
-          git add index.html
+          git add index.html scripts/snapshots/
           if git diff --staged --quiet; then
             echo "No changes to commit."
           else
