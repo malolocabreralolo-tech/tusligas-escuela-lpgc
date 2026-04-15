@@ -1,18 +1,16 @@
 #!/usr/bin/env python3
 """
-Monitors Huracán matches (mini + pre) from tusligascanarias.mygol.es API.
+Monitors Huracán matches from tusligascanarias.mygol.es API.
 Compares with previous snapshot and sends Telegram notifications on changes.
 
-Huracán team IDs:
-  - 1159: Miniprebenjamín (tournament 85)
-  - 1112: Prebenjamín (tournament 87)
+Defaults to monitoring miniprebenjamín only, but can also watch prebenjamín
+through environment variables.
 """
 
 import json
 import os
 import sys
 import urllib.request
-import urllib.error
 from datetime import datetime
 from pathlib import Path
 
@@ -24,14 +22,27 @@ HEADERS = {
     "Accept": "application/json, text/plain, */*",
 }
 
-TELEGRAM_TOKEN = "8752766989:AAFWZKVH-cnOPudAsUghHIgsKh-IV47NHLA"
-CHAT_IDS = [1556920272]
-
 HURACAN_MINI_ID = 1159  # Tournament 85
 HURACAN_PRE_ID = 1112   # Tournament 87
 
+WATCH_MINI = os.getenv("WATCH_HURACAN_MINI", "true").lower() in ("1", "true", "yes", "on")
+WATCH_PRE = os.getenv("WATCH_HURACAN_PRE", "false").lower() in ("1", "true", "yes", "on")
+
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "").strip()
+CHAT_IDS = [
+    int(x.strip())
+    for x in os.getenv("TELEGRAM_CHAT_IDS", "1556920272").split(",")
+    if x.strip()
+]
+
 SNAPSHOT_DIR = Path(__file__).parent / "snapshots"
 SNAPSHOT_FILE = SNAPSHOT_DIR / "huracan_matches.json"
+STATUS_LABELS = {
+    1: "pendiente",
+    5: "programado",
+    10: "descansa",
+    20: "finalizado",
+}
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────
@@ -48,7 +59,6 @@ def fmt_date(s):
 
 
 def fmt_date_human(iso):
-    """Convert 'YYYY-MM-DDTHH:MM' to 'dom 14/04 18:30'."""
     if not iso:
         return "Sin fecha"
     try:
@@ -59,8 +69,15 @@ def fmt_date_human(iso):
         return iso
 
 
+def status_label(value):
+    return STATUS_LABELS.get(value, str(value))
+
+
 def send_telegram(text):
-    # Telegram max message length is 4096 chars — split if needed
+    if not TELEGRAM_TOKEN:
+        print("WARN: TELEGRAM_TOKEN missing — notification skipped.", file=sys.stderr)
+        return
+
     chunks = []
     if len(text) <= 4000:
         chunks = [text]
@@ -96,7 +113,6 @@ def send_telegram(text):
 
 # ── Extract Huracán matches ──────────────────────────────────────────────
 def extract_huracan_matches(jornadas, team_id, teams_data):
-    """Extract only matches involving Huracán, with team names resolved."""
     team_names = {}
     for t in teams_data.get("teams", []):
         team_names[t["id"]] = t["name"]
@@ -129,34 +145,28 @@ def match_key(m):
 
 
 def diff_matches(old_list, new_list):
-    """Compare old vs new matches, return list of change descriptions."""
     old_map = {match_key(m): m for m in old_list}
     new_map = {match_key(m): m for m in new_list}
     changes = []
 
-    # New matches
     for key, m in new_map.items():
         if key not in old_map:
-            changes.append({
-                "type": "new",
-                "match": m,
-                "msg": f"Nuevo partido: {m['home_name']} vs {m['away_name']}",
-            })
+            changes.append({"type": "new", "match": m})
             continue
 
         old = old_map[key]
         diffs = []
 
         if old["date"] != m["date"]:
-            diffs.append(f"Fecha: {fmt_date_human(old['date'])} -> {fmt_date_human(m['date'])}")
+            diffs.append(f"Fecha: {fmt_date_human(old['date'])} → {fmt_date_human(m['date'])}")
 
         if old["field"] != m["field"]:
             old_f = old["field"] or "Sin campo"
             new_f = m["field"] or "Sin campo"
-            diffs.append(f"Campo: {old_f} -> {new_f}")
+            diffs.append(f"Campo: {old_f} → {new_f}")
 
         if old["status"] != m["status"]:
-            diffs.append(f"Estado: {old['status']} -> {m['status']}")
+            diffs.append(f"Estado: {status_label(old['status'])} → {status_label(m['status'])}")
 
         if old.get("home_score") != m.get("home_score") or old.get("away_score") != m.get("away_score"):
             hs = m.get("home_score")
@@ -165,72 +175,49 @@ def diff_matches(old_list, new_list):
                 diffs.append(f"Resultado: {m['home_name']} {hs} - {vs} {m['away_name']}")
 
         if diffs:
-            changes.append({
-                "type": "changed",
-                "match": m,
-                "diffs": diffs,
-            })
+            changes.append({"type": "changed", "match": m, "diffs": diffs})
 
-    # Removed matches
     for key, m in old_map.items():
         if key not in new_map:
-            changes.append({
-                "type": "removed",
-                "match": m,
-                "msg": f"Partido eliminado: {m['home_name']} vs {m['away_name']}",
-            })
+            changes.append({"type": "removed", "match": m})
 
     return changes
 
 
 # ── Build notification message ────────────────────────────────────────────
+def build_section(title, changes):
+    lines = [f"<b>{title}</b>"]
+    for c in changes:
+        m = c["match"]
+        fixture = f"{m['home_name']} vs {m['away_name']}"
+        jornada = m["jornada"]
+
+        if c["type"] == "new":
+            lines.append(f"\n• Nuevo partido · {jornada}")
+            lines.append(f"  {fixture}")
+            lines.append(f"  {fmt_date_human(m['date'])}")
+            if m["field"]:
+                lines.append(f"  {m['field']}")
+        elif c["type"] == "changed":
+            lines.append(f"\n• Cambio detectado · {jornada}")
+            lines.append(f"  {fixture}")
+            for d in c["diffs"]:
+                lines.append(f"  {d}")
+        elif c["type"] == "removed":
+            lines.append(f"\n• Partido eliminado o no visible")
+            lines.append(f"  {fixture}")
+
+    return lines
+
+
 def build_message(mini_changes, pre_changes):
-    lines = []
-
+    lines = ["<b>Alerta Huracán</b>"]
     if mini_changes:
-        lines.append("<b>MINIPREBENJAMIN</b>")
-        for c in mini_changes:
-            m = c["match"]
-            header = f"{m['home_name']} vs {m['away_name']}"
-            jornada = m["jornada"]
-
-            if c["type"] == "new":
-                lines.append(f"\n  Nuevo partido ({jornada})")
-                lines.append(f"  {header}")
-                lines.append(f"  {fmt_date_human(m['date'])}")
-                if m["field"]:
-                    lines.append(f"  {m['field']}")
-            elif c["type"] == "changed":
-                lines.append(f"\n  Cambio ({jornada})")
-                lines.append(f"  {header}")
-                for d in c["diffs"]:
-                    lines.append(f"  {d}")
-            elif c["type"] == "removed":
-                lines.append(f"\n  {c['msg']}")
-
+        lines.extend(build_section("MINIPREBENJAMÍN", mini_changes))
     if pre_changes:
-        if mini_changes:
+        if len(lines) > 1:
             lines.append("")
-        lines.append("<b>PREBENJAMIN</b>")
-        for c in pre_changes:
-            m = c["match"]
-            header = f"{m['home_name']} vs {m['away_name']}"
-            jornada = m["jornada"]
-
-            if c["type"] == "new":
-                lines.append(f"\n  Nuevo partido ({jornada})")
-                lines.append(f"  {header}")
-                lines.append(f"  {fmt_date_human(m['date'])}")
-                if m["field"]:
-                    lines.append(f"  {m['field']}")
-            elif c["type"] == "changed":
-                lines.append(f"\n  Cambio ({jornada})")
-                lines.append(f"  {header}")
-                for d in c["diffs"]:
-                    lines.append(f"  {d}")
-            elif c["type"] == "removed":
-                lines.append(f"\n  {c['msg']}")
-
+        lines.extend(build_section("PREBENJAMÍN", pre_changes))
     return "\n".join(lines)
 
 
@@ -239,40 +226,37 @@ def main():
     print(f"[{datetime.now().isoformat()}] Checking Huracán matches...")
 
     try:
-        mini_raw = fetch(f"{BASE}/matches/fortournament/85")
-        pre_raw = fetch(f"{BASE}/matches/fortournament/87")
-        mini_t = fetch(f"{BASE}/tournaments/85")
-        pre_t = fetch(f"{BASE}/tournaments/87")
+        old = {"mini": [], "pre": []}
+        if SNAPSHOT_FILE.exists():
+            try:
+                old = json.loads(SNAPSHOT_FILE.read_text("utf-8"))
+            except Exception:
+                pass
+
+        current = {"mini": [], "pre": [], "updated": datetime.now().isoformat()}
+        mini_changes = []
+        pre_changes = []
+
+        if WATCH_MINI:
+            mini_raw = fetch(f"{BASE}/matches/fortournament/85")
+            mini_t = fetch(f"{BASE}/tournaments/85")
+            current["mini"] = extract_huracan_matches(mini_raw, HURACAN_MINI_ID, mini_t)
+            mini_changes = diff_matches(old.get("mini", []), current["mini"])
+
+        if WATCH_PRE:
+            pre_raw = fetch(f"{BASE}/matches/fortournament/87")
+            pre_t = fetch(f"{BASE}/tournaments/87")
+            current["pre"] = extract_huracan_matches(pre_raw, HURACAN_PRE_ID, pre_t)
+            pre_changes = diff_matches(old.get("pre", []), current["pre"])
+
     except Exception as e:
         print(f"ERROR fetching API: {e}", file=sys.stderr)
         sys.exit(1)
 
-    mini_matches = extract_huracan_matches(mini_raw, HURACAN_MINI_ID, mini_t)
-    pre_matches = extract_huracan_matches(pre_raw, HURACAN_PRE_ID, pre_t)
-
-    current = {
-        "mini": mini_matches,
-        "pre": pre_matches,
-        "updated": datetime.now().isoformat(),
-    }
-
-    print(f"  Mini: {len(mini_matches)} matches | Pre: {len(pre_matches)} matches")
-
-    # Load previous snapshot
-    SNAPSHOT_DIR.mkdir(exist_ok=True)
-    old = {"mini": [], "pre": []}
-    if SNAPSHOT_FILE.exists():
-        try:
-            old = json.loads(SNAPSHOT_FILE.read_text("utf-8"))
-        except Exception:
-            pass
-
-    # Compare
-    mini_changes = diff_matches(old.get("mini", []), mini_matches)
-    pre_changes = diff_matches(old.get("pre", []), pre_matches)
+    print(f"  Mini watched: {WATCH_MINI} | Pre watched: {WATCH_PRE}")
+    print(f"  Mini changes: {len(mini_changes)} | Pre changes: {len(pre_changes)}")
 
     total = len(mini_changes) + len(pre_changes)
-
     if total > 0:
         msg = build_message(mini_changes, pre_changes)
         print(f"  {total} changes detected! Sending notification...")
@@ -281,7 +265,7 @@ def main():
     else:
         print("  No changes.")
 
-    # Save new snapshot
+    SNAPSHOT_DIR.mkdir(exist_ok=True)
     SNAPSHOT_FILE.write_text(json.dumps(current, ensure_ascii=False, indent=2), "utf-8")
     print("  Snapshot saved.")
 
