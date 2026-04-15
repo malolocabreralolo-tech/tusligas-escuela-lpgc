@@ -39,6 +39,23 @@
         <div class="status-chip"><span class="dot neutral"></span>GitHub Pages · JSON externo</div>
       </section>
 
+      <section class="premium-strip">
+        <div class="premium-card premium-card--hero">
+          <div class="premium-overline">Experiencia premium</div>
+          <h3>Centro de mando Huracán</h3>
+          <p>Diseñado para abrir, mirar 10 segundos y enterarte de todo: próximo partido, forma reciente, últimas alertas y acceso directo a la liga.</p>
+          <div class="premium-actions">
+            <button class="premium-btn" onclick="showMode('huracan')">Abrir modo Huracán</button>
+            <button class="premium-btn ghost" onclick="showLeague('mini')">Ir a mini</button>
+          </div>
+        </div>
+        <div class="premium-card premium-card--history">
+          <div class="premium-overline">Histórico</div>
+          <h3>Racha reciente</h3>
+          <div id="premium-history"></div>
+        </div>
+      </section>
+
       <section class="summary-grid">
         <div class="summary-card">
           <div class="summary-top">
@@ -85,6 +102,10 @@
             <div class="focus-card">
               <h3>Última alerta</h3>
               <div id="focus-alert"></div>
+            </div>
+            <div class="focus-card">
+              <h3>Histórico del Huracán</h3>
+              <div id="focus-history"></div>
             </div>
           </div>
           <div class="focus-actions">
@@ -146,7 +167,7 @@
         <div class="panel" id="pre-eq"><div class="pbox pre"><div class="tgrid" id="pre-teams"></div></div></div>
       </section>
 
-      <div class="footer-note">Static site · GitHub Pages · datos externos JSON · panel rápido del Huracán</div>
+      <div class="footer-note">Static site · GitHub Pages · datos externos JSON · panel rápido del Huracán · UX/UI premium</div>
     </main>
   </div>
 
