@@ -14,7 +14,8 @@
     <div class="nav-mark">⚽</div>
     <div class="nav-copy"><b>Tus Ligas Canarias</b><small>Escuela · 2025 / 2026</small></div>
     <div class="nav-pills">
-      <button class="npill mini on" onclick="showLeague('mini')">Miniprebenjamín</button>
+      <button class="npill favorite on" onclick="showMode('huracan')">Huracán</button>
+      <button class="npill mini" onclick="showLeague('mini')">Miniprebenjamín</button>
       <button class="npill pre" onclick="showLeague('pre')">Prebenjamín</button>
     </div>
   </nav>
@@ -25,12 +26,19 @@
       <h1>Liga <span class="gtext">Escolar</span><br>Las Palmas</h1>
       <p class="hero-sub">Calendario, jornadas e información de cada equipo. Ahora con panel rápido del Huracán y arquitectura más limpia con datos JSON.</p>
       <div class="hero-btns">
+        <div class="hbtn favorite" onclick="showMode('huracan')">🟠 Solo Huracán <span class="cnt">rápido</span></div>
         <div class="hbtn mini" onclick="showLeague('mini')">🔵 Miniprebenjamín <span class="cnt">17 eq.</span></div>
         <div class="hbtn pre" onclick="showLeague('pre')">🟡 Prebenjamín <span class="cnt">32 eq.</span></div>
       </div>
     </section>
 
     <main class="main">
+      <section class="status-strip">
+        <div class="status-chip"><span class="dot live"></span><span id="status-updated">Actualizando…</span></div>
+        <div class="status-chip"><span class="dot alert"></span>Alertas Huracán mini activas</div>
+        <div class="status-chip"><span class="dot neutral"></span>GitHub Pages · JSON externo</div>
+      </section>
+
       <section class="summary-grid">
         <div class="summary-card">
           <div class="summary-top">
@@ -55,7 +63,38 @@
         </div>
       </section>
 
-      <section class="lsec on" id="sec-mini">
+      <section class="huracan-focus" id="huracan-focus">
+        <div class="focus-shell">
+          <div class="focus-header">
+            <div>
+              <div class="focus-kicker">Modo rápido</div>
+              <h2>Solo Huracán</h2>
+              <p>Vista pensada para mirar lo importante sin perder tiempo.</p>
+            </div>
+            <div class="pill favorite">Favorito</div>
+          </div>
+          <div class="focus-grid">
+            <div class="focus-card">
+              <h3>Próximo partido</h3>
+              <div id="focus-next"></div>
+            </div>
+            <div class="focus-card">
+              <h3>Últimos resultados</h3>
+              <div id="focus-results"></div>
+            </div>
+            <div class="focus-card">
+              <h3>Última alerta</h3>
+              <div id="focus-alert"></div>
+            </div>
+          </div>
+          <div class="focus-actions">
+            <button class="cta-btn" onclick="showLeague('mini')">Ver liga mini completa</button>
+            <button class="cta-btn secondary" onclick="showLeague('pre')">Ver prebenjamín</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="lsec" id="sec-mini">
         <div class="lhdr mini">
           <div class="lhdr-ico">🔵</div>
           <div><h2>Miniprebenjamín Escuela</h2><small>17 equipos · 34 jornadas</small></div>
