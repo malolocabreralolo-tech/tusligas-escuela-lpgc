@@ -10,9 +10,11 @@
   <link rel="stylesheet" href="./styles.css"/>
 </head>
 <body>
-  <nav class="nav glass">
-    <div class="nav-mark">⚽</div>
-    <div class="nav-copy"><b>Tus Ligas Canarias</b><small>Escuela · 2025 / 2026</small></div>
+  <nav class="nav shell">
+    <div class="nav-brand">
+      <div class="nav-mark">⚽</div>
+      <div class="nav-copy"><b>Tus Ligas Canarias</b><small>Escuela · 2025 / 2026</small></div>
+    </div>
     <div class="nav-pills">
       <button class="npill favorite on" onclick="showMode('huracan')">Huracán</button>
       <button class="npill mini" onclick="showLeague('mini')">Mini</button>
@@ -21,149 +23,142 @@
   </nav>
 
   <div class="page">
-    <section class="hero hero-premium">
-      <div class="hero-bg hero-bg-1"></div>
-      <div class="hero-bg hero-bg-2"></div>
-      <div class="hero-bg hero-bg-3"></div>
-      <div class="hero-badge"><span class="pulse-dot"></span> Temporada 2025 · 2026</div>
-      <h1>Liga Escolar <span class="gtext">Premium</span></h1>
-      <p class="hero-sub">Un dashboard más claro, más visual y más rápido para seguir al Huracán y al resto de la liga sin perder tiempo.</p>
-      <div class="hero-btns">
-        <button class="hbtn favorite" onclick="showMode('huracan')">🟠 Modo Huracán <span class="cnt">focus</span></button>
-        <button class="hbtn mini" onclick="showLeague('mini')">🔵 Mini</button>
-        <button class="hbtn pre" onclick="showLeague('pre')">🟡 Pre</button>
+    <section class="hero shell">
+      <div class="hero-kicker"><span class="pulse-dot"></span> Temporada 2025 · 2026</div>
+      <h1>Liga Escolar <span class="gtext">Las Palmas</span></h1>
+      <p class="hero-sub">Seguimiento limpio, rápido y elegante de la liga escolar, con el Huracán siempre en primer plano y sin ruido innecesario.</p>
+      <div class="hero-actions">
+        <button class="cta primary" onclick="showMode('huracan')">Abrir modo Huracán</button>
+        <button class="cta secondary" onclick="showLeague('mini')">Ver miniprebenjamín</button>
       </div>
     </section>
 
-    <main class="main">
-      <section class="topbar-grid">
-        <div class="status-strip premium-status">
-          <div class="status-chip big"><span class="dot live"></span><span id="status-updated">Actualizando…</span></div>
-          <div class="status-chip"><span class="dot alert"></span>Alertas Huracán mini activas</div>
-          <div class="status-chip"><span class="dot neutral"></span>GitHub Pages · JSON externo</div>
-        </div>
-        <div class="quick-switches">
-          <button class="quick-btn" onclick="showMode('huracan')">Solo Huracán</button>
-          <button class="quick-btn" onclick="showLeague('mini')">Calendario mini</button>
-          <button class="quick-btn" onclick="showLeague('pre')">Calendario pre</button>
-        </div>
+    <main class="main shell">
+      <section class="status-row">
+        <div class="status-pill strong"><span class="dot live"></span><span id="status-updated">Actualizando…</span></div>
+        <div class="status-pill"><span class="dot alert"></span>Alertas del Huracán mini activas</div>
+        <div class="status-pill"><span class="dot neutral"></span>GitHub Pages · JSON externo</div>
       </section>
 
-      <section class="command-grid">
-        <article class="command-card command-card--main">
-          <div class="command-head">
+      <section class="dashboard-grid">
+        <article class="card card-hero">
+          <div class="card-head">
             <div>
               <div class="eyebrow">Centro de mando</div>
-              <h2>Huracán · visión instantánea</h2>
-              <p>Próximo partido, momento reciente, alertas y acceso rápido a lo que importa.</p>
+              <h2>Huracán · visión inmediata</h2>
+              <p>Próximo partido, lectura rápida de forma reciente y acceso directo a lo importante.</p>
             </div>
-            <div class="pill favorite">Favorito</div>
+            <div class="badge favorite">Favorito</div>
           </div>
           <div id="summary-next"></div>
-          <div class="kpis kpis-large">
-            <div class="kpi"><div class="value" id="kpi-mini-teams">—</div><div class="label">Equipos mini</div></div>
-            <div class="kpi"><div class="value" id="kpi-mini-jornadas">—</div><div class="label">Jornadas mini</div></div>
-            <div class="kpi"><div class="value" id="kpi-huracan-matches">—</div><div class="label">Partidos Huracán</div></div>
+          <div class="metric-row">
+            <div class="metric"><div class="metric-value" id="kpi-mini-teams">—</div><div class="metric-label">Equipos mini</div></div>
+            <div class="metric"><div class="metric-value" id="kpi-mini-jornadas">—</div><div class="metric-label">Jornadas mini</div></div>
+            <div class="metric"><div class="metric-value" id="kpi-huracan-matches">—</div><div class="metric-label">Partidos Huracán</div></div>
           </div>
         </article>
 
-        <article class="command-card">
-          <div class="command-head compact">
+        <article class="card">
+          <div class="card-head compact">
             <div>
-              <div class="eyebrow">Últimos movimientos</div>
-              <h3>Cambios y contexto</h3>
+              <div class="eyebrow">Últimos cambios</div>
+              <h3>Alertas y contexto</h3>
             </div>
           </div>
-          <div class="alert-list" id="summary-alerts"></div>
+          <div class="stack" id="summary-alerts"></div>
         </article>
 
-        <article class="command-card">
-          <div class="command-head compact">
+        <article class="card">
+          <div class="card-head compact">
             <div>
-              <div class="eyebrow">Rendimiento</div>
+              <div class="eyebrow">Racha</div>
               <h3>Resultados recientes</h3>
             </div>
           </div>
-          <div class="result-list" id="summary-results"></div>
+          <div class="stack" id="summary-results"></div>
         </article>
       </section>
 
-      <section class="huracan-focus redesign-focus" id="huracan-focus">
-        <div class="focus-shell glass-card">
-          <div class="focus-header">
-            <div>
-              <div class="focus-kicker">Modo rápido</div>
-              <h2>Solo Huracán</h2>
-              <p>Lectura directa de próximos partidos, histórico, alertas y acceso a la liga completa.</p>
-            </div>
-            <div class="pill favorite">Focus</div>
+      <section class="focus card" id="huracan-focus">
+        <div class="card-head">
+          <div>
+            <div class="eyebrow">Modo rápido</div>
+            <h2>Solo Huracán</h2>
+            <p>Una sola pantalla para abrir, mirar y salir con toda la información clave.</p>
           </div>
-          <div class="focus-grid focus-grid-4">
-            <div class="focus-card"><h3>Próximo partido</h3><div id="focus-next"></div></div>
-            <div class="focus-card"><h3>Últimos resultados</h3><div id="focus-results"></div></div>
-            <div class="focus-card"><h3>Última alerta</h3><div id="focus-alert"></div></div>
-            <div class="focus-card"><h3>Histórico del Huracán</h3><div id="focus-history"></div></div>
-          </div>
-          <div class="focus-actions premium-actions">
-            <button class="cta-btn" onclick="showLeague('mini')">Ver mini completa</button>
-            <button class="cta-btn secondary" onclick="showLeague('pre')">Ver prebenjamín</button>
-          </div>
+          <div class="badge favorite">Focus</div>
+        </div>
+        <div class="focus-grid">
+          <div class="subcard"><h3>Próximo partido</h3><div id="focus-next"></div></div>
+          <div class="subcard"><h3>Últimos resultados</h3><div id="focus-results"></div></div>
+          <div class="subcard"><h3>Última alerta</h3><div id="focus-alert"></div></div>
+          <div class="subcard"><h3>Histórico reciente</h3><div id="focus-history"></div></div>
+        </div>
+        <div class="cta-row">
+          <button class="cta primary" onclick="showLeague('mini')">Ir a mini completa</button>
+          <button class="cta tertiary" onclick="showLeague('pre')">Ir a pre</button>
         </div>
       </section>
 
-      <section class="lsec" id="sec-mini">
-        <div class="lhdr mini glass-card">
-          <div class="lhdr-ico">🔵</div>
-          <div><h2>Miniprebenjamín Escuela</h2><small>17 equipos · 34 jornadas</small></div>
-          <div class="badge-live">Activo</div>
+      <section class="league" id="sec-mini">
+        <div class="league-head mini">
+          <div>
+            <div class="eyebrow">Competición</div>
+            <h2>Miniprebenjamín Escuela</h2>
+            <p>17 equipos · 34 jornadas</p>
+          </div>
+          <div class="badge live">Activo</div>
         </div>
-        <div class="itabs mini">
-          <button class="itab mini on" onclick="switchTab('mini','cal',this)">Calendario</button>
-          <button class="itab mini" onclick="switchTab('mini','eq',this)">Equipos</button>
+        <div class="tabs">
+          <button class="tab on mini" onclick="switchTab('mini','cal',this)">Calendario</button>
+          <button class="tab mini" onclick="switchTab('mini','eq',this)">Equipos</button>
         </div>
         <div class="panel on" id="mini-cal">
-          <div class="pbox mini glass-card">
-            <div class="jnav">
-              <button class="jarr" id="mini-prev" onclick="chJorn('mini',-1)">‹</button>
+          <div class="panel-box">
+            <div class="toolbar">
+              <button class="navbtn" id="mini-prev" onclick="chJorn('mini',-1)">‹</button>
               <select id="mini-sel" onchange="renderJornada('mini',+this.value)"></select>
-              <button class="jarr" id="mini-next" onclick="chJorn('mini',1)">›</button>
+              <button class="navbtn" id="mini-next" onclick="chJorn('mini',1)">›</button>
             </div>
-            <div class="jmeta" id="mini-meta"></div>
+            <div class="meta" id="mini-meta"></div>
             <div id="mini-matches"></div>
           </div>
         </div>
-        <div class="panel" id="mini-eq"><div class="pbox mini glass-card"><div class="tgrid" id="mini-teams"></div></div></div>
+        <div class="panel" id="mini-eq"><div class="panel-box"><div class="team-grid" id="mini-teams"></div></div></div>
       </section>
 
-      <section class="lsec" id="sec-pre">
-        <div class="lhdr pre glass-card">
-          <div class="lhdr-ico">🟡</div>
-          <div><h2>Prebenjamín Escuela</h2><small>32 equipos · Grupo A (16) + Grupo B (16)</small></div>
-          <div class="badge-live">Activo</div>
+      <section class="league" id="sec-pre">
+        <div class="league-head pre">
+          <div>
+            <div class="eyebrow">Competición</div>
+            <h2>Prebenjamín Escuela</h2>
+            <p>32 equipos · Grupo A (16) + Grupo B (16)</p>
+          </div>
+          <div class="badge live">Activo</div>
         </div>
-        <div class="itabs pre">
-          <button class="itab pre on" onclick="switchTab('pre','cal',this)">Calendario</button>
-          <button class="itab pre" onclick="switchTab('pre','eq',this)">Equipos</button>
+        <div class="tabs">
+          <button class="tab on pre" onclick="switchTab('pre','cal',this)">Calendario</button>
+          <button class="tab pre" onclick="switchTab('pre','eq',this)">Equipos</button>
         </div>
         <div class="panel on" id="pre-cal">
-          <div class="pbox pre glass-card">
-            <div class="gfrow">
-              <button class="gfbtn on-a" id="gA" onclick="switchGrp('A')">Grupo A</button>
-              <button class="gfbtn" id="gB" onclick="switchGrp('B')">Grupo B</button>
+          <div class="panel-box">
+            <div class="group-row">
+              <button class="group-btn on-a" id="gA" onclick="switchGrp('A')">Grupo A</button>
+              <button class="group-btn" id="gB" onclick="switchGrp('B')">Grupo B</button>
             </div>
-            <div class="jnav">
-              <button class="jarr" id="pre-prev" onclick="chJorn('pre',-1)">‹</button>
+            <div class="toolbar">
+              <button class="navbtn" id="pre-prev" onclick="chJorn('pre',-1)">‹</button>
               <select id="pre-sel" onchange="renderJornada('pre',+this.value)"></select>
-              <button class="jarr" id="pre-next" onclick="chJorn('pre',1)">›</button>
+              <button class="navbtn" id="pre-next" onclick="chJorn('pre',1)">›</button>
             </div>
-            <div class="jmeta" id="pre-meta"></div>
+            <div class="meta" id="pre-meta"></div>
             <div id="pre-matches"></div>
           </div>
         </div>
-        <div class="panel" id="pre-eq"><div class="pbox pre glass-card"><div class="tgrid" id="pre-teams"></div></div></div>
+        <div class="panel" id="pre-eq"><div class="panel-box"><div class="team-grid" id="pre-teams"></div></div></div>
       </section>
 
-      <div class="footer-note">Static site · GitHub Pages · datos externos JSON · dashboard premium del Huracán</div>
+      <div class="footer-note">Premium sobria · funcional · clara · sin perder el foco</div>
     </main>
   </div>
 
