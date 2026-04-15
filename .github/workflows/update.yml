@@ -34,7 +34,7 @@ jobs:
         run: |
           git config user.email "action@github.com"
           git config user.name "GitHub Actions"
-          git add index.html scripts/snapshots/
+          git add index.html styles.css app.js data/ scripts/snapshots/
           if git diff --staged --quiet; then
             echo "No changes to commit."
           else

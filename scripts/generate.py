@@ -1,25 +1,24 @@
 #!/usr/bin/env python3
 """
 Fetches fresh match data from tusligascanarias.mygol.es API
-and injects it into index.html, preserving all CSS/JS design.
-
-Tournaments:
-  85 → Minibenjamín (MINI_MATCHES, MT)
-  87 → Prebenjamín  (PRE_MATCHES, PT)
+and generates lightweight JSON files consumed by the static frontend.
 """
 
 import json
-import re
-import sys
 import urllib.request
 import urllib.error
+from datetime import datetime, timezone
+from pathlib import Path
 
 BASE = "https://tusligascanarias.mygol.es/api"
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
-                  "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Accept": "application/json, text/plain, */*",
 }
+ROOT = Path(__file__).resolve().parents[1]
+DATA_DIR = ROOT / "data"
+HURACAN_MINI_ID = 1159
+HURACAN_PRE_ID = 1112
 
 
 def fetch(url):
@@ -28,137 +27,107 @@ def fetch(url):
         return json.loads(r.read())
 
 
-def fmt_date(s):
-    """Convert ISO timestamp to 'YYYY-MM-DDTHH:MM', or '' if unset."""
-    if not s or s.startswith("0001") or s.startswith("1901"):
+def fmt_date(value):
+    if not value or value.startswith("0001") or value.startswith("1901"):
         return ""
-    return s[:16]
+    return value[:16]
+
+
+def tournament_group_map(tournament_data):
+    groups = {}
+    for g in tournament_data.get("groups", []):
+        name = (g.get("name") or "").strip().upper()
+        letter = name[-1] if name else "A"
+        if letter not in ("A", "B", "C", "D"):
+            letter = "A"
+        groups[g["id"]] = letter
+    return groups
+
+
+def build_mini_team_map(tournament_data):
+    return {team["id"]: team["name"] for team in tournament_data.get("teams", [])}
+
+
+def build_pre_team_map(tournament_data):
+    group_letter = tournament_group_map(tournament_data)
+    team_group = {}
+    for tg in tournament_data.get("teamGroups", []):
+        team_group[tg["idTeam"]] = group_letter.get(tg["idGroup"], "A")
+    return {team["id"]: {"name": team["name"], "group": team_group.get(team["id"], "A")} for team in tournament_data.get("teams", [])}
 
 
 def transform_matches(jornadas_data):
-    """Convert API jornada list to compact HTML format."""
     result = []
     for jornada in jornadas_data:
-        name = jornada.get("name", "")
-        group_id = jornada.get("idGroup", 0)
         matches = []
         for m in jornada.get("matches", []):
-            status = m.get("status", 5)
-            home = m.get("idHomeTeam") or -1
-            away = m.get("idVisitorTeam") or -1
-            d = fmt_date(m.get("startTime", ""))
             field = m.get("field") or {}
-            f = (field.get("name") or "") if field else ""
-            matches.append({"h": home, "v": away, "d": d, "s": status, "f": f})
-        result.append({"n": name, "g": group_id, "m": matches})
+            matches.append({
+                "home": m.get("idHomeTeam") or -1,
+                "away": m.get("idVisitorTeam") or -1,
+                "date": fmt_date(m.get("startTime", "")),
+                "status": m.get("status", 5),
+                "field": field.get("name") or "",
+                "home_score": m.get("homeScore"),
+                "away_score": m.get("visitorScore"),
+            })
+        result.append({"name": jornada.get("name", ""), "group_id": jornada.get("idGroup", 0), "matches": matches})
     return result
 
 
-def build_mt(tournament_data):
-    """Build MT = {teamId: "Team Name"} from tournament 85."""
-    mt = {}
-    for team in tournament_data.get("teams", []):
-        mt[team["id"]] = team["name"]
-    return mt
+def extract_team_matches(jornadas_data, team_id, team_map, is_pre=False):
+    out = []
+    for jornada in jornadas_data:
+        for m in jornada.get("matches", []):
+            home = m.get("idHomeTeam") or -1
+            away = m.get("idVisitorTeam") or -1
+            if team_id not in (home, away):
+                continue
+            home_team = team_map.get(home, {"name": f"#{home}", "group": "-"}) if is_pre else {"name": team_map.get(home, f"#{home}"), "group": "-"}
+            away_team = team_map.get(away, {"name": f"#{away}", "group": "-"}) if is_pre else {"name": team_map.get(away, f"#{away}"), "group": "-"}
+            field = m.get("field") or {}
+            out.append({
+                "jornada": jornada.get("name", ""),
+                "home": home,
+                "away": away,
+                "home_name": home_team["name"],
+                "away_name": away_team["name"],
+                "date": fmt_date(m.get("startTime", "")),
+                "status": m.get("status", 5),
+                "field": field.get("name") or "",
+                "home_score": m.get("homeScore"),
+                "away_score": m.get("visitorScore"),
+                "group": home_team.get("group") if team_id == home else away_team.get("group"),
+            })
+    return out
 
 
-def build_pt(tournament_data, existing_pt=None):
-    """Build PT = {teamId: {n:"Name", g:"A"|"B"}} using teamGroups mapping."""
-    pt = {}
-    # Build group letter map: idGroup -> last letter of name ("GRUPO A" -> "A")
-    group_letter = {}
-    for g in tournament_data.get("groups", []):
-        name = g.get("name", "")
-        letter = name.strip()[-1].upper() if name.strip() else "A"
-        if letter not in ("A", "B", "C", "D"):
-            letter = "A"
-        group_letter[g["id"]] = letter
-
-    # Build team -> group mapping from teamGroups
-    team_group = {}
-    for tg in tournament_data.get("teamGroups", []):
-        tid = tg["idTeam"]
-        gid = tg["idGroup"]
-        team_group[tid] = group_letter.get(gid, "A")
-
-    for team in tournament_data.get("teams", []):
-        tid = team["id"]
-        g = team_group.get(tid, "A")
-        pt[tid] = {"n": team["name"], "g": g}
-
-    return pt
-
-
-def extract_existing_pt(html):
-    """Extract existing PT dict from HTML for group fallback."""
-    m = re.search(r'const PT=(\{.*?\});', html, re.DOTALL)
-    if m:
-        try:
-            return json.loads(m.group(1))
-        except Exception:
-            pass
-    return {}
-
-
-def js_const(name, value):
-    return f"const {name}={json.dumps(value, ensure_ascii=False, separators=(',', ':'))};"
+def save_json(name, payload):
+    DATA_DIR.mkdir(exist_ok=True)
+    (DATA_DIR / name).write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 def main():
     print("Fetching match and team data from mygol.es API...")
-    try:
-        mini_raw = fetch(f"{BASE}/matches/fortournament/85")
-        pre_raw = fetch(f"{BASE}/matches/fortournament/87")
-        mini_t = fetch(f"{BASE}/tournaments/85")
-        pre_t = fetch(f"{BASE}/tournaments/87")
-    except urllib.error.URLError as e:
-        print(f"ERROR: Network request failed: {e}", file=sys.stderr)
-        sys.exit(1)
-    except Exception as e:
-        print(f"ERROR: {e}", file=sys.stderr)
-        sys.exit(1)
+    mini_raw = fetch(f"{BASE}/matches/fortournament/85")
+    pre_raw = fetch(f"{BASE}/matches/fortournament/87")
+    mini_t = fetch(f"{BASE}/tournaments/85")
+    pre_t = fetch(f"{BASE}/tournaments/87")
 
-    with open("index.html", "r", encoding="utf-8") as f:
-        html = f.read()
+    mini_team_map = build_mini_team_map(mini_t)
+    pre_team_map = build_pre_team_map(pre_t)
+    updated_at = datetime.now(timezone.utc).isoformat()
 
-    existing_pt = extract_existing_pt(html)
+    mini_payload = {"updated_at": updated_at, "tournament": {"id": 85, "name": "Miniprebenjamín Escuela"}, "teams": mini_team_map, "jornadas": transform_matches(mini_raw)}
+    pre_payload = {"updated_at": updated_at, "tournament": {"id": 87, "name": "Prebenjamín Escuela"}, "teams": pre_team_map, "jornadas": transform_matches(pre_raw)}
+    huracan_payload = {"updated_at": updated_at, "mini": extract_team_matches(mini_raw, HURACAN_MINI_ID, mini_team_map, False), "pre": extract_team_matches(pre_raw, HURACAN_PRE_ID, pre_team_map, True)}
+    meta_payload = {"updated_at": updated_at, "leagues": {"mini": {"label": "Miniprebenjamín", "teams": len(mini_team_map), "jornadas": len(mini_payload['jornadas'])}, "pre": {"label": "Prebenjamín", "teams": len(pre_team_map), "jornadas": len(pre_payload['jornadas'])}}}
 
-    mini_matches = transform_matches(mini_raw)
-    pre_matches = transform_matches(pre_raw)
-    mt = build_mt(mini_t)
-    pt = build_pt(pre_t, existing_pt)
-
-    new_data = "\n".join([
-        js_const("MINI_MATCHES", mini_matches),
-        js_const("PRE_MATCHES", pre_matches),
-        "",
-        "// ── STATIC TEAMS ──────────────────────────────────────────",
-        js_const("MT", mt),
-        js_const("PT", pt),
-        "",
-    ])
-
-    # Verify the data section marker exists before replacing
-    if not re.search(r'const MINI_MATCHES=', html):
-        print("ERROR: Could not find 'const MINI_MATCHES=' in index.html — HTML structure may have changed.", file=sys.stderr)
-        sys.exit(1)
-
-    # Replace everything from "const MINI_MATCHES=" up to "const NOW = new Date();"
-    new_html = re.sub(
-        r'const MINI_MATCHES=.*?(?=const NOW = new Date\(\);)',
-        new_data + "\n",
-        html,
-        flags=re.DOTALL,
-    )
-
-    with open("index.html", "w", encoding="utf-8") as f:
-        f.write(new_html)
-
-    print(
-        f"Done! MINI: {len(mini_matches)} jornadas | "
-        f"PRE: {len(pre_matches)} jornadas | "
-        f"MT: {len(mt)} teams | PT: {len(pt)} teams"
-    )
+    save_json("mini.json", mini_payload)
+    save_json("pre.json", pre_payload)
+    save_json("huracan.json", huracan_payload)
+    save_json("meta.json", meta_payload)
+    print(f"Done! MINI jornadas: {len(mini_payload['jornadas'])} | PRE jornadas: {len(pre_payload['jornadas'])} | Huracán mini partidos: {len(huracan_payload['mini'])}")
 
 
 if __name__ == "__main__":

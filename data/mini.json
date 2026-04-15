@@ -1,0 +1,2950 @@
+{
+  "updated_at": "2026-04-15T12:10:10.436264+00:00",
+  "tournament": {
+    "id": 85,
+    "name": "Miniprebenjamín Escuela"
+  },
+  "teams": {
+    "1103": "C.F. UNION VIERA A",
+    "1104": "C.F. UNION VIERA B",
+    "1106": "CF Veteranos del Pilar",
+    "1115": "UD TAMARACEITE",
+    "1117": "FUNDACIÓN CANARIA GUINIGUADA",
+    "1120": "UD LAS PALMAS A",
+    "1121": "UD LAS PALMAS B",
+    "1122": "UD LAS PALMAS C",
+    "1138": "REAL CLUB VICTORIA",
+    "1148": "ACODETTI CF",
+    "1154": "REAL SPORTING SAN JOSE",
+    "1155": "C. D. SAN LAZARO",
+    "1156": "ARBOL BONITO MIGUEL LEON",
+    "1157": "CORAZÓN DE MARÍA A",
+    "1158": "CORAZÓN DE MARÍA B",
+    "1159": "AD HURACAN",
+    "1160": "ATL. GRAN CANARIA"
+  },
+  "jornadas": [
+    {
+      "name": "Jornada 1",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": -1,
+          "away": 1159,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1156,
+          "away": 1154,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1148,
+          "away": 1160,
+          "date": "2025-11-08T11:00",
+          "status": 5,
+          "field": "LA SUERTE 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1158,
+          "away": 1157,
+          "date": "2025-11-08T11:00",
+          "status": 5,
+          "field": "BARRIO ATL.",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1121,
+          "away": 1122,
+          "date": "2025-11-08T11:30",
+          "status": 5,
+          "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1106,
+          "away": 1155,
+          "date": "2025-11-08T12:30",
+          "status": 5,
+          "field": "NARANJO SOSA - LAS ARENAS",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1115,
+          "away": 1103,
+          "date": "2025-11-09T11:00",
+          "status": 5,
+          "field": "TAMARACEITE",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1117,
+          "away": 1104,
+          "date": "2025-11-09T11:00",
+          "status": 5,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1120,
+          "away": 1138,
+          "date": "2025-11-09T12:00",
+          "status": 5,
+          "field": "LAS TORRES 1",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 2",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": 1160,
+          "away": -1,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1154,
+          "away": 1106,
+          "date": "2025-11-15T11:00",
+          "status": 5,
+          "field": "BARRIO ATL.",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1138,
+          "away": 1158,
+          "date": "2025-11-15T11:00",
+          "status": 5,
+          "field": "LA SUERTE 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1155,
+          "away": 1115,
+          "date": "2025-11-16T10:00",
+          "status": 5,
+          "field": "EL PILAR 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1103,
+          "away": 1148,
+          "date": "2025-11-16T11:00",
+          "status": 5,
+          "field": "ALFONSO SILVA 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1104,
+          "away": 1156,
+          "date": "2025-11-16T11:00",
+          "status": 5,
+          "field": "ALFONSO SILVA 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1157,
+          "away": 1117,
+          "date": "2025-11-16T11:00",
+          "status": 5,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1122,
+          "away": 1120,
+          "date": "2025-11-16T12:00",
+          "status": 5,
+          "field": "LAS TORRES 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1159,
+          "away": 1121,
+          "date": "2025-11-16T12:00",
+          "status": 5,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 3",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": -1,
+          "away": 1121,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1160,
+          "away": 1103,
+          "date": "2025-11-22T11:00",
+          "status": 5,
+          "field": "BARRIO ATL.",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1148,
+          "away": 1155,
+          "date": "2025-11-22T12:00",
+          "status": 5,
+          "field": "LA SUERTE 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1106,
+          "away": 1104,
+          "date": "2025-11-22T12:30",
+          "status": 5,
+          "field": "NARANJO SOSA - LAS ARENAS",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1156,
+          "away": 1157,
+          "date": "2025-11-22T12:30",
+          "status": 5,
+          "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1115,
+          "away": 1154,
+          "date": "2025-11-23T11:00",
+          "status": 5,
+          "field": "TAMARACEITE",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1117,
+          "away": 1138,
+          "date": "2025-11-23T11:00",
+          "status": 5,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1158,
+          "away": 1122,
+          "date": "2025-11-23T12:00",
+          "status": 5,
+          "field": "LAS TORRES 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1120,
+          "away": 1159,
+          "date": "2025-11-23T12:00",
+          "status": 5,
+          "field": "LAS TORRES 2",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 4",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": 1103,
+          "away": -1,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1154,
+          "away": 1148,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1157,
+          "away": 1106,
+          "date": "2025-11-29T10:00",
+          "status": 5,
+          "field": "LA SUERTE 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1155,
+          "away": 1160,
+          "date": "2025-11-29T11:00",
+          "status": 5,
+          "field": "BARRIO ATL.",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1138,
+          "away": 1156,
+          "date": "2025-11-29T12:30",
+          "status": 5,
+          "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1122,
+          "away": 1117,
+          "date": "2025-11-30T11:00",
+          "status": 5,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1104,
+          "away": 1115,
+          "date": "2025-11-30T12:00",
+          "status": 5,
+          "field": "ALFONSO SILVA 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1159,
+          "away": 1158,
+          "date": "2025-11-30T12:00",
+          "status": 5,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1121,
+          "away": 1120,
+          "date": "2025-11-30T12:00",
+          "status": 5,
+          "field": "LAS TORRES 2",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 5",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": -1,
+          "away": 1120,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1103,
+          "away": 1155,
+          "date": "",
+          "status": 5,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1160,
+          "away": 1154,
+          "date": "",
+          "status": 5,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1156,
+          "away": 1122,
+          "date": "",
+          "status": 5,
+          "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1148,
+          "away": 1104,
+          "date": "2025-12-20T12:30",
+          "status": 5,
+          "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1106,
+          "away": 1138,
+          "date": "2025-12-20T12:30",
+          "status": 5,
+          "field": "NARANJO SOSA - LAS ARENAS",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1115,
+          "away": 1157,
+          "date": "2025-12-21T10:00",
+          "status": 5,
+          "field": "JUAN GUEDES",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1117,
+          "away": 1159,
+          "date": "2025-12-21T11:00",
+          "status": 5,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1158,
+          "away": 1121,
+          "date": "2025-12-21T11:00",
+          "status": 5,
+          "field": "JUAN GUEDES",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 6",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": 1155,
+          "away": -1,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1156,
+          "away": 1159,
+          "date": "",
+          "status": 1,
+          "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1157,
+          "away": 1148,
+          "date": "2026-01-10T12:00",
+          "status": 5,
+          "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1122,
+          "away": 1106,
+          "date": "2026-01-10T12:30",
+          "status": 5,
+          "field": "NARANJO SOSA - LAS ARENAS",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1154,
+          "away": 1103,
+          "date": "2026-01-11T11:00",
+          "status": 5,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1104,
+          "away": 1160,
+          "date": "2026-01-11T11:00",
+          "status": 5,
+          "field": "EL PILAR 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1138,
+          "away": 1115,
+          "date": "2026-01-11T11:00",
+          "status": 5,
+          "field": "JUAN GUEDES",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1121,
+          "away": 1117,
+          "date": "2026-01-11T12:00",
+          "status": 5,
+          "field": "LAS TORRES 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1120,
+          "away": 1158,
+          "date": "2026-01-11T12:00",
+          "status": 5,
+          "field": "LAS TORRES 2",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 7",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": -1,
+          "away": 1158,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1155,
+          "away": 1154,
+          "date": "",
+          "status": 5,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1160,
+          "away": 1157,
+          "date": "2026-01-17T11:00",
+          "status": 5,
+          "field": "BARRIO ATL.",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1156,
+          "away": 1121,
+          "date": "2026-01-17T11:30",
+          "status": 5,
+          "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1106,
+          "away": 1159,
+          "date": "2026-01-17T12:30",
+          "status": 5,
+          "field": "NARANJO SOSA - LAS ARENAS",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1115,
+          "away": 1122,
+          "date": "2026-01-18T11:00",
+          "status": 5,
+          "field": "JUAN GUEDES",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1117,
+          "away": 1120,
+          "date": "2026-01-18T11:00",
+          "status": 5,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1103,
+          "away": 1104,
+          "date": "2026-01-18T12:00",
+          "status": 5,
+          "field": "LAS TORRES 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1148,
+          "away": 1138,
+          "date": "2026-01-18T12:00",
+          "status": 5,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 8",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": 1154,
+          "away": -1,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1104,
+          "away": 1155,
+          "date": "2026-01-24T10:00",
+          "status": 5,
+          "field": "BARRIO ATL.",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1138,
+          "away": 1160,
+          "date": "2026-01-24T11:00",
+          "status": 5,
+          "field": "BARRIO ATL.",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1157,
+          "away": 1103,
+          "date": "2026-01-25T11:00",
+          "status": 5,
+          "field": "EL PILAR 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1122,
+          "away": 1148,
+          "date": "2026-01-25T11:00",
+          "status": 5,
+          "field": "LAS TORRES 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1159,
+          "away": 1115,
+          "date": "2026-01-25T11:00",
+          "status": 5,
+          "field": "JUAN GUEDES",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1158,
+          "away": 1117,
+          "date": "2026-01-25T11:00",
+          "status": 5,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1121,
+          "away": 1106,
+          "date": "2026-01-25T12:00",
+          "status": 5,
+          "field": "LAS TORRES 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1120,
+          "away": 1156,
+          "date": "2026-01-25T12:00",
+          "status": 5,
+          "field": "LAS TORRES 1",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 9",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": -1,
+          "away": 1117,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1148,
+          "away": 1159,
+          "date": "2026-01-31T11:00",
+          "status": 5,
+          "field": "LA SUERTE 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1155,
+          "away": 1157,
+          "date": "2026-01-31T11:30",
+          "status": 5,
+          "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1106,
+          "away": 1120,
+          "date": "2026-01-31T12:30",
+          "status": 5,
+          "field": "NARANJO SOSA - LAS ARENAS",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1156,
+          "away": 1158,
+          "date": "2026-01-31T12:30",
+          "status": 5,
+          "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1117,
+          "away": 1104,
+          "date": "2026-02-01T11:00",
+          "status": 5,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1103,
+          "away": 1138,
+          "date": "2026-02-01T11:00",
+          "status": 5,
+          "field": "EL PILAR 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1160,
+          "away": 1122,
+          "date": "2026-02-01T11:00",
+          "status": 5,
+          "field": "LAS TORRES 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1115,
+          "away": 1121,
+          "date": "2026-02-01T11:00",
+          "status": 5,
+          "field": "JUAN GUEDES",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 10",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": 1104,
+          "away": -1,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1157,
+          "away": 1154,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1138,
+          "away": 1155,
+          "date": "2026-02-07T10:00",
+          "status": 5,
+          "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1158,
+          "away": 1106,
+          "date": "2026-02-07T12:30",
+          "status": 5,
+          "field": "NARANJO SOSA - LAS ARENAS",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1159,
+          "away": 1160,
+          "date": "2026-02-08T10:00",
+          "status": 5,
+          "field": "JUAN GUEDES",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1120,
+          "away": 1115,
+          "date": "2026-02-08T11:00",
+          "status": 5,
+          "field": "JUAN GUEDES",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1117,
+          "away": 1156,
+          "date": "2026-02-08T11:00",
+          "status": 5,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1122,
+          "away": 1103,
+          "date": "2026-02-08T12:00",
+          "status": 5,
+          "field": "LAS TORRES 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1121,
+          "away": 1148,
+          "date": "2026-02-08T12:00",
+          "status": 5,
+          "field": "LAS TORRES 1",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 11",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": -1,
+          "away": 1156,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1154,
+          "away": 1138,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1104,
+          "away": 1157,
+          "date": "2026-02-15T11:00",
+          "status": 5,
+          "field": "EL PILAR 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1122,
+          "away": 1115,
+          "date": "2026-02-15T11:00",
+          "status": 5,
+          "field": "LAS TORRES 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1103,
+          "away": 1159,
+          "date": "2026-02-15T11:00",
+          "status": 5,
+          "field": "ALFONSO SILVA 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1148,
+          "away": 1120,
+          "date": "2026-02-15T11:00",
+          "status": 5,
+          "field": "LAS TORRES 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1158,
+          "away": 1156,
+          "date": "2026-02-15T11:00",
+          "status": 5,
+          "field": "JUAN GUEDES",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1106,
+          "away": 1117,
+          "date": "2026-02-15T11:00",
+          "status": 5,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1160,
+          "away": 1121,
+          "date": "2026-02-15T12:00",
+          "status": 5,
+          "field": "LAS TORRES 2",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 12",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": 1157,
+          "away": -1,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1122,
+          "away": 1154,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1158,
+          "away": 1148,
+          "date": "2026-02-21T11:00",
+          "status": 5,
+          "field": "LA SUERTE 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1138,
+          "away": 1104,
+          "date": "2026-02-21T12:30",
+          "status": 5,
+          "field": "NARANJO SOSA - LAS ARENAS",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1156,
+          "away": 1106,
+          "date": "2026-02-21T12:30",
+          "status": 5,
+          "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1159,
+          "away": 1155,
+          "date": "2026-02-22T11:00",
+          "status": 5,
+          "field": "JUAN GUEDES",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1121,
+          "away": 1103,
+          "date": "2026-02-22T11:00",
+          "status": 5,
+          "field": "LAS TORRES 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1117,
+          "away": 1115,
+          "date": "2026-02-22T11:00",
+          "status": 5,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1120,
+          "away": 1160,
+          "date": "2026-02-22T12:00",
+          "status": 5,
+          "field": "LAS TORRES 1",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 13",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": -1,
+          "away": 1106,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1154,
+          "away": 1159,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1104,
+          "away": 1122,
+          "date": "2026-03-07T10:00",
+          "status": 5,
+          "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1156,
+          "away": 1115,
+          "date": "2026-03-07T11:00",
+          "status": 5,
+          "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1157,
+          "away": 1138,
+          "date": "2026-03-07T12:00",
+          "status": 5,
+          "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1155,
+          "away": 1121,
+          "date": "2026-03-07T12:30",
+          "status": 5,
+          "field": "NARANJO SOSA - LAS ARENAS",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1103,
+          "away": 1120,
+          "date": "2026-03-08T10:00",
+          "status": 5,
+          "field": "JUAN GUEDES",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1160,
+          "away": 1158,
+          "date": "2026-03-08T11:00",
+          "status": 5,
+          "field": "JUAN GUEDES",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1148,
+          "away": 1117,
+          "date": "2026-03-08T11:00",
+          "status": 5,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 14",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": 1138,
+          "away": -1,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1156,
+          "away": 1148,
+          "date": "2026-03-14T11:00",
+          "status": 5,
+          "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1138,
+          "away": 1122,
+          "date": "2026-03-14T12:30",
+          "status": 5,
+          "field": "NARANJO SOSA - LAS ARENAS",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1159,
+          "away": 1104,
+          "date": "2026-03-15T10:00",
+          "status": 5,
+          "field": "ALFONSO SILVA 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1158,
+          "away": 1103,
+          "date": "2026-03-15T10:00",
+          "status": 5,
+          "field": "JUAN GUEDES",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1121,
+          "away": 1157,
+          "date": "2026-03-15T11:00",
+          "status": 5,
+          "field": "LAS TORRES 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1120,
+          "away": 1155,
+          "date": "2026-03-15T11:00",
+          "status": 5,
+          "field": "LAS TORRES 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1117,
+          "away": 1160,
+          "date": "2026-03-15T11:00",
+          "status": 5,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1106,
+          "away": 1115,
+          "date": "2026-03-15T11:00",
+          "status": 5,
+          "field": "JUAN GUEDES",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 15",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": -1,
+          "away": 1115,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1154,
+          "away": 1120,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1148,
+          "away": 1106,
+          "date": "2026-03-21T11:00",
+          "status": 1,
+          "field": "LA SUERTE 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1138,
+          "away": 1122,
+          "date": "2026-03-21T11:30",
+          "status": 1,
+          "field": "NARANJO SOSA - LAS ARENAS",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1160,
+          "away": 1156,
+          "date": "2026-03-21T12:00",
+          "status": 1,
+          "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1155,
+          "away": 1158,
+          "date": "2026-03-21T12:30",
+          "status": 1,
+          "field": "NARANJO SOSA - LAS ARENAS",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1157,
+          "away": 1159,
+          "date": "2026-03-22T11:00",
+          "status": 1,
+          "field": "EL BATAN 1 ",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1104,
+          "away": 1121,
+          "date": "2026-03-22T11:00",
+          "status": 1,
+          "field": "LAS TORRES 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1103,
+          "away": 1117,
+          "date": "2026-03-22T11:00",
+          "status": 1,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 16",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": 1158,
+          "away": 1122,
+          "date": "2026-03-28T11:00",
+          "status": 5,
+          "field": "LA SUERTE 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1106,
+          "away": 1160,
+          "date": "2026-03-28T12:30",
+          "status": 5,
+          "field": "NARANJO SOSA - LAS ARENAS",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1115,
+          "away": 1148,
+          "date": "2026-03-29T10:00",
+          "status": 5,
+          "field": "JUAN GUEDES",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1121,
+          "away": 1157,
+          "date": "2026-03-29T11:00",
+          "status": 5,
+          "field": "LAS TORRES 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1120,
+          "away": 1104,
+          "date": "2026-03-29T11:00",
+          "status": 5,
+          "field": "LAS TORRES 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1117,
+          "away": 1155,
+          "date": "2026-03-29T11:00",
+          "status": 5,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1103,
+          "away": 1156,
+          "date": "2026-03-29T11:00",
+          "status": 5,
+          "field": "JUAN GUEDES",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1159,
+          "away": 1138,
+          "date": "2026-03-29T12:00",
+          "status": 5,
+          "field": "EL BATAN 1 ",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 17",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": 1104,
+          "away": 1158,
+          "date": "2026-04-11T11:00",
+          "status": 5,
+          "field": "BARRIO ATL.",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1155,
+          "away": 1156,
+          "date": "2026-04-11T11:00",
+          "status": 5,
+          "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1138,
+          "away": 1121,
+          "date": "2026-04-12T10:00",
+          "status": 5,
+          "field": "JUAN GUEDES",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1122,
+          "away": 1159,
+          "date": "2026-04-12T11:00",
+          "status": 5,
+          "field": "LAS TORRES 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1157,
+          "away": 1120,
+          "date": "2026-04-12T11:00",
+          "status": 5,
+          "field": "EL BATAN 1 ",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1148,
+          "away": 1117,
+          "date": "2026-04-12T11:00",
+          "status": 5,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1160,
+          "away": 1115,
+          "date": "2026-04-12T11:00",
+          "status": 5,
+          "field": "JUAN GUEDES",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1103,
+          "away": 1106,
+          "date": "2026-04-12T12:00",
+          "status": 5,
+          "field": "EL BATAN 1 ",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 18",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": 1160,
+          "away": 1148,
+          "date": "2026-04-18T11:00",
+          "status": 1,
+          "field": "LA SUERTE 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1157,
+          "away": 1158,
+          "date": "2026-04-18T11:00",
+          "status": 1,
+          "field": "BARRIO ATL.",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1155,
+          "away": 1106,
+          "date": "2026-04-19T11:00",
+          "status": 1,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1138,
+          "away": 1120,
+          "date": "2026-04-19T11:00",
+          "status": 1,
+          "field": "LAS TORRES 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1103,
+          "away": 1115,
+          "date": "2026-04-19T12:00",
+          "status": 1,
+          "field": "EL BATAN 1 ",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1159,
+          "away": 1156,
+          "date": "2026-04-19T12:00",
+          "status": 1,
+          "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1104,
+          "away": 1117,
+          "date": "2026-04-19T12:00",
+          "status": 1,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1122,
+          "away": 1121,
+          "date": "2026-04-19T12:00",
+          "status": 1,
+          "field": "LAS TORRES 1",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 19",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": 1156,
+          "away": 1104,
+          "date": "2026-04-25T11:00",
+          "status": 1,
+          "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1106,
+          "away": 1160,
+          "date": "2026-04-25T12:30",
+          "status": 1,
+          "field": "NARANJO SOSA - LAS ARENAS",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1117,
+          "away": 1157,
+          "date": "2026-04-26T10:00",
+          "status": 1,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1148,
+          "away": 1103,
+          "date": "2026-04-26T11:00",
+          "status": 1,
+          "field": "EL PILAR 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1158,
+          "away": 1138,
+          "date": "2026-04-26T11:00",
+          "status": 1,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1120,
+          "away": 1122,
+          "date": "2026-04-26T11:00",
+          "status": 1,
+          "field": "LAS TORRES 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1115,
+          "away": 1155,
+          "date": "2026-04-26T12:00",
+          "status": 1,
+          "field": "EL BATAN 1 ",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1121,
+          "away": 1159,
+          "date": "2026-04-26T12:00",
+          "status": 1,
+          "field": "LAS TORRES 1",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 20",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": 1121,
+          "away": -1,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1103,
+          "away": 1160,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1155,
+          "away": 1148,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1154,
+          "away": 1115,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1104,
+          "away": 1106,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1157,
+          "away": 1156,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1138,
+          "away": 1117,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1122,
+          "away": 1158,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1159,
+          "away": 1120,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 21",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": -1,
+          "away": 1103,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1160,
+          "away": 1155,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1148,
+          "away": 1154,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1115,
+          "away": 1104,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1106,
+          "away": 1157,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1156,
+          "away": 1138,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1117,
+          "away": 1122,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1158,
+          "away": 1159,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1120,
+          "away": 1121,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 22",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": 1120,
+          "away": -1,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1155,
+          "away": 1103,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1154,
+          "away": 1160,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1104,
+          "away": 1148,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1157,
+          "away": 1115,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1138,
+          "away": 1106,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1122,
+          "away": 1156,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1159,
+          "away": 1117,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1121,
+          "away": 1158,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 23",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": -1,
+          "away": 1155,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1103,
+          "away": 1154,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1160,
+          "away": 1104,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1148,
+          "away": 1157,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1115,
+          "away": 1138,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1106,
+          "away": 1122,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1156,
+          "away": 1159,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1117,
+          "away": 1121,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1158,
+          "away": 1120,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 24",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": 1158,
+          "away": -1,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1154,
+          "away": 1155,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1104,
+          "away": 1103,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1157,
+          "away": 1160,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1138,
+          "away": 1148,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1122,
+          "away": 1115,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1159,
+          "away": 1106,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1121,
+          "away": 1156,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1120,
+          "away": 1117,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 25",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": -1,
+          "away": 1154,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1155,
+          "away": 1104,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1103,
+          "away": 1157,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1160,
+          "away": 1138,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1148,
+          "away": 1122,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1115,
+          "away": 1159,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1106,
+          "away": 1121,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1156,
+          "away": 1120,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1117,
+          "away": 1158,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 26",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": 1117,
+          "away": -1,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1104,
+          "away": 1154,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1157,
+          "away": 1155,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1138,
+          "away": 1103,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1122,
+          "away": 1160,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1159,
+          "away": 1148,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1121,
+          "away": 1115,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1120,
+          "away": 1106,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1158,
+          "away": 1156,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 27",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": -1,
+          "away": 1104,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1154,
+          "away": 1157,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1155,
+          "away": 1138,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1103,
+          "away": 1122,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1160,
+          "away": 1159,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1148,
+          "away": 1121,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1115,
+          "away": 1120,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1106,
+          "away": 1158,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1156,
+          "away": 1117,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 28",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": 1156,
+          "away": -1,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1157,
+          "away": 1104,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1138,
+          "away": 1154,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1122,
+          "away": 1155,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1159,
+          "away": 1103,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1121,
+          "away": 1160,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1120,
+          "away": 1148,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1158,
+          "away": 1115,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1117,
+          "away": 1106,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 29",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": -1,
+          "away": 1157,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1104,
+          "away": 1138,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1154,
+          "away": 1122,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1155,
+          "away": 1159,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1103,
+          "away": 1121,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1160,
+          "away": 1120,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1148,
+          "away": 1158,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1115,
+          "away": 1117,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1106,
+          "away": 1156,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 30",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": 1106,
+          "away": -1,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1138,
+          "away": 1157,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1122,
+          "away": 1104,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1159,
+          "away": 1154,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1121,
+          "away": 1155,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1120,
+          "away": 1103,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1158,
+          "away": 1160,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1117,
+          "away": 1148,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1156,
+          "away": 1115,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 31",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": -1,
+          "away": 1138,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1157,
+          "away": 1122,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1104,
+          "away": 1159,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1154,
+          "away": 1121,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1155,
+          "away": 1120,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1103,
+          "away": 1158,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1160,
+          "away": 1117,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1148,
+          "away": 1156,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1115,
+          "away": 1106,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 32",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": 1115,
+          "away": -1,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1122,
+          "away": 1138,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1159,
+          "away": 1157,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1121,
+          "away": 1104,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1120,
+          "away": 1154,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1158,
+          "away": 1155,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1117,
+          "away": 1103,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1156,
+          "away": 1160,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1106,
+          "away": 1148,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 33",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": 1122,
+          "away": -1,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1138,
+          "away": 1159,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1157,
+          "away": 1121,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1104,
+          "away": 1120,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1154,
+          "away": 1158,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1155,
+          "away": 1117,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1103,
+          "away": 1156,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1160,
+          "away": 1106,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1148,
+          "away": 1115,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    },
+    {
+      "name": "Jornada 34",
+      "group_id": 341,
+      "matches": [
+        {
+          "home": -1,
+          "away": 1148,
+          "date": "",
+          "status": 10,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1159,
+          "away": 1122,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1121,
+          "away": 1138,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1120,
+          "away": 1157,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1158,
+          "away": 1104,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1117,
+          "away": 1154,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1156,
+          "away": 1155,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1106,
+          "away": 1103,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1115,
+          "away": 1160,
+          "date": "",
+          "status": 1,
+          "field": "",
+          "home_score": 0,
+          "away_score": 0
+        }
+      ]
+    }
+  ]
+}
