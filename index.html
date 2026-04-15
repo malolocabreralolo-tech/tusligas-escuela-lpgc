@@ -7,716 +7,110 @@
   <meta name="description" content="Miniprebenjamín y Prebenjamín 2025/2026 – Las Palmas de Gran Canaria"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{
-      --bg:#08111e;--bg2:#0c1929;--c1:#0f1f32;--c2:#132238;--c3:#1a2d45;
-      --b1:rgba(255,255,255,.06);--b2:rgba(255,255,255,.10);--b3:rgba(255,255,255,.18);
-      --mini:#1d6ef5;--mini-l:#60a5fa;--mini-x:#93c5fd;--mini-g:rgba(29,110,245,.18);
-      --pre:#d97706;--pre-l:#fbbf24;--pre-x:#fde68a;--pre-g:rgba(217,119,6,.16);
-      --ok:#16a34a;--ok-l:#4ade80;--ok-g:rgba(22,163,74,.15);
-      --nxt:#0e7490;--nxt-l:#22d3ee;--nxt-g:rgba(14,116,144,.15);
-      --t1:#e8f2ff;--t2:#7a9bb8;--t3:#344d65;
-      --nav:62px;--r:16px;--rm:10px;--rs:7px;
-    }
-    html{scroll-behavior:smooth;height:100%}
-    body{font-family:"DM Sans",system-ui,sans-serif;background:var(--bg);color:var(--t1);
-      min-height:100dvh;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
-    ::selection{background:rgba(29,110,245,.35)}
-    ::-webkit-scrollbar{width:3px}
-    ::-webkit-scrollbar-thumb{background:var(--c3);border-radius:2px}
-
-    /* ── NAV ── */
-    .nav{
-      position:fixed;top:0;left:0;right:0;z-index:100;height:var(--nav);
-      display:flex;align-items:center;padding:0 1.25rem;gap:.85rem;
-      background:rgba(8,17,30,.85);backdrop-filter:blur(28px) saturate(180%);
-      -webkit-backdrop-filter:blur(28px) saturate(180%);
-      border-bottom:1px solid var(--b1)
-    }
-    .nav-mark{
-      width:36px;height:36px;border-radius:10px;flex-shrink:0;font-size:1rem;
-      background:linear-gradient(135deg,#1d6ef5,#d97706);
-      display:flex;align-items:center;justify-content:center;
-      box-shadow:0 0 18px rgba(29,110,245,.45),0 0 36px rgba(217,119,6,.18)
-    }
-    .nav-copy{line-height:1.2}
-    .nav-copy b{font-size:.87rem;font-weight:700;letter-spacing:-.15px}
-    .nav-copy small{display:block;font-size:.62rem;color:var(--t3);font-weight:500;letter-spacing:.2px}
-    .nav-pills{margin-left:auto;display:flex;gap:.35rem}
-    .npill{
-      padding:.35rem .82rem;border-radius:100px;font-size:.73rem;font-weight:700;
-      letter-spacing:.1px;border:1.5px solid transparent;background:none;
-      cursor:pointer;transition:all .2s;font-family:inherit;white-space:nowrap
-    }
-    .npill.mini{border-color:rgba(29,110,245,.3);color:var(--t3)}
-    .npill.pre {border-color:rgba(217,119,6,.3);color:var(--t3)}
-    .npill.mini.on{border-color:var(--mini);background:rgba(29,110,245,.12);color:var(--mini-l);box-shadow:0 0 0 3px rgba(29,110,245,.1)}
-    .npill.pre.on {border-color:var(--pre);background:rgba(217,119,6,.1);color:var(--pre-l);box-shadow:0 0 0 3px rgba(217,119,6,.08)}
-    .ham{display:none;background:none;border:none;color:var(--t2);cursor:pointer;padding:.35rem;border-radius:var(--rs);margin-left:auto;line-height:0}
-    .ham svg{width:20px;height:20px}
-
-    /* ── DRAWER ── */
-    .overlay{display:none;position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.72);backdrop-filter:blur(6px);opacity:0;transition:opacity .25s;pointer-events:none}
-    .overlay.on{opacity:1;pointer-events:auto}
-    .drawer{position:fixed;top:var(--nav);left:0;right:0;z-index:95;padding:.85rem;background:rgba(8,17,30,.97);backdrop-filter:blur(30px);border-bottom:1px solid var(--b2);transform:translateY(-110%);transition:transform .3s cubic-bezier(.4,0,.2,1)}
-    .drawer.on{transform:translateY(0)}
-    .drow{display:flex;align-items:center;gap:.8rem;padding:.8rem 1rem;border-radius:var(--rm);border:1.5px solid transparent;background:var(--c1);cursor:pointer;margin-bottom:.45rem;transition:all .2s;font-family:inherit}
-    .drow:last-child{margin-bottom:0}
-    .drow.mini{border-color:rgba(29,110,245,.18)}
-    .drow.pre {border-color:rgba(217,119,6,.18)}
-    .drow.mini:hover,.drow.mini.on{background:rgba(29,110,245,.1);border-color:var(--mini-l)}
-    .drow.pre:hover, .drow.pre.on {background:rgba(217,119,6,.08);border-color:var(--pre-l)}
-    .drow-ico{width:38px;height:38px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.15rem}
-    .drow.mini .drow-ico{background:rgba(29,110,245,.18)}
-    .drow.pre  .drow-ico{background:rgba(217,119,6,.14)}
-    .drow-txt b{display:block;font-size:.87rem;font-weight:700;color:var(--t1)}
-    .drow-txt small{font-size:.7rem;color:var(--t3);font-weight:500}
-
-    /* ── PAGE / HERO ── */
-    .page{padding-top:var(--nav);padding-bottom:calc(70px + env(safe-area-inset-bottom));min-height:100dvh}
-    .hero{position:relative;overflow:hidden;padding:3rem 1.25rem 2.75rem;text-align:center;background:radial-gradient(ellipse 130% 120% at 50% -30%,#0e1e42 0%,var(--bg) 65%)}
-    .orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(72px)}
-    .orb-1{width:380px;height:380px;background:rgba(29,110,245,.14);top:-120px;left:-80px;animation:drift 12s ease-in-out infinite}
-    .orb-2{width:300px;height:300px;background:rgba(217,119,6,.09);top:-80px;right:-60px;animation:drift 12s ease-in-out infinite reverse}
-    .orb-3{width:250px;height:250px;background:rgba(6,182,212,.07);bottom:-80px;left:50%;margin-left:-125px;animation:drift2 14s ease-in-out infinite}
-    @keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-20px)}}
-    @keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(-15px,20px)}}
-
-    .hero-badge{display:inline-flex;align-items:center;gap:.45rem;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.04);border-radius:100px;padding:.28rem .9rem .28rem .7rem;font-size:.67rem;font-weight:600;letter-spacing:.7px;text-transform:uppercase;color:var(--t2);margin-bottom:1.5rem;position:relative}
-    .pulse-dot{width:6px;height:6px;border-radius:50%;background:var(--ok-l);animation:pulse 2.2s ease-in-out infinite;flex-shrink:0}
-    @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(74,222,128,.5)}60%{opacity:.6;box-shadow:0 0 0 5px rgba(74,222,128,0)}}
-
-    .hero h1{font-family:"Barlow Condensed",sans-serif;font-size:clamp(2.6rem,8vw,4.2rem);font-weight:800;letter-spacing:-1px;line-height:1;margin-bottom:.75rem;position:relative;text-transform:uppercase}
-    .gtext{background:linear-gradient(125deg,#60a5fa 0%,#38bdf8 40%,#fbbf24 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% 200%;animation:shimmer 5s ease infinite}
-    @keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-    .hero-sub{color:var(--t2);font-size:.87rem;max-width:380px;margin:0 auto 2.5rem;line-height:1.7;position:relative;font-weight:400}
-
-    .hero-btns{display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap;position:relative}
-    .hbtn{display:flex;align-items:center;gap:.65rem;padding:.72rem 1.5rem;border-radius:100px;font-weight:700;font-size:.82rem;letter-spacing:.1px;border:2px solid;cursor:pointer;transition:all .25s ease;font-family:inherit}
-    .hbtn.mini{border-color:var(--mini);color:var(--mini-l);background:radial-gradient(ellipse at 30% 50%,rgba(29,110,245,.18),rgba(29,110,245,.05))}
-    .hbtn.pre {border-color:var(--pre);color:var(--pre-l);background:radial-gradient(ellipse at 30% 50%,rgba(217,119,6,.16),rgba(217,119,6,.05))}
-    .hbtn:hover{transform:translateY(-3px) scale(1.02)}
-    .hbtn.mini:hover{box-shadow:0 14px 32px rgba(29,110,245,.28),0 0 0 4px rgba(29,110,245,.1)}
-    .hbtn.pre:hover {box-shadow:0 14px 32px rgba(217,119,6,.22),0 0 0 4px rgba(217,119,6,.08)}
-    .hbtn .cnt{background:rgba(255,255,255,.1);border-radius:100px;padding:.1rem .55rem;font-size:.7rem}
-
-    /* ── MAIN ── */
-    .main{max-width:780px;margin:0 auto;padding:2rem 1rem 2.5rem}
-    .lsec{display:none}.lsec.on{display:block}
-
-    /* ── LEAGUE HEADER ── */
-    .lhdr{display:flex;align-items:center;gap:.9rem;padding:1.2rem 1.3rem;border-radius:var(--r) var(--r) 0 0;border:1px solid;border-bottom:none;position:relative;overflow:hidden}
-    .lhdr::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.025),transparent);pointer-events:none}
-    .lhdr.mini{background:linear-gradient(135deg,rgba(29,110,245,.14),rgba(29,110,245,.05));border-color:rgba(29,110,245,.28)}
-    .lhdr.pre {background:linear-gradient(135deg,rgba(217,119,6,.14),rgba(217,119,6,.05));border-color:rgba(217,119,6,.28)}
-    .lhdr-ico{width:46px;height:46px;border-radius:13px;flex-shrink:0;font-size:1.4rem;display:flex;align-items:center;justify-content:center}
-    .lhdr.mini .lhdr-ico{background:rgba(29,110,245,.22);box-shadow:0 0 22px rgba(29,110,245,.3)}
-    .lhdr.pre  .lhdr-ico{background:rgba(217,119,6,.2);box-shadow:0 0 22px rgba(217,119,6,.24)}
-    .lhdr h2{font-size:.95rem;font-weight:700;letter-spacing:-.15px;line-height:1.2}
-    .lhdr small{font-size:.67rem;color:var(--t3);display:block;margin-top:.18rem;font-weight:500}
-    .badge-live{margin-left:auto;display:flex;align-items:center;gap:.4rem;padding:.28rem .78rem;border-radius:100px;font-size:.65rem;font-weight:700;background:var(--ok-g);color:var(--ok-l);border:1px solid rgba(74,222,128,.2);white-space:nowrap;letter-spacing:.2px}
-    .badge-live::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--ok-l);animation:pulse 2.2s ease-in-out infinite}
-
-    /* ── INNER TABS ── */
-    .itabs{display:flex;border-left:1px solid;border-right:1px solid;background:var(--c1)}
-    .itabs.mini{border-color:rgba(29,110,245,.28)}
-    .itabs.pre {border-color:rgba(217,119,6,.28)}
-    .itab{flex:1;display:flex;align-items:center;justify-content:center;gap:.45rem;padding:.75rem .5rem;font-size:.77rem;font-weight:600;letter-spacing:.05px;color:var(--t3);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;font-family:inherit}
-    .itab svg{flex-shrink:0}
-    .itab:hover{color:var(--t2);background:rgba(255,255,255,.02)}
-    .itab.on.mini{color:var(--mini-l);border-bottom-color:var(--mini);background:rgba(29,110,245,.06)}
-    .itab.on.pre {color:var(--pre-l);border-bottom-color:var(--pre);background:rgba(217,119,6,.06)}
-
-    .panel{display:none}.panel.on{display:block}
-    .pbox{border:1px solid;border-top:none;border-radius:0 0 var(--r) var(--r);padding:1.2rem;background:var(--c1)}
-    .pbox.mini{border-color:rgba(29,110,245,.28)}
-    .pbox.pre {border-color:rgba(217,119,6,.28)}
-
-    /* ── JORNADA NAV ── */
-    .jnav{display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem}
-    .jnav select{flex:1;min-width:0;padding:.58rem .95rem;border-radius:var(--rm);background:var(--c2);border:1.5px solid var(--b2);color:var(--t1);font-size:.81rem;font-family:inherit;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='%23344d65' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .75rem center;padding-right:2.2rem;transition:border-color .2s}
-    .jnav select:hover{border-color:var(--b3)}
-    .jarr{width:38px;height:38px;flex-shrink:0;border-radius:var(--rm);border:1.5px solid var(--b2);background:var(--c2);color:var(--t2);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:inherit}
-    .jarr:hover:not(:disabled){border-color:var(--b3);color:var(--t1);background:var(--c3)}
-    .jarr:disabled{opacity:.25;cursor:default}
-    .jmeta{font-size:.7rem;color:var(--t3);margin-bottom:1rem;letter-spacing:.05px}
-
-    /* Group filter */
-    .gfrow{display:flex;gap:.4rem;margin-bottom:.9rem}
-    .gfbtn{padding:.42rem 1.2rem;border-radius:100px;font-size:.74rem;font-weight:700;border:1.5px solid var(--b2);background:var(--c2);color:var(--t3);cursor:pointer;transition:all .2s;font-family:inherit;letter-spacing:.05px}
-    .gfbtn.on-a{background:var(--pre-g);border-color:var(--pre);color:var(--pre-l)}
-    .gfbtn.on-b{background:rgba(99,102,241,.13);border-color:#818cf8;color:#c7d2fe}
-
-    /* ── MATCH CARD ── */
-    .mc{border-radius:var(--r);border:1px solid var(--b1);background:var(--c2);margin-bottom:.55rem;overflow:hidden;transition:all .22s ease;cursor:default}
-    .mc:hover{border-color:var(--b2);background:var(--c3);transform:translateY(-1px);box-shadow:0 6px 28px rgba(0,0,0,.35)}
-    .mc.played{border-color:rgba(22,163,74,.18);background:linear-gradient(135deg,rgba(22,163,74,.06),var(--c2))}
-    .mc.nxt{border-color:rgba(14,116,144,.38);background:linear-gradient(135deg,rgba(14,116,144,.09),var(--c2));box-shadow:0 0 0 1px rgba(34,211,238,.08),0 4px 20px rgba(14,116,144,.12)}
-    .mc.bye{opacity:.36}
-    .mc.fav{border-color:rgba(251,191,36,.35);background:linear-gradient(135deg,rgba(251,191,36,.07),var(--c2));box-shadow:0 0 0 1px rgba(251,191,36,.1),0 4px 16px rgba(251,191,36,.07)}
-    .mc.fav.played{border-color:rgba(251,191,36,.2)}
-    .fav-av{box-shadow:0 0 0 2px #f59e0b!important}
-    .fav-name{color:#fbbf24;font-weight:700}
-    .mc.fav-dim{border-color:rgba(52,211,153,.35);background:linear-gradient(135deg,rgba(52,211,153,.055),var(--c2))}
-    .fav-dim-av{box-shadow:0 0 0 2px rgba(52,211,153,.5)!important}
-    .fav-dim-name{color:#34d399;font-weight:600}
-
-    .mc-body{display:grid;grid-template-columns:1fr auto 1fr;gap:.6rem;padding:1.05rem 1rem .9rem}
-    .mc-side{display:flex;flex-direction:column;align-items:center;gap:.5rem;cursor:pointer;text-align:center;min-width:0}
-    .mc-side.right{align-items:center}
-    .mc-side:hover .mc-av{transform:scale(1.06)}
-    .mc-av{width:48px;height:48px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.77rem;letter-spacing:.5px;transition:transform .2s;border:2px solid rgba(255,255,255,.07)}
-    .mc-av.m {background:linear-gradient(135deg,rgba(29,110,245,.5),rgba(29,110,245,.18));color:var(--mini-x);border-color:rgba(29,110,245,.28)}
-    .mc-av.pa{background:linear-gradient(135deg,rgba(217,119,6,.5),rgba(217,119,6,.18));color:var(--pre-x);border-color:rgba(217,119,6,.28)}
-    .mc-av.pb{background:linear-gradient(135deg,rgba(99,102,241,.5),rgba(99,102,241,.18));color:#c7d2fe;border-color:rgba(99,102,241,.28)}
-    .mc-av.neu{background:var(--c3);color:var(--t3);border-color:var(--b2)}
-    .mc-tname{font-size:.72rem;font-weight:600;line-height:1.3;color:var(--t1);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .mc-tname.clickable:hover{color:var(--mini-l)}
-
-    .mc-ctr{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.18rem;min-width:86px;padding:0 .3rem}
-    .mc-day{font-size:.62rem;color:var(--t3);font-weight:500;white-space:nowrap;letter-spacing:.05px}
-    .mc-time{font-size:1.1rem;font-weight:800;color:var(--t1);letter-spacing:-.5px;white-space:nowrap;font-family:"Barlow Condensed",sans-serif}
-    .mc-vs{font-size:.85rem;font-weight:700;color:var(--t3)}
-
-    .sb,.sbadge{display:inline-flex;align-items:center;gap:.25rem;margin-top:.18rem;font-size:.59rem;font-weight:700;letter-spacing:.45px;text-transform:uppercase;padding:.2rem .58rem;border-radius:100px;white-space:nowrap}
-    .sb-played{background:var(--ok-g);color:var(--ok-l);border:1px solid rgba(74,222,128,.22)}
-    .sb-nxt{background:var(--nxt-g);color:var(--nxt-l);border:1px solid rgba(34,211,238,.28);animation:glow-badge 2.5s ease infinite}
-    @keyframes glow-badge{0%,100%{box-shadow:0 0 0 0 rgba(34,211,238,.22)}55%{box-shadow:0 0 0 4px rgba(34,211,238,0)}}
-    .sb-pend{background:rgba(52,77,101,.18);color:var(--t3);border:1px solid rgba(52,77,101,.22)}
-    .sb-bye{color:var(--t3);font-size:.7rem;font-style:italic}
-
-    .mc-field{display:flex;align-items:center;gap:.4rem;justify-content:center;padding:.4rem 1rem;background:rgba(0,0,0,.18);border-top:1px solid var(--b1);font-size:.64rem;color:var(--t3);font-weight:500}
-    .mc-bye-inner{display:flex;align-items:center;gap:.6rem;padding:.75rem 1rem}
-    .no-data{padding:2.75rem 1rem;text-align:center;color:var(--t3);font-size:.83rem;display:flex;flex-direction:column;align-items:center;gap:.6rem}
-    .no-data::before{content:"📭";font-size:1.9rem}
-
-    /* ── TEAMS GRID ── */
-    .tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(168px,100%),1fr));gap:.5rem}
-    .tcrd{display:flex;align-items:center;gap:.72rem;background:var(--c2);border:1px solid var(--b1);border-radius:var(--rm);padding:.75rem .9rem;cursor:pointer;transition:all .22s}
-    .tcrd:hover{border-color:var(--b2);background:var(--c3);transform:translateY(-2px);box-shadow:0 5px 18px rgba(0,0,0,.3)}
-    .tcrd-fav{border-color:rgba(251,191,36,.32)!important;background:linear-gradient(135deg,rgba(251,191,36,.07),var(--c2))!important}
-    .tcrd-fav:hover{border-color:rgba(251,191,36,.55)!important;box-shadow:0 5px 18px rgba(251,191,36,.12)!important}
-    .tcrd-dim{border-color:rgba(52,211,153,.28)!important;background:linear-gradient(135deg,rgba(52,211,153,.05),var(--c2))!important}
-    .tcrd-dim:hover{border-color:rgba(52,211,153,.5)!important;box-shadow:0 5px 18px rgba(52,211,153,.1)!important}
-    .tav{width:40px;height:40px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.78rem;letter-spacing:.4px}
-    .tav.m {background:linear-gradient(135deg,rgba(29,110,245,.38),rgba(29,110,245,.13));color:var(--mini-x);border:1px solid rgba(29,110,245,.28)}
-    .tav.pa{background:linear-gradient(135deg,rgba(217,119,6,.38),rgba(217,119,6,.13));color:var(--pre-x);border:1px solid rgba(217,119,6,.28)}
-    .tav.pb{background:linear-gradient(135deg,rgba(99,102,241,.38),rgba(99,102,241,.13));color:#c7d2fe;border:1px solid rgba(99,102,241,.28)}
-    .tname{font-size:.76rem;font-weight:600;line-height:1.3;color:var(--t1)}
-    .tname.fav-name{color:#fbbf24;font-weight:700}
-    .tname.fav-dim-name{color:#34d399;font-weight:600}
-    .tgrp{font-size:.6rem;font-weight:700;letter-spacing:.4px;padding:.1rem .42rem;border-radius:4px;display:inline-block;margin-top:.22rem}
-    .tgrp.ga{background:rgba(99,102,241,.13);color:#a5b4fc}
-    .tgrp.gb{background:var(--pre-g);color:var(--pre-l)}
-
-    /* ── MODAL ── */
-    .mbg{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);align-items:flex-end;justify-content:center}
-    .mbg.on{display:flex}
-    @media(min-width:620px){.mbg.on{align-items:center}}
-    .modal{background:linear-gradient(160deg,#0e1f35,#08111e);border:1px solid var(--b2);border-radius:22px 22px 0 0;width:100%;max-width:520px;max-height:92dvh;overflow-y:auto;animation:slideUp .3s cubic-bezier(.4,0,.2,1);position:relative}
-    @media(min-width:620px){.modal{border-radius:22px;animation:popIn .22s ease}}
-    @keyframes slideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
-    @keyframes popIn{from{transform:scale(.93);opacity:0}to{transform:scale(1);opacity:1}}
-    .drag-pill{width:34px;height:4px;background:var(--b3);border-radius:2px;margin:.85rem auto .5rem;display:block}
-    @media(min-width:620px){.drag-pill{display:none}}
-    .mhdr{display:flex;align-items:center;gap:.9rem;padding:1.1rem 1.25rem .95rem;border-bottom:1px solid var(--b1)}
-    .mav{width:52px;height:52px;border-radius:14px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.05rem;letter-spacing:.5px}
-    .mav.m {background:linear-gradient(135deg,rgba(29,110,245,.5),rgba(29,110,245,.2));color:var(--mini-x);border:1px solid rgba(29,110,245,.3)}
-    .mav.pa{background:linear-gradient(135deg,rgba(217,119,6,.5),rgba(217,119,6,.2));color:var(--pre-x);border:1px solid rgba(217,119,6,.3)}
-    .mav.pb{background:linear-gradient(135deg,rgba(99,102,241,.5),rgba(99,102,241,.2));color:#c7d2fe;border:1px solid rgba(99,102,241,.3)}
-    .mhdr-info{flex:1;min-width:0}
-    .mhdr-info h3{font-size:.95rem;font-weight:700;letter-spacing:-.15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    .mhdr-info span{font-size:.7rem;color:var(--t3);display:block;margin-top:.12rem}
-    .mclose{width:32px;height:32px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--c2);border:1px solid var(--b2);color:var(--t3);cursor:pointer;font-size:1.05rem;transition:all .2s;line-height:1}
-    .mclose:hover{background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.35);color:#f87171}
-    .mbody{padding:1.1rem 1.25rem 1.75rem}
-    .mstats{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem;margin-bottom:1.3rem}
-    .mstat{background:var(--c2);border:1px solid var(--b1);border-radius:var(--rm);padding:.9rem .5rem;text-align:center}
-    .mstat .v{font-size:1.75rem;font-weight:800;line-height:1;letter-spacing:-1.5px;font-family:"Barlow Condensed",sans-serif;background:linear-gradient(135deg,var(--mini-l),var(--nxt-l));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .mstat .l{font-size:.61rem;color:var(--t3);text-transform:uppercase;letter-spacing:.55px;margin-top:.3rem;font-weight:600}
-    .msec{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--t3);margin-bottom:.65rem;display:flex;align-items:center;gap:.5rem}
-    .msec::after{content:"";flex:1;height:1px;background:var(--b1)}
-    .mr{display:flex;align-items:center;gap:.65rem;padding:.68rem .9rem;background:var(--c2);border:1px solid var(--b1);border-radius:var(--rm);margin-bottom:.4rem;transition:border-color .15s}
-    .mr:hover{border-color:var(--b2)}
-    .mrdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-    .mrdot.ok{background:var(--ok-l)}
-    .mrdot.nxt{background:var(--nxt-l)}
-    .mrbody{flex:1;min-width:0}
-    .mrt{font-size:.8rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .mrt .opp{color:var(--t2);font-weight:500}
-    .mrsub{font-size:.65rem;color:var(--t3);margin-top:.1rem}
-    .mrright{display:flex;flex-direction:column;align-items:flex-end;gap:.15rem;flex-shrink:0}
-    .mrd{font-size:.68rem;color:var(--t2);white-space:nowrap}
-    .mrj{font-size:.62rem;color:var(--t3);background:var(--c3);padding:.1rem .42rem;border-radius:4px;white-space:nowrap}
-
-    /* ── BOTTOM NAV ── */
-    .bnav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:80;background:rgba(8,17,30,.9);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-top:1px solid var(--b1);flex-direction:row;justify-content:space-around;padding:.45rem 0 max(.45rem,env(safe-area-inset-bottom))}
-    .bni{display:flex;flex-direction:column;align-items:center;gap:.18rem;background:none;border:none;cursor:pointer;font-size:.56rem;font-weight:700;text-transform:uppercase;letter-spacing:.45px;padding:.42rem .75rem;border-radius:var(--rs);transition:all .2s;font-family:inherit;min-width:68px}
-    .bni svg{width:21px;height:21px;margin-bottom:.05rem;transition:transform .2s}
-    .bni:hover svg{transform:scale(1.12) translateY(-1px)}
-    .bni.mini{color:var(--mini-l)}.bni.pre{color:var(--pre-l)}.bni.off{color:var(--t3)}
-    .bni.off:hover{color:var(--t2)}
-
-    /* ── RESPONSIVE ── */
-    @media(max-width:600px){
-      .nav-pills{display:none}
-      .ham{display:block}
-      .overlay{display:block}
-      .bnav{display:flex}
-      .main{padding:1.5rem .75rem 1.75rem}
-      .hero{padding:2.5rem .9rem 2.75rem}
-      .mc-av{width:42px;height:42px;font-size:.72rem}
-      .mc-ctr{min-width:70px}
-      .mc-time{font-size:1rem}
-    }
-    @media(max-width:380px){
-      .mc-body{padding:.85rem .7rem .75rem;gap:.35rem}
-      .mc-av{width:37px;height:37px}
-      .mc-tname{font-size:.67rem}
-      .mc-ctr{min-width:60px}
-    }
-  </style>
+  <link rel="stylesheet" href="./styles.css"/>
 </head>
 <body>
-
-<!-- NAV -->
-<nav class="nav">
-  <div class="nav-mark">⚽</div>
-  <div class="nav-copy">
-    <b>Tus Ligas Canarias</b>
-    <small>Escuela · 2025 / 2026</small>
-  </div>
-  <div class="nav-pills">
-    <button class="npill mini on" onclick="showLeague('mini',this)">Miniprebenjamín</button>
-    <button class="npill pre"     onclick="showLeague('pre',this)">Prebenjamín</button>
-  </div>
-  <button class="ham" id="ham" aria-label="Menú">
-    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/>
-    </svg>
-  </button>
-</nav>
-
-<!-- DRAWER -->
-<div class="overlay" id="ov"></div>
-<div class="drawer" id="dr">
-  <button class="drow mini on" onclick="showLeague('mini',this,1)">
-    <div class="drow-ico">🔵</div>
-    <div class="drow-txt">
-      <b>Miniprebenjamín</b>
-      <small>17 equipos · 34 jornadas</small>
+  <nav class="nav">
+    <div class="nav-mark">⚽</div>
+    <div class="nav-copy"><b>Tus Ligas Canarias</b><small>Escuela · 2025 / 2026</small></div>
+    <div class="nav-pills">
+      <button class="npill mini on" onclick="showLeague('mini')">Miniprebenjamín</button>
+      <button class="npill pre" onclick="showLeague('pre')">Prebenjamín</button>
     </div>
-  </button>
-  <button class="drow pre" onclick="showLeague('pre',this,1)">
-    <div class="drow-ico">🟡</div>
-    <div class="drow-txt">
-      <b>Prebenjamín</b>
-      <small>32 equipos · Grupo A y Grupo B</small>
-    </div>
-  </button>
-</div>
+  </nav>
 
-<div class="page">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-    <div class="hero-badge"><span class="pulse-dot"></span> Temporada 2025 · 2026</div>
-    <h1>Liga <span class="gtext">Escolar</span><br>Las Palmas</h1>
-    <p class="hero-sub">Calendario, jornadas e información de cada equipo de la escuela de fútbol.</p>
-    <div class="hero-btns">
-      <div class="hbtn mini" onclick="showLeague('mini')">
-        🔵 Miniprebenjamín <span class="cnt">17 eq.</span>
-      </div>
-      <div class="hbtn pre" onclick="showLeague('pre')">
-        🟡 Prebenjamín <span class="cnt">32 eq.</span>
-      </div>
-    </div>
-  </section>
-
-  <main class="main">
-
-    <!-- MINIPREBENJAMÍN -->
-    <section class="lsec on" id="sec-mini">
-      <div class="lhdr mini">
-        <div class="lhdr-ico">🔵</div>
-        <div>
-          <h2>Miniprebenjamín Escuela</h2>
-          <small>17 equipos · 34 jornadas</small>
-        </div>
-        <div class="badge-live">Activo</div>
-      </div>
-      <div class="itabs mini">
-        <button class="itab mini on" onclick="switchTab('mini','cal',this)">
-          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-          Calendario
-        </button>
-        <button class="itab mini" onclick="switchTab('mini','eq',this)">
-          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-          Equipos
-        </button>
-      </div>
-      <div class="panel on" id="mini-cal">
-        <div class="pbox mini">
-          <div class="jnav">
-            <button class="jarr" id="mini-prev" onclick="chJorn('mini',-1)">‹</button>
-            <select id="mini-sel" onchange="renderJorn('mini',+this.value)"></select>
-            <button class="jarr" id="mini-next" onclick="chJorn('mini',1)">›</button>
-          </div>
-          <div class="jmeta" id="mini-meta"></div>
-          <div id="mini-matches"></div>
-        </div>
-      </div>
-      <div class="panel" id="mini-eq">
-        <div class="pbox mini">
-          <div class="tgrid" id="mini-teams"></div>
-        </div>
+  <div class="page">
+    <section class="hero">
+      <div class="hero-badge"><span class="pulse-dot"></span> Temporada 2025 · 2026</div>
+      <h1>Liga <span class="gtext">Escolar</span><br>Las Palmas</h1>
+      <p class="hero-sub">Calendario, jornadas e información de cada equipo. Ahora con panel rápido del Huracán y arquitectura más limpia con datos JSON.</p>
+      <div class="hero-btns">
+        <div class="hbtn mini" onclick="showLeague('mini')">🔵 Miniprebenjamín <span class="cnt">17 eq.</span></div>
+        <div class="hbtn pre" onclick="showLeague('pre')">🟡 Prebenjamín <span class="cnt">32 eq.</span></div>
       </div>
     </section>
 
-    <!-- PREBENJAMÍN -->
-    <section class="lsec" id="sec-pre">
-      <div class="lhdr pre">
-        <div class="lhdr-ico">🟡</div>
-        <div>
-          <h2>Prebenjamín Escuela</h2>
-          <small>32 equipos · Grupo A (16) + Grupo B (16)</small>
-        </div>
-        <div class="badge-live">Activo</div>
-      </div>
-      <div class="itabs pre">
-        <button class="itab pre on" onclick="switchTab('pre','cal',this)">
-          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-          Calendario
-        </button>
-        <button class="itab pre" onclick="switchTab('pre','eq',this)">
-          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-          Equipos
-        </button>
-      </div>
-      <div class="panel on" id="pre-cal">
-        <div class="pbox pre">
-          <div class="gfrow">
-            <button class="gfbtn on-a" id="gA" onclick="switchGrp('A')">Grupo A</button>
-            <button class="gfbtn"      id="gB" onclick="switchGrp('B')">Grupo B</button>
+    <main class="main">
+      <section class="summary-grid">
+        <div class="summary-card">
+          <div class="summary-top">
+            <div><h3>Huracán · panel rápido</h3><small>Próximo partido, últimos resultados y seguimiento listo para alertas</small></div>
+            <div class="pill">Favorito</div>
           </div>
-          <div class="jnav">
-            <button class="jarr" id="pre-prev" onclick="chJorn('pre',-1)">‹</button>
-            <select id="pre-sel" onchange="renderJorn('pre',+this.value)"></select>
-            <button class="jarr" id="pre-next" onclick="chJorn('pre',1)">›</button>
+          <div id="summary-next"></div>
+          <div class="kpis">
+            <div class="kpi"><div class="value" id="kpi-mini-teams">—</div><div class="label">Equipos mini</div></div>
+            <div class="kpi"><div class="value" id="kpi-mini-jornadas">—</div><div class="label">Jornadas mini</div></div>
+            <div class="kpi"><div class="value" id="kpi-huracan-matches">—</div><div class="label">Partidos Huracán</div></div>
           </div>
-          <div class="jmeta" id="pre-meta"></div>
-          <div id="pre-matches"></div>
         </div>
-      </div>
-      <div class="panel" id="pre-eq">
-        <div class="pbox pre">
-          <div class="tgrid" id="pre-teams"></div>
+        <div class="summary-card">
+          <div class="summary-top">
+            <div><h3>Últimos cambios y resultados</h3><small>Lo importante arriba del todo sin rebuscar por la liga</small></div>
+            <div class="pill">Resumen</div>
+          </div>
+          <div class="alert-list" id="summary-alerts"></div>
+          <div style="height:.8rem"></div>
+          <div class="result-list" id="summary-results"></div>
         </div>
-      </div>
-    </section>
+      </section>
 
-  </main>
-</div>
+      <section class="lsec on" id="sec-mini">
+        <div class="lhdr mini">
+          <div class="lhdr-ico">🔵</div>
+          <div><h2>Miniprebenjamín Escuela</h2><small>17 equipos · 34 jornadas</small></div>
+          <div class="badge-live">Activo</div>
+        </div>
+        <div class="itabs mini">
+          <button class="itab mini on" onclick="switchTab('mini','cal',this)">Calendario</button>
+          <button class="itab mini" onclick="switchTab('mini','eq',this)">Equipos</button>
+        </div>
+        <div class="panel on" id="mini-cal">
+          <div class="pbox mini">
+            <div class="jnav">
+              <button class="jarr" id="mini-prev" onclick="chJorn('mini',-1)">‹</button>
+              <select id="mini-sel" onchange="renderJornada('mini',+this.value)"></select>
+              <button class="jarr" id="mini-next" onclick="chJorn('mini',1)">›</button>
+            </div>
+            <div class="jmeta" id="mini-meta"></div>
+            <div id="mini-matches"></div>
+          </div>
+        </div>
+        <div class="panel" id="mini-eq"><div class="pbox mini"><div class="tgrid" id="mini-teams"></div></div></div>
+      </section>
 
-<!-- BOTTOM NAV -->
-<nav class="bnav">
-  <button class="bni mini" onclick="showLeague('mini')">
-    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="10"/><path d="M12 8v4l2 2"/>
-    </svg>Mini
-  </button>
-  <button class="bni pre" onclick="showLeague('pre')">
-    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
-      <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-    </svg>Prebenjamín
-  </button>
-  <a href="https://tusligascanarias.mygol.es" target="_blank" class="bni off">
-    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="10"/>
-      <path d="M12 2a14.5 14.5 0 010 20M12 2a14.5 14.5 0 000 20M2 12h20"/>
-    </svg>Oficial
-  </a>
-</nav>
+      <section class="lsec" id="sec-pre">
+        <div class="lhdr pre">
+          <div class="lhdr-ico">🟡</div>
+          <div><h2>Prebenjamín Escuela</h2><small>32 equipos · Grupo A (16) + Grupo B (16)</small></div>
+          <div class="badge-live">Activo</div>
+        </div>
+        <div class="itabs pre">
+          <button class="itab pre on" onclick="switchTab('pre','cal',this)">Calendario</button>
+          <button class="itab pre" onclick="switchTab('pre','eq',this)">Equipos</button>
+        </div>
+        <div class="panel on" id="pre-cal">
+          <div class="pbox pre">
+            <div class="gfrow">
+              <button class="gfbtn on-a" id="gA" onclick="switchGrp('A')">Grupo A</button>
+              <button class="gfbtn" id="gB" onclick="switchGrp('B')">Grupo B</button>
+            </div>
+            <div class="jnav">
+              <button class="jarr" id="pre-prev" onclick="chJorn('pre',-1)">‹</button>
+              <select id="pre-sel" onchange="renderJornada('pre',+this.value)"></select>
+              <button class="jarr" id="pre-next" onclick="chJorn('pre',1)">›</button>
+            </div>
+            <div class="jmeta" id="pre-meta"></div>
+            <div id="pre-matches"></div>
+          </div>
+        </div>
+        <div class="panel" id="pre-eq"><div class="pbox pre"><div class="tgrid" id="pre-teams"></div></div></div>
+      </section>
 
-<!-- MODAL -->
-<div class="mbg" id="mbg" onclick="closeMod(event)">
-  <div class="modal">
-    <span class="drag-pill"></span>
-    <div class="mhdr">
-      <div class="mav" id="mav"></div>
-      <div class="mhdr-info">
-        <h3 id="mname"></h3>
-        <span id="msub"></span>
-      </div>
-      <button class="mclose" onclick="closeMod()">×</button>
-    </div>
-    <div class="mbody">
-      <div class="mstats" id="mstats"></div>
-      <div class="msec">Partidos</div>
-      <div id="mmatches"></div>
-    </div>
+      <div class="footer-note">Static site · GitHub Pages · datos externos JSON · panel rápido del Huracán</div>
+    </main>
   </div>
-</div>
 
-<script>
-const MINI_MATCHES=[{"n":"Jornada 1","g":341,"m":[{"h":-1,"v":1159,"d":"","s":10,"f":""},{"h":1156,"v":1154,"d":"","s":1,"f":""},{"h":1148,"v":1160,"d":"2025-11-08T11:00","s":5,"f":"LA SUERTE 1"},{"h":1158,"v":1157,"d":"2025-11-08T11:00","s":5,"f":"BARRIO ATL."},{"h":1121,"v":1122,"d":"2025-11-08T11:30","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1106,"v":1155,"d":"2025-11-08T12:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1115,"v":1103,"d":"2025-11-09T11:00","s":5,"f":"TAMARACEITE"},{"h":1117,"v":1104,"d":"2025-11-09T11:00","s":5,"f":"LOMO APOLINARIO"},{"h":1120,"v":1138,"d":"2025-11-09T12:00","s":5,"f":"LAS TORRES 1"}]},{"n":"Jornada 2","g":341,"m":[{"h":1160,"v":-1,"d":"","s":10,"f":""},{"h":1154,"v":1106,"d":"2025-11-15T11:00","s":5,"f":"BARRIO ATL."},{"h":1138,"v":1158,"d":"2025-11-15T11:00","s":5,"f":"LA SUERTE 1"},{"h":1155,"v":1115,"d":"2025-11-16T10:00","s":5,"f":"EL PILAR 1"},{"h":1103,"v":1148,"d":"2025-11-16T11:00","s":5,"f":"ALFONSO SILVA 1"},{"h":1104,"v":1156,"d":"2025-11-16T11:00","s":5,"f":"ALFONSO SILVA 2"},{"h":1157,"v":1117,"d":"2025-11-16T11:00","s":5,"f":"LOMO APOLINARIO"},{"h":1122,"v":1120,"d":"2025-11-16T12:00","s":5,"f":"LAS TORRES 2"},{"h":1159,"v":1121,"d":"2025-11-16T12:00","s":5,"f":"LOMO APOLINARIO"}]},{"n":"Jornada 3","g":341,"m":[{"h":-1,"v":1121,"d":"","s":10,"f":""},{"h":1160,"v":1103,"d":"2025-11-22T11:00","s":5,"f":"BARRIO ATL."},{"h":1148,"v":1155,"d":"2025-11-22T12:00","s":5,"f":"LA SUERTE 2"},{"h":1106,"v":1104,"d":"2025-11-22T12:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1156,"v":1157,"d":"2025-11-22T12:30","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1115,"v":1154,"d":"2025-11-23T11:00","s":5,"f":"TAMARACEITE"},{"h":1117,"v":1138,"d":"2025-11-23T11:00","s":5,"f":"LOMO APOLINARIO"},{"h":1158,"v":1122,"d":"2025-11-23T12:00","s":5,"f":"LAS TORRES 1"},{"h":1120,"v":1159,"d":"2025-11-23T12:00","s":5,"f":"LAS TORRES 2"}]},{"n":"Jornada 4","g":341,"m":[{"h":1103,"v":-1,"d":"","s":10,"f":""},{"h":1154,"v":1148,"d":"","s":1,"f":""},{"h":1157,"v":1106,"d":"2025-11-29T10:00","s":5,"f":"LA SUERTE 1"},{"h":1155,"v":1160,"d":"2025-11-29T11:00","s":5,"f":"BARRIO ATL."},{"h":1138,"v":1156,"d":"2025-11-29T12:30","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1122,"v":1117,"d":"2025-11-30T11:00","s":5,"f":"LOMO APOLINARIO"},{"h":1104,"v":1115,"d":"2025-11-30T12:00","s":5,"f":"ALFONSO SILVA 1"},{"h":1159,"v":1158,"d":"2025-11-30T12:00","s":5,"f":"LOMO APOLINARIO"},{"h":1121,"v":1120,"d":"2025-11-30T12:00","s":5,"f":"LAS TORRES 2"}]},{"n":"Jornada 5","g":341,"m":[{"h":-1,"v":1120,"d":"","s":10,"f":""},{"h":1103,"v":1155,"d":"","s":5,"f":""},{"h":1160,"v":1154,"d":"","s":5,"f":""},{"h":1156,"v":1122,"d":"","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1148,"v":1104,"d":"2025-12-20T12:30","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1106,"v":1138,"d":"2025-12-20T12:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1115,"v":1157,"d":"2025-12-21T10:00","s":5,"f":"JUAN GUEDES"},{"h":1117,"v":1159,"d":"2025-12-21T11:00","s":5,"f":"LOMO APOLINARIO"},{"h":1158,"v":1121,"d":"2025-12-21T11:00","s":5,"f":"JUAN GUEDES"}]},{"n":"Jornada 6","g":341,"m":[{"h":1155,"v":-1,"d":"","s":10,"f":""},{"h":1156,"v":1159,"d":"","s":1,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1157,"v":1148,"d":"2026-01-10T12:00","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1122,"v":1106,"d":"2026-01-10T12:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1154,"v":1103,"d":"2026-01-11T11:00","s":5,"f":"LOMO APOLINARIO"},{"h":1104,"v":1160,"d":"2026-01-11T11:00","s":5,"f":"EL PILAR 2"},{"h":1138,"v":1115,"d":"2026-01-11T11:00","s":5,"f":"JUAN GUEDES"},{"h":1121,"v":1117,"d":"2026-01-11T12:00","s":5,"f":"LAS TORRES 1"},{"h":1120,"v":1158,"d":"2026-01-11T12:00","s":5,"f":"LAS TORRES 2"}]},{"n":"Jornada 7","g":341,"m":[{"h":-1,"v":1158,"d":"","s":10,"f":""},{"h":1155,"v":1154,"d":"","s":5,"f":""},{"h":1160,"v":1157,"d":"2026-01-17T11:00","s":5,"f":"BARRIO ATL."},{"h":1156,"v":1121,"d":"2026-01-17T11:30","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1106,"v":1159,"d":"2026-01-17T12:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1115,"v":1122,"d":"2026-01-18T11:00","s":5,"f":"JUAN GUEDES"},{"h":1117,"v":1120,"d":"2026-01-18T11:00","s":5,"f":"LOMO APOLINARIO"},{"h":1103,"v":1104,"d":"2026-01-18T12:00","s":5,"f":"LAS TORRES 1"},{"h":1148,"v":1138,"d":"2026-01-18T12:00","s":5,"f":"LOMO APOLINARIO"}]},{"n":"Jornada 8","g":341,"m":[{"h":1154,"v":-1,"d":"","s":10,"f":""},{"h":1104,"v":1155,"d":"2026-01-24T10:00","s":5,"f":"BARRIO ATL."},{"h":1138,"v":1160,"d":"2026-01-24T11:00","s":5,"f":"BARRIO ATL."},{"h":1157,"v":1103,"d":"2026-01-25T11:00","s":5,"f":"EL PILAR 2"},{"h":1122,"v":1148,"d":"2026-01-25T11:00","s":5,"f":"LAS TORRES 2"},{"h":1159,"v":1115,"d":"2026-01-25T11:00","s":5,"f":"JUAN GUEDES"},{"h":1158,"v":1117,"d":"2026-01-25T11:00","s":5,"f":"LOMO APOLINARIO"},{"h":1121,"v":1106,"d":"2026-01-25T12:00","s":5,"f":"LAS TORRES 2"},{"h":1120,"v":1156,"d":"2026-01-25T12:00","s":5,"f":"LAS TORRES 1"}]},{"n":"Jornada 9","g":341,"m":[{"h":-1,"v":1117,"d":"","s":10,"f":""},{"h":1148,"v":1159,"d":"2026-01-31T11:00","s":5,"f":"LA SUERTE 1"},{"h":1155,"v":1157,"d":"2026-01-31T11:30","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1106,"v":1120,"d":"2026-01-31T12:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1156,"v":1158,"d":"2026-01-31T12:30","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1117,"v":1104,"d":"2026-02-01T11:00","s":5,"f":"LOMO APOLINARIO"},{"h":1103,"v":1138,"d":"2026-02-01T11:00","s":5,"f":"EL PILAR 2"},{"h":1160,"v":1122,"d":"2026-02-01T11:00","s":5,"f":"LAS TORRES 1"},{"h":1115,"v":1121,"d":"2026-02-01T11:00","s":5,"f":"JUAN GUEDES"}]},{"n":"Jornada 10","g":341,"m":[{"h":1104,"v":-1,"d":"","s":10,"f":""},{"h":1157,"v":1154,"d":"","s":1,"f":""},{"h":1138,"v":1155,"d":"2026-02-07T10:00","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1158,"v":1106,"d":"2026-02-07T12:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1159,"v":1160,"d":"2026-02-08T10:00","s":5,"f":"JUAN GUEDES"},{"h":1120,"v":1115,"d":"2026-02-08T11:00","s":5,"f":"JUAN GUEDES"},{"h":1117,"v":1156,"d":"2026-02-08T11:00","s":5,"f":"LOMO APOLINARIO"},{"h":1122,"v":1103,"d":"2026-02-08T12:00","s":5,"f":"LAS TORRES 2"},{"h":1121,"v":1148,"d":"2026-02-08T12:00","s":5,"f":"LAS TORRES 1"}]},{"n":"Jornada 11","g":341,"m":[{"h":-1,"v":1156,"d":"","s":10,"f":""},{"h":1154,"v":1138,"d":"","s":1,"f":""},{"h":1104,"v":1157,"d":"2026-02-15T11:00","s":5,"f":"EL PILAR 2"},{"h":1122,"v":1115,"d":"2026-02-15T11:00","s":5,"f":"LAS TORRES 1"},{"h":1103,"v":1159,"d":"2026-02-15T11:00","s":5,"f":"ALFONSO SILVA 1"},{"h":1148,"v":1120,"d":"2026-02-15T11:00","s":5,"f":"LAS TORRES 2"},{"h":1158,"v":1156,"d":"2026-02-15T11:00","s":5,"f":"JUAN GUEDES"},{"h":1106,"v":1117,"d":"2026-02-15T11:00","s":5,"f":"LOMO APOLINARIO"},{"h":1160,"v":1121,"d":"2026-02-15T12:00","s":5,"f":"LAS TORRES 2"}]},{"n":"Jornada 12","g":341,"m":[{"h":1157,"v":-1,"d":"","s":10,"f":""},{"h":1122,"v":1154,"d":"","s":1,"f":""},{"h":1158,"v":1148,"d":"2026-02-21T11:00","s":5,"f":"LA SUERTE 1"},{"h":1138,"v":1104,"d":"2026-02-21T12:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1156,"v":1106,"d":"2026-02-21T12:30","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1159,"v":1155,"d":"2026-02-22T11:00","s":5,"f":"JUAN GUEDES"},{"h":1121,"v":1103,"d":"2026-02-22T11:00","s":5,"f":"LAS TORRES 2"},{"h":1117,"v":1115,"d":"2026-02-22T11:00","s":5,"f":"LOMO APOLINARIO"},{"h":1120,"v":1160,"d":"2026-02-22T12:00","s":5,"f":"LAS TORRES 1"}]},{"n":"Jornada 13","g":341,"m":[{"h":-1,"v":1106,"d":"","s":10,"f":""},{"h":1154,"v":1159,"d":"","s":1,"f":""},{"h":1104,"v":1122,"d":"2026-03-07T10:00","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1156,"v":1115,"d":"2026-03-07T11:00","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1157,"v":1138,"d":"2026-03-07T12:00","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1155,"v":1121,"d":"2026-03-07T12:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1103,"v":1120,"d":"2026-03-08T10:00","s":5,"f":"JUAN GUEDES"},{"h":1160,"v":1158,"d":"2026-03-08T11:00","s":5,"f":"JUAN GUEDES"},{"h":1148,"v":1117,"d":"2026-03-08T11:00","s":5,"f":"LOMO APOLINARIO"}]},{"n":"Jornada 14","g":341,"m":[{"h":1138,"v":-1,"d":"","s":10,"f":""},{"h":1156,"v":1148,"d":"2026-03-14T11:00","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1138,"v":1122,"d":"2026-03-14T12:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1159,"v":1104,"d":"2026-03-15T10:00","s":5,"f":"ALFONSO SILVA 2"},{"h":1158,"v":1103,"d":"2026-03-15T10:00","s":5,"f":"JUAN GUEDES"},{"h":1121,"v":1157,"d":"2026-03-15T11:00","s":5,"f":"LAS TORRES 2"},{"h":1120,"v":1155,"d":"2026-03-15T11:00","s":5,"f":"LAS TORRES 1"},{"h":1117,"v":1160,"d":"2026-03-15T11:00","s":5,"f":"LOMO APOLINARIO"},{"h":1106,"v":1115,"d":"2026-03-15T11:00","s":5,"f":"JUAN GUEDES"}]},{"n":"Jornada 15","g":341,"m":[{"h":-1,"v":1115,"d":"","s":10,"f":""},{"h":1154,"v":1120,"d":"","s":1,"f":""},{"h":1148,"v":1106,"d":"2026-03-21T11:00","s":1,"f":"LA SUERTE 1"},{"h":1138,"v":1122,"d":"2026-03-21T11:30","s":1,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1160,"v":1156,"d":"2026-03-21T12:00","s":1,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1155,"v":1158,"d":"2026-03-21T12:30","s":1,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1157,"v":1159,"d":"2026-03-22T11:00","s":1,"f":"EL BATAN 1 "},{"h":1104,"v":1121,"d":"2026-03-22T11:00","s":1,"f":"LAS TORRES 2"},{"h":1103,"v":1117,"d":"2026-03-22T11:00","s":1,"f":"LOMO APOLINARIO"}]},{"n":"Jornada 16","g":341,"m":[{"h":1158,"v":1122,"d":"2026-03-28T11:00","s":5,"f":"LA SUERTE 1"},{"h":1106,"v":1160,"d":"2026-03-28T12:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1115,"v":1148,"d":"2026-03-29T10:00","s":5,"f":"JUAN GUEDES"},{"h":1121,"v":1157,"d":"2026-03-29T11:00","s":5,"f":"LAS TORRES 1"},{"h":1120,"v":1104,"d":"2026-03-29T11:00","s":5,"f":"LAS TORRES 2"},{"h":1117,"v":1155,"d":"2026-03-29T11:00","s":5,"f":"LOMO APOLINARIO"},{"h":1103,"v":1156,"d":"2026-03-29T11:00","s":5,"f":"JUAN GUEDES"},{"h":1159,"v":1138,"d":"2026-03-29T12:00","s":5,"f":"EL BATAN 1 "}]},{"n":"Jornada 17","g":341,"m":[{"h":1104,"v":1158,"d":"2026-04-11T11:00","s":5,"f":"BARRIO ATL."},{"h":1155,"v":1156,"d":"2026-04-11T11:00","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1138,"v":1121,"d":"2026-04-12T10:00","s":5,"f":"JUAN GUEDES"},{"h":1122,"v":1159,"d":"2026-04-12T11:00","s":5,"f":"LAS TORRES 2"},{"h":1157,"v":1120,"d":"2026-04-12T11:00","s":5,"f":"EL BATAN 1 "},{"h":1148,"v":1117,"d":"2026-04-12T11:00","s":5,"f":"LOMO APOLINARIO"},{"h":1160,"v":1115,"d":"2026-04-12T11:00","s":5,"f":"JUAN GUEDES"},{"h":1103,"v":1106,"d":"2026-04-12T12:00","s":5,"f":"EL BATAN 1 "}]},{"n":"Jornada 18","g":341,"m":[{"h":1160,"v":1148,"d":"2026-04-18T11:00","s":1,"f":"LA SUERTE 1"},{"h":1157,"v":1158,"d":"2026-04-18T11:00","s":1,"f":"BARRIO ATL."},{"h":1155,"v":1106,"d":"2026-04-19T11:00","s":1,"f":"LOMO APOLINARIO"},{"h":1138,"v":1120,"d":"2026-04-19T11:00","s":1,"f":"LAS TORRES 2"},{"h":1103,"v":1115,"d":"2026-04-19T12:00","s":1,"f":"EL BATAN 1 "},{"h":1159,"v":1156,"d":"2026-04-19T12:00","s":1,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1104,"v":1117,"d":"2026-04-19T12:00","s":1,"f":"LOMO APOLINARIO"},{"h":1122,"v":1121,"d":"2026-04-19T12:00","s":1,"f":"LAS TORRES 1"}]},{"n":"Jornada 19","g":341,"m":[{"h":1156,"v":1104,"d":"2026-04-25T11:00","s":1,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1106,"v":1160,"d":"2026-04-25T12:30","s":1,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1117,"v":1157,"d":"2026-04-26T10:00","s":1,"f":"LOMO APOLINARIO"},{"h":1148,"v":1103,"d":"2026-04-26T11:00","s":1,"f":"EL PILAR 1"},{"h":1158,"v":1138,"d":"2026-04-26T11:00","s":1,"f":"LOMO APOLINARIO"},{"h":1120,"v":1122,"d":"2026-04-26T11:00","s":1,"f":"LAS TORRES 2"},{"h":1115,"v":1155,"d":"2026-04-26T12:00","s":1,"f":"EL BATAN 1 "},{"h":1121,"v":1159,"d":"2026-04-26T12:00","s":1,"f":"LAS TORRES 1"}]},{"n":"Jornada 20","g":341,"m":[{"h":1121,"v":-1,"d":"","s":10,"f":""},{"h":1103,"v":1160,"d":"","s":1,"f":""},{"h":1155,"v":1148,"d":"","s":1,"f":""},{"h":1154,"v":1115,"d":"","s":1,"f":""},{"h":1104,"v":1106,"d":"","s":1,"f":""},{"h":1157,"v":1156,"d":"","s":1,"f":""},{"h":1138,"v":1117,"d":"","s":1,"f":""},{"h":1122,"v":1158,"d":"","s":1,"f":""},{"h":1159,"v":1120,"d":"","s":1,"f":""}]},{"n":"Jornada 21","g":341,"m":[{"h":-1,"v":1103,"d":"","s":10,"f":""},{"h":1160,"v":1155,"d":"","s":1,"f":""},{"h":1148,"v":1154,"d":"","s":1,"f":""},{"h":1115,"v":1104,"d":"","s":1,"f":""},{"h":1106,"v":1157,"d":"","s":1,"f":""},{"h":1156,"v":1138,"d":"","s":1,"f":""},{"h":1117,"v":1122,"d":"","s":1,"f":""},{"h":1158,"v":1159,"d":"","s":1,"f":""},{"h":1120,"v":1121,"d":"","s":1,"f":""}]},{"n":"Jornada 22","g":341,"m":[{"h":1120,"v":-1,"d":"","s":10,"f":""},{"h":1155,"v":1103,"d":"","s":1,"f":""},{"h":1154,"v":1160,"d":"","s":1,"f":""},{"h":1104,"v":1148,"d":"","s":1,"f":""},{"h":1157,"v":1115,"d":"","s":1,"f":""},{"h":1138,"v":1106,"d":"","s":1,"f":""},{"h":1122,"v":1156,"d":"","s":1,"f":""},{"h":1159,"v":1117,"d":"","s":1,"f":""},{"h":1121,"v":1158,"d":"","s":1,"f":""}]},{"n":"Jornada 23","g":341,"m":[{"h":-1,"v":1155,"d":"","s":10,"f":""},{"h":1103,"v":1154,"d":"","s":1,"f":""},{"h":1160,"v":1104,"d":"","s":1,"f":""},{"h":1148,"v":1157,"d":"","s":1,"f":""},{"h":1115,"v":1138,"d":"","s":1,"f":""},{"h":1106,"v":1122,"d":"","s":1,"f":""},{"h":1156,"v":1159,"d":"","s":1,"f":""},{"h":1117,"v":1121,"d":"","s":1,"f":""},{"h":1158,"v":1120,"d":"","s":1,"f":""}]},{"n":"Jornada 24","g":341,"m":[{"h":1158,"v":-1,"d":"","s":10,"f":""},{"h":1154,"v":1155,"d":"","s":1,"f":""},{"h":1104,"v":1103,"d":"","s":1,"f":""},{"h":1157,"v":1160,"d":"","s":1,"f":""},{"h":1138,"v":1148,"d":"","s":1,"f":""},{"h":1122,"v":1115,"d":"","s":1,"f":""},{"h":1159,"v":1106,"d":"","s":1,"f":""},{"h":1121,"v":1156,"d":"","s":1,"f":""},{"h":1120,"v":1117,"d":"","s":1,"f":""}]},{"n":"Jornada 25","g":341,"m":[{"h":-1,"v":1154,"d":"","s":10,"f":""},{"h":1155,"v":1104,"d":"","s":1,"f":""},{"h":1103,"v":1157,"d":"","s":1,"f":""},{"h":1160,"v":1138,"d":"","s":1,"f":""},{"h":1148,"v":1122,"d":"","s":1,"f":""},{"h":1115,"v":1159,"d":"","s":1,"f":""},{"h":1106,"v":1121,"d":"","s":1,"f":""},{"h":1156,"v":1120,"d":"","s":1,"f":""},{"h":1117,"v":1158,"d":"","s":1,"f":""}]},{"n":"Jornada 26","g":341,"m":[{"h":1117,"v":-1,"d":"","s":10,"f":""},{"h":1104,"v":1154,"d":"","s":1,"f":""},{"h":1157,"v":1155,"d":"","s":1,"f":""},{"h":1138,"v":1103,"d":"","s":1,"f":""},{"h":1122,"v":1160,"d":"","s":1,"f":""},{"h":1159,"v":1148,"d":"","s":1,"f":""},{"h":1121,"v":1115,"d":"","s":1,"f":""},{"h":1120,"v":1106,"d":"","s":1,"f":""},{"h":1158,"v":1156,"d":"","s":1,"f":""}]},{"n":"Jornada 27","g":341,"m":[{"h":-1,"v":1104,"d":"","s":10,"f":""},{"h":1154,"v":1157,"d":"","s":1,"f":""},{"h":1155,"v":1138,"d":"","s":1,"f":""},{"h":1103,"v":1122,"d":"","s":1,"f":""},{"h":1160,"v":1159,"d":"","s":1,"f":""},{"h":1148,"v":1121,"d":"","s":1,"f":""},{"h":1115,"v":1120,"d":"","s":1,"f":""},{"h":1106,"v":1158,"d":"","s":1,"f":""},{"h":1156,"v":1117,"d":"","s":1,"f":""}]},{"n":"Jornada 28","g":341,"m":[{"h":1156,"v":-1,"d":"","s":10,"f":""},{"h":1157,"v":1104,"d":"","s":1,"f":""},{"h":1138,"v":1154,"d":"","s":1,"f":""},{"h":1122,"v":1155,"d":"","s":1,"f":""},{"h":1159,"v":1103,"d":"","s":1,"f":""},{"h":1121,"v":1160,"d":"","s":1,"f":""},{"h":1120,"v":1148,"d":"","s":1,"f":""},{"h":1158,"v":1115,"d":"","s":1,"f":""},{"h":1117,"v":1106,"d":"","s":1,"f":""}]},{"n":"Jornada 29","g":341,"m":[{"h":-1,"v":1157,"d":"","s":10,"f":""},{"h":1104,"v":1138,"d":"","s":1,"f":""},{"h":1154,"v":1122,"d":"","s":1,"f":""},{"h":1155,"v":1159,"d":"","s":1,"f":""},{"h":1103,"v":1121,"d":"","s":1,"f":""},{"h":1160,"v":1120,"d":"","s":1,"f":""},{"h":1148,"v":1158,"d":"","s":1,"f":""},{"h":1115,"v":1117,"d":"","s":1,"f":""},{"h":1106,"v":1156,"d":"","s":1,"f":""}]},{"n":"Jornada 30","g":341,"m":[{"h":1106,"v":-1,"d":"","s":10,"f":""},{"h":1138,"v":1157,"d":"","s":1,"f":""},{"h":1122,"v":1104,"d":"","s":1,"f":""},{"h":1159,"v":1154,"d":"","s":1,"f":""},{"h":1121,"v":1155,"d":"","s":1,"f":""},{"h":1120,"v":1103,"d":"","s":1,"f":""},{"h":1158,"v":1160,"d":"","s":1,"f":""},{"h":1117,"v":1148,"d":"","s":1,"f":""},{"h":1156,"v":1115,"d":"","s":1,"f":""}]},{"n":"Jornada 31","g":341,"m":[{"h":-1,"v":1138,"d":"","s":10,"f":""},{"h":1157,"v":1122,"d":"","s":1,"f":""},{"h":1104,"v":1159,"d":"","s":1,"f":""},{"h":1154,"v":1121,"d":"","s":1,"f":""},{"h":1155,"v":1120,"d":"","s":1,"f":""},{"h":1103,"v":1158,"d":"","s":1,"f":""},{"h":1160,"v":1117,"d":"","s":1,"f":""},{"h":1148,"v":1156,"d":"","s":1,"f":""},{"h":1115,"v":1106,"d":"","s":1,"f":""}]},{"n":"Jornada 32","g":341,"m":[{"h":1115,"v":-1,"d":"","s":10,"f":""},{"h":1122,"v":1138,"d":"","s":1,"f":""},{"h":1159,"v":1157,"d":"","s":1,"f":""},{"h":1121,"v":1104,"d":"","s":1,"f":""},{"h":1120,"v":1154,"d":"","s":1,"f":""},{"h":1158,"v":1155,"d":"","s":1,"f":""},{"h":1117,"v":1103,"d":"","s":1,"f":""},{"h":1156,"v":1160,"d":"","s":1,"f":""},{"h":1106,"v":1148,"d":"","s":1,"f":""}]},{"n":"Jornada 33","g":341,"m":[{"h":1122,"v":-1,"d":"","s":10,"f":""},{"h":1138,"v":1159,"d":"","s":1,"f":""},{"h":1157,"v":1121,"d":"","s":1,"f":""},{"h":1104,"v":1120,"d":"","s":1,"f":""},{"h":1154,"v":1158,"d":"","s":1,"f":""},{"h":1155,"v":1117,"d":"","s":1,"f":""},{"h":1103,"v":1156,"d":"","s":1,"f":""},{"h":1160,"v":1106,"d":"","s":1,"f":""},{"h":1148,"v":1115,"d":"","s":1,"f":""}]},{"n":"Jornada 34","g":341,"m":[{"h":-1,"v":1148,"d":"","s":10,"f":""},{"h":1159,"v":1122,"d":"","s":1,"f":""},{"h":1121,"v":1138,"d":"","s":1,"f":""},{"h":1120,"v":1157,"d":"","s":1,"f":""},{"h":1158,"v":1104,"d":"","s":1,"f":""},{"h":1117,"v":1154,"d":"","s":1,"f":""},{"h":1156,"v":1155,"d":"","s":1,"f":""},{"h":1106,"v":1103,"d":"","s":1,"f":""},{"h":1115,"v":1160,"d":"","s":1,"f":""}]}];
-const PRE_MATCHES=[{"n":"Jornada 1","g":339,"m":[{"h":1100,"v":1139,"d":"2025-10-25T09:00","s":5,"f":"BARRIO ATL."},{"h":1140,"v":1137,"d":"2025-10-25T11:00","s":5,"f":"BARRIO ATL."},{"h":1135,"v":1150,"d":"2025-10-25T11:00","s":5,"f":"LA SUERTE 1"},{"h":1163,"v":1116,"d":"2025-10-25T11:30","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1114,"v":1123,"d":"2025-10-26T10:30","s":5,"f":"LOMO APOLINARIO"},{"h":1101,"v":1141,"d":"2025-10-26T11:00","s":5,"f":"EL PILAR 1"},{"h":1107,"v":1125,"d":"2025-10-26T11:30","s":5,"f":"LOMO APOLINARIO"},{"h":1124,"v":1118,"d":"2025-10-26T12:00","s":5,"f":"LAS TORRES 1"},{"h":1102,"v":1142,"d":"2025-10-25T10:00","s":5,"f":"BARRIO ATL."},{"h":1151,"v":1109,"d":"2025-10-25T10:30","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1108,"v":1110,"d":"2025-10-25T11:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1143,"v":1119,"d":"2025-10-25T12:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1113,"v":1112,"d":"2025-10-25T12:30","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1161,"v":1127,"d":"2025-10-26T10:00","s":5,"f":"EL PILAR 1"},{"h":1128,"v":1152,"d":"2025-10-26T11:00","s":5,"f":"LAS TORRES 1"},{"h":1126,"v":1144,"d":"2025-10-26T11:00","s":5,"f":"LAS TORRES 2"}]},{"n":"Jornada 2","g":339,"m":[{"h":1150,"v":1107,"d":"2025-11-08T09:00","s":5,"f":"LA SUERTE 1"},{"h":1139,"v":1135,"d":"2025-11-08T10:00","s":5,"f":"LA SUERTE 1"},{"h":1141,"v":1140,"d":"2025-11-08T10:00","s":5,"f":"BARRIO ATL."},{"h":1118,"v":1101,"d":"2025-11-09T09:00","s":5,"f":"LOMO APOLINARIO"},{"h":1116,"v":1123,"d":"2025-11-09T09:00","s":5,"f":"TAMARACEITE"},{"h":1114,"v":1124,"d":"2025-11-09T10:00","s":5,"f":"LAS TORRES 1"},{"h":1125,"v":1163,"d":"2025-11-09T11:00","s":5,"f":"LAS TORRES 2"},{"h":1137,"v":1100,"d":"2025-11-09T12:00","s":5,"f":"LOMO APOLINARIO"},{"h":1152,"v":1108,"d":"","s":1,"f":""},{"h":1143,"v":1128,"d":"2025-11-08T09:00","s":5,"f":"BARRIO ATL."},{"h":1144,"v":1142,"d":"2025-11-08T10:30","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1109,"v":1102,"d":"2025-11-08T11:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1119,"v":1151,"d":"2025-11-09T10:00","s":5,"f":"LOMO APOLINARIO"},{"h":1112,"v":1126,"d":"2025-11-09T10:00","s":5,"f":"TAMARACEITE"},{"h":1127,"v":1113,"d":"2025-11-09T11:00","s":5,"f":"LAS TORRES 1"},{"h":1110,"v":1161,"d":"2025-11-09T11:00","s":5,"f":"EL PILAR 1"}]},{"n":"Jornada 3","g":339,"m":[{"h":1163,"v":1150,"d":"2025-11-15T10:00","s":5,"f":"LA SUERTE 1"},{"h":1135,"v":1107,"d":"2025-11-15T11:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1140,"v":1118,"d":"2025-11-16T09:00","s":5,"f":"LOMO APOLINARIO"},{"h":1101,"v":1114,"d":"2025-11-16T09:00","s":5,"f":"ALFONSO SILVA 2"},{"h":1124,"v":1116,"d":"2025-11-16T09:00","s":5,"f":"LAS TORRES 2"},{"h":1100,"v":1141,"d":"2025-11-16T10:00","s":5,"f":"ALFONSO SILVA 1"},{"h":1123,"v":1125,"d":"2025-11-16T11:00","s":5,"f":"LAS TORRES 1"},{"h":1139,"v":1137,"d":"2025-11-16T12:00","s":5,"f":"ALFONSO SILVA 1"},{"h":1151,"v":1144,"d":"2025-11-15T09:00","s":5,"f":"BARRIO ATL."},{"h":1113,"v":1110,"d":"2025-11-15T10:00","s":5,"f":"BARRIO ATL."},{"h":1152,"v":1143,"d":"2025-11-15T12:00","s":5,"f":"LA SUERTE 1"},{"h":1108,"v":1161,"d":"2025-11-15T12:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1102,"v":1119,"d":"2025-11-16T10:00","s":5,"f":"ALFONSO SILVA 2"},{"h":1142,"v":1112,"d":"2025-11-16T10:00","s":5,"f":"LOMO APOLINARIO"},{"h":1128,"v":1109,"d":"2025-11-16T11:00","s":5,"f":"LAS TORRES 2"},{"h":1126,"v":1127,"d":"2025-11-16T12:00","s":5,"f":"LAS TORRES 1"}]},{"n":"Jornada 4","g":339,"m":[{"h":1137,"v":1135,"d":"2025-11-22T10:00","s":5,"f":"BARRIO ATL."},{"h":1114,"v":1140,"d":"2025-11-22T10:30","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1141,"v":1139,"d":"2025-11-22T11:30","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1107,"v":1163,"d":"2025-11-22T11:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1150,"v":1123,"d":"2025-11-22T12:00","s":5,"f":"LA SUERTE 1"},{"h":1118,"v":1100,"d":"2025-11-23T09:00","s":5,"f":"LOMO APOLINARIO"},{"h":1116,"v":1101,"d":"2025-11-23T09:00","s":5,"f":"JUAN GUEDES"},{"h":1125,"v":1124,"d":"2025-11-23T10:00","s":5,"f":"LAS TORRES 1"},{"h":1144,"v":1102,"d":"2025-11-22T09:00","s":5,"f":"BARRIO ATL."},{"h":1110,"v":1126,"d":"2025-11-22T10:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1143,"v":1108,"d":"2025-11-23T10:00","s":5,"f":"TAMARACEITE"},{"h":1119,"v":1128,"d":"2025-11-23T10:00","s":5,"f":"LOMO APOLINARIO"},{"h":1112,"v":1151,"d":"2025-11-23T10:00","s":5,"f":"EL PILAR 2"},{"h":1127,"v":1142,"d":"2025-11-23T11:00","s":5,"f":"LAS TORRES 1"},{"h":1161,"v":1113,"d":"2025-11-23T11:00","s":5,"f":"EL PILAR 1"},{"h":1109,"v":1152,"d":"2025-11-23T12:00","s":5,"f":"LOMO APOLINARIO"}]},{"n":"Jornada 5","g":339,"m":[{"h":1137,"v":1141,"d":"2025-11-29T09:00","s":5,"f":"BARRIO ATL."},{"h":1139,"v":1118,"d":"2025-11-29T10:00","s":5,"f":"BARRIO ATL."},{"h":1100,"v":1114,"d":"2025-11-30T10:00","s":5,"f":"ALFONSO SILVA 2"},{"h":1140,"v":1116,"d":"2025-11-30T10:00","s":5,"f":"EL PILAR 1"},{"h":1124,"v":1150,"d":"2025-11-30T10:00","s":5,"f":"LAS TORRES 2"},{"h":1135,"v":1163,"d":"2025-11-30T10:00","s":5,"f":"LOMO APOLINARIO"},{"h":1101,"v":1125,"d":"2025-11-30T11:00","s":5,"f":"ALFONSO SILVA 1"},{"h":1123,"v":1107,"d":"2025-11-30T11:00","s":5,"f":"LAS TORRES 1"},{"h":1151,"v":1127,"d":"2025-11-29T11:30","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1143,"v":1109,"d":"2025-11-29T12:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1108,"v":1113,"d":"2025-11-29T12:30","s":5,"f":"NARANJO SOSA- LAS ARENAS 2"},{"h":1152,"v":1119,"d":"2025-11-30T09:00","s":5,"f":"LOMO APOLINARIO"},{"h":1102,"v":1112,"d":"2025-11-30T11:00","s":5,"f":"ALFONSO SILVA 2"},{"h":1142,"v":1110,"d":"2025-11-30T11:00","s":5,"f":"EL PILAR 1"},{"h":1126,"v":1161,"d":"2025-11-30T11:00","s":5,"f":"LAS TORRES 2"},{"h":1128,"v":1144,"d":"2025-11-30T12:00","s":5,"f":"LAS TORRES 1"}]},{"n":"Jornada 6","g":339,"m":[{"h":1141,"v":1135,"d":"2025-12-20T09:00","s":5,"f":"BARRIO ATL."},{"h":1107,"v":1124,"d":"2025-12-20T10:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1163,"v":1123,"d":"2025-12-20T10:30","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1114,"v":1139,"d":"2025-12-20T11:00","s":5,"f":"BARRIO ATL."},{"h":1150,"v":1101,"d":"2025-12-20T11:30","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1118,"v":1137,"d":"2025-12-21T09:00","s":5,"f":"LOMO APOLINARIO"},{"h":1116,"v":1100,"d":"2025-12-21T09:00","s":5,"f":"JUAN GUEDES"},{"h":1125,"v":1140,"d":"2025-12-21T12:00","s":5,"f":"LOMO APOLINARIO"},{"h":1144,"v":1152,"d":"","s":1,"f":""},{"h":1109,"v":1108,"d":"2025-12-20T11:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1119,"v":1143,"d":"2025-12-21T10:00","s":5,"f":"LOMO APOLINARIO"},{"h":1110,"v":1151,"d":"2025-12-21T10:00","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1113,"v":1126,"d":"2025-12-21T10:00","s":5,"f":"LAS TORRES 2"},{"h":1112,"v":1128,"d":"2025-12-21T11:00","s":5,"f":"LAS TORRES 1"},{"h":1127,"v":1102,"d":"2025-12-21T11:00","s":5,"f":"LAS TORRES 2"},{"h":1161,"v":1142,"d":"2025-12-21T11:00","s":5,"f":"EL PILAR 2"}]},{"n":"Jornada 7","g":339,"m":[{"h":1135,"v":1123,"d":"2026-01-10T10:00","s":5,"f":"BARRIO ATL."},{"h":1139,"v":1116,"d":"2026-01-10T11:00","s":5,"f":"BARRIO ATL."},{"h":1141,"v":1118,"d":"2026-01-11T09:00","s":5,"f":"LOMO APOLINARIO"},{"h":1100,"v":1125,"d":"2026-01-11T09:00","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1140,"v":1150,"d":"2026-01-11T09:00","s":5,"f":"JUAN GUEDES"},{"h":1137,"v":1114,"d":"2026-01-11T10:00","s":5,"f":"JUAN GUEDES"},{"h":1101,"v":1107,"d":"2026-01-11T10:00","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1124,"v":1163,"d":"2026-01-11T11:00","s":5,"f":"LAS TORRES 1"},{"h":1143,"v":1144,"d":"2026-01-10T09:00","s":5,"f":"BARRIO ATL."},{"h":1142,"v":1113,"d":"2026-01-10T10:00","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1108,"v":1126,"d":"2026-01-10T10:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1151,"v":1161,"d":"2026-01-10T11:00","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1109,"v":1119,"d":"2026-01-10T11:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1128,"v":1127,"d":"2026-01-11T09:00","s":5,"f":"LAS TORRES 2"},{"h":1152,"v":1112,"d":"2026-01-11T10:00","s":5,"f":"LOMO APOLINARIO"},{"h":1102,"v":1110,"d":"2026-01-11T11:00","s":5,"f":"EL PILAR 1"}]},{"n":"Jornada 8","g":339,"m":[{"h":1114,"v":1141,"d":"2026-01-17T09:00","s":5,"f":"BARRIO ATL."},{"h":1107,"v":1140,"d":"2026-01-17T11:30","s":5,"f":"NARANJO SOSA- LAS ARENAS 2"},{"h":1125,"v":1139,"d":"2026-01-17T12:30","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1118,"v":1135,"d":"2026-01-18T09:00","s":5,"f":"LOMO APOLINARIO"},{"h":1116,"v":1137,"d":"2026-01-18T10:00","s":5,"f":"JUAN GUEDES"},{"h":1163,"v":1101,"d":"2026-01-18T10:00","s":5,"f":"EL PILAR 2"},{"h":1123,"v":1124,"d":"2026-01-18T10:00","s":5,"f":"LAS TORRES 1"},{"h":1150,"v":1100,"d":"2026-01-18T12:00","s":5,"f":"LAS TORRES 2"},{"h":1127,"v":1152,"d":"","s":1,"f":""},{"h":1144,"v":1109,"d":"2026-01-17T10:00","s":5,"f":"BARRIO ATL."},{"h":1113,"v":1151,"d":"2026-01-17T10:30","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1112,"v":1143,"d":"2026-01-18T09:00","s":5,"f":"JUAN GUEDES"},{"h":1119,"v":1108,"d":"2026-01-18T10:00","s":5,"f":"LOMO APOLINARIO"},{"h":1110,"v":1128,"d":"2026-01-18T10:00","s":5,"f":"LAS TORRES 2"},{"h":1161,"v":1102,"d":"2026-01-18T11:00","s":5,"f":"EL PILAR 2"},{"h":1126,"v":1142,"d":"2026-01-18T11:00","s":5,"f":"LAS TORRES 2"}]},{"n":"Jornada 9","g":339,"m":[{"h":1137,"v":1125,"d":"2026-01-24T09:00","s":5,"f":"BARRIO ATL."},{"h":1101,"v":1123,"d":"2026-01-24T09:00","s":5,"f":"LA SUERTE 1"},{"h":1139,"v":1150,"d":"2026-01-24T10:00","s":5,"f":"LA SUERTE 1"},{"h":1140,"v":1163,"d":"2026-01-24T10:00","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1118,"v":1114,"d":"2026-01-25T09:00","s":5,"f":"LOMO APOLINARIO"},{"h":1141,"v":1116,"d":"2026-01-25T10:00","s":5,"f":"JUAN GUEDES"},{"h":1135,"v":1110,"d":"2026-01-25T10:00","s":5,"f":"EL PILAR 2"},{"h":1100,"v":1107,"d":"2026-01-25T12:00","s":5,"f":"LOMO APOLINARIO"},{"h":1152,"v":1110,"d":"","s":1,"f":""},{"h":1109,"v":1112,"d":"2026-01-24T10:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1151,"v":1126,"d":"2026-01-24T11:00","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1108,"v":1142,"d":"2026-01-24T11:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1143,"v":1127,"d":"2026-01-24T12:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1102,"v":1113,"d":"2026-01-25T09:00","s":5,"f":"EL PILAR 2"},{"h":1119,"v":1144,"d":"2026-01-25T10:00","s":5,"f":"LOMO APOLINARIO"},{"h":1128,"v":1161,"d":"2026-01-25T11:00","s":5,"f":"LAS TORRES 1"}]},{"n":"Jornada 10","g":339,"m":[{"h":1124,"v":-1,"d":"","s":1,"f":""},{"h":1150,"v":1137,"d":"2026-01-31T09:00","s":5,"f":"LA SUERTE 1"},{"h":1107,"v":1139,"d":"2026-01-31T10:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1114,"v":1135,"d":"2026-02-01T09:00","s":5,"f":"LOMO APOLINARIO"},{"h":1116,"v":1118,"d":"2026-02-01T09:00","s":5,"f":"JUAN GUEDES"},{"h":1125,"v":1141,"d":"2026-02-01T09:00","s":5,"f":"LAS TORRES 2"},{"h":1163,"v":1100,"d":"2026-02-01T10:00","s":5,"f":"JUAN GUEDES"},{"h":1123,"v":1140,"d":"2026-02-01T10:00","s":5,"f":"LAS TORRES 1"},{"h":1161,"v":-1,"d":"2026-02-01T11:00","s":1,"f":"EL PILAR 1"},{"h":1144,"v":1108,"d":"2026-01-31T10:00","s":5,"f":"LA SUERTE 1"},{"h":1113,"v":1128,"d":"2026-02-01T09:00","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1112,"v":1119,"d":"2026-02-01T10:00","s":5,"f":"LOMO APOLINARIO"},{"h":1142,"v":1151,"d":"2026-02-01T10:00","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1127,"v":1109,"d":"2026-02-01T11:00","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1126,"v":1102,"d":"2026-02-01T11:00","s":5,"f":"LAS TORRES 2"},{"h":1110,"v":1143,"d":"2026-02-01T12:00","s":5,"f":"LOMO APOLINARIO"}]},{"n":"Jornada 11","g":339,"m":[{"h":1140,"v":-1,"d":"","s":1,"f":""},{"h":1139,"v":1163,"d":"2026-02-07T10:00","s":5,"f":"BARRIO ATL."},{"h":1141,"v":1150,"d":"2026-02-07T11:00","s":5,"f":"LA SUERTE 1"},{"h":1135,"v":1101,"d":"2026-02-07T11:00","s":5,"f":"BARRIO ATL."},{"h":1137,"v":1107,"d":"2026-02-07T11:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1114,"v":1116,"d":"2026-02-08T09:00","s":5,"f":"JUAN GUEDES"},{"h":1118,"v":1125,"d":"2026-02-08T09:00","s":5,"f":"LOMO APOLINARIO"},{"h":1100,"v":1123,"d":"2026-02-08T11:00","s":5,"f":"LAS TORRES 2"},{"h":1140,"v":1113,"d":"2026-02-08T11:00","s":5,"f":"EL PILAR 2"},{"h":-1,"v":1113,"d":"","s":1,"f":""},{"h":1143,"v":1161,"d":"2026-02-07T09:00","s":5,"f":"LA SUERTE 1"},{"h":1109,"v":1110,"d":"2026-02-07T10:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1108,"v":1151,"d":"2026-02-07T11:00","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1128,"v":1126,"d":"2026-02-08T09:00","s":5,"f":"LAS TORRES 2"},{"h":1144,"v":1112,"d":"2026-02-08T10:00","s":5,"f":"EL PILAR 2"},{"h":1119,"v":1127,"d":"2026-02-08T10:00","s":5,"f":"LOMO APOLINARIO"},{"h":1102,"v":1142,"d":"2026-02-08T11:00","s":5,"f":"EL PILAR 1"}]},{"n":"Jornada 12","g":339,"m":[{"h":1124,"v":1152,"d":"","s":1,"f":""},{"h":1101,"v":1140,"d":"2026-02-14T10:00","s":5,"f":"BARRIO ATL."},{"h":1150,"v":1118,"d":"2026-02-14T10:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1123,"v":1139,"d":"2026-02-14T11:00","s":5,"f":"BARRIO ATL."},{"h":1107,"v":1141,"d":"2026-02-14T11:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1116,"v":1135,"d":"2026-02-15T09:00","s":5,"f":"JUAN GUEDES"},{"h":1163,"v":1137,"d":"2026-02-15T11:00","s":5,"f":"EL PILAR 1"},{"h":1125,"v":1100,"d":"2026-02-15T11:00","s":5,"f":"ALFONSO SILVA 2"},{"h":1113,"v":1143,"d":"2026-02-14T12:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1110,"v":1119,"d":"2026-02-15T09:00","s":5,"f":"LOMO APOLINARIO"},{"h":1112,"v":1108,"d":"2026-02-15T10:00","s":5,"f":"JUAN GUEDES"},{"h":1127,"v":1144,"d":"2026-02-15T10:00","s":5,"f":"LAS TORRES 1"},{"h":1161,"v":1109,"d":"2026-02-15T10:00","s":5,"f":"EL PILAR 2"},{"h":1142,"v":1128,"d":"2026-02-15T10:00","s":5,"f":"LAS TORRES 2"},{"h":1151,"v":1102,"d":"2026-02-15T10:00","s":5,"f":"ALFONSO SILVA 2"},{"h":1126,"v":1114,"d":"2026-02-15T12:00","s":5,"f":"LAS TORRES"}]},{"n":"Jornada 13","g":339,"m":[{"h":1139,"v":1142,"d":"2026-02-21T09:00","s":5,"f":"BARRIO ATL."},{"h":1114,"v":1150,"d":"2026-02-21T10:00","s":5,"f":"LA SUERTE 1"},{"h":1135,"v":1140,"d":"2026-02-21T10:00","s":5,"f":"BARRIO ATL."},{"h":1116,"v":1125,"d":"2026-02-22T09:00","s":5,"f":"JUAN GUEDES"},{"h":1118,"v":1107,"d":"2026-02-22T09:00","s":5,"f":"LOMO APOLINARIO"},{"h":1100,"v":1101,"d":"2026-02-22T11:00","s":5,"f":"EL PILAR 2"},{"h":1141,"v":1163,"d":"2026-02-22T12:00","s":5,"f":"LOMO APOLINARIO"},{"h":1137,"v":1123,"d":"2026-02-22T12:00","s":5,"f":"LAS TORRES 2"},{"h":1152,"v":1124,"d":"","s":1,"f":""},{"h":1144,"v":1110,"d":"2026-02-21T10:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1143,"v":1126,"d":"2026-02-21T11:00","s":5,"f":"BARRIO ATL."},{"h":1109,"v":1113,"d":"2026-02-21T11:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1128,"v":1151,"d":"2026-02-21T11:30","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1119,"v":1161,"d":"2026-02-22T10:00","s":5,"f":"LOMO APOLINARIO"},{"h":1108,"v":1102,"d":"2026-02-22T10:00","s":5,"f":"JUAN GUEDES"},{"h":1112,"v":1127,"d":"2026-02-22T11:00","s":5,"f":"LAS TORRES 1"}]},{"n":"Jornada 14","g":339,"m":[{"h":1124,"v":1137,"d":"","s":1,"f":""},{"h":1150,"v":1116,"d":"2026-03-07T10:00","s":5,"f":"LA SUERTE 1"},{"h":1101,"v":1139,"d":"2026-03-07T10:00","s":5,"f":"BARRIO ATL."},{"h":1135,"v":1125,"d":"2026-03-07T11:00","s":5,"f":"BARRIO ATL."},{"h":1163,"v":1118,"d":"2026-03-08T09:00","s":5,"f":"LOMO APOLINARIO"},{"h":1123,"v":1141,"d":"2026-03-08T09:00","s":5,"f":"JUAN GUEDES"},{"h":1107,"v":1114,"d":"2026-03-08T11:00","s":5,"f":"LAS TORRES 1"},{"h":1140,"v":1100,"d":"2026-03-08T11:00","s":5,"f":"LAS TORRES 2"},{"h":1151,"v":1152,"d":"","s":1,"f":""},{"h":1142,"v":1143,"d":"2026-03-07T09:00","s":5,"f":"BARRIO ATL."},{"h":1108,"v":1127,"d":"2026-03-07T10:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1126,"v":1109,"d":"2026-03-07T11:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1113,"v":1119,"d":"2026-03-08T10:00","s":5,"f":"LOMO APOLINARIO"},{"h":1102,"v":1128,"d":"2026-03-08T10:00","s":5,"f":"EL PILAR 2"},{"h":1161,"v":1144,"d":"2026-03-08T11:00","s":5,"f":"EL PILAR 1"},{"h":1110,"v":1112,"d":"2026-03-08T12:00","s":5,"f":"LOMO APOLINARIO"}]},{"n":"Jornada 15","g":339,"m":[{"h":1141,"v":1124,"d":"","s":1,"f":""},{"h":1139,"v":1140,"d":"2026-03-14T09:00","s":5,"f":"BARRIO ATL."},{"h":1100,"v":1135,"d":"2026-03-14T10:00","s":5,"f":"LA SUERTE 1"},{"h":1137,"v":1101,"d":"2026-03-14T10:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1125,"v":1150,"d":"2026-03-14T11:00","s":5,"f":"LA SUERTE 1"},{"h":1114,"v":1163,"d":"2026-03-14T11:00","s":5,"f":"BARRIO ATL."},{"h":1116,"v":1107,"d":"2026-03-15T09:00","s":5,"f":"JUAN GUEDES"},{"h":1118,"v":1123,"d":"2026-03-15T09:00","s":5,"f":"LOMO APOLINARIO"},{"h":1152,"v":1102,"d":"","s":1,"f":""},{"h":1144,"v":1113,"d":"2026-03-14T10:00","s":5,"f":"BARRIO ATL."},{"h":1109,"v":1142,"d":"2026-03-14T11:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1143,"v":1151,"d":"2026-03-14T12:00","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1127,"v":1110,"d":"2026-03-15T09:00","s":5,"f":"LAS TORRES 2"},{"h":1119,"v":1126,"d":"2026-03-15T10:00","s":5,"f":"LOMO APOLINARIO"},{"h":1128,"v":1108,"d":"2026-03-15T10:00","s":5,"f":"LAS TORRES 2"},{"h":1112,"v":1161,"d":"2026-03-15T11:00","s":5,"f":"EL PILAR 1"}]},{"n":"Jornada 16","g":339,"m":[{"h":1118,"v":1124,"d":"","s":1,"f":""},{"h":1139,"v":1100,"d":"2026-03-21T10:00","s":1,"f":"BARRIO ATL."},{"h":1150,"v":1135,"d":"2026-03-21T10:00","s":1,"f":"LA SUERTE 1"},{"h":1163,"v":1116,"d":"2026-03-21T11:00","s":1,"f":"BARRIO ATL."},{"h":1137,"v":1140,"d":"2026-03-22T09:00","s":1,"f":"EL BATAN 1 "},{"h":1141,"v":1101,"d":"2026-03-22T10:00","s":1,"f":"EL BATAN 1 "},{"h":1125,"v":1107,"d":"2026-03-22T10:00","s":1,"f":"LAS TORRES 2"},{"h":1114,"v":1123,"d":"2026-03-22T12:00","s":1,"f":"EL BATAN 1 "},{"h":1152,"v":1128,"d":"","s":1,"f":""},{"h":1143,"v":1102,"d":"2026-03-21T09:00","s":1,"f":"BARRIO ATL."},{"h":1109,"v":1151,"d":"2026-03-21T10:00","s":1,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1110,"v":1108,"d":"2026-03-21T10:30","s":1,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1144,"v":1126,"d":"2026-03-21T11:00","s":1,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1112,"v":1113,"d":"2026-03-22T09:00","s":1,"f":"LOMO APOLINARIO"},{"h":1119,"v":1142,"d":"2026-03-22T10:00","s":1,"f":"LOMO APOLINARIO"},{"h":1127,"v":1161,"d":"2026-03-22T11:00","s":1,"f":"LAS TORRES 1"}]},{"n":"Jornada 17","g":339,"m":[{"h":1124,"v":1114,"d":"","s":1,"f":""},{"h":1135,"v":1139,"d":"2026-03-28T10:00","s":5,"f":"BARRIO ATL."},{"h":1107,"v":1150,"d":"2026-03-28T11:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1140,"v":1141,"d":"2026-03-29T09:00","s":5,"f":"EL BATAN 1 "},{"h":1101,"v":1118,"d":"2026-03-29T09:00","s":5,"f":"LOMO APOLINARIO"},{"h":1123,"v":1116,"d":"2026-03-29T09:00","s":5,"f":"JUAN GUEDES"},{"h":1163,"v":1125,"d":"2026-03-29T10:00","s":5,"f":"EL BATAN 1 "},{"h":1100,"v":1137,"d":"2026-03-29T11:00","s":5,"f":"EL PILAR 1"},{"h":1108,"v":1152,"d":"","s":1,"f":""},{"h":1128,"v":1143,"d":"2026-03-28T09:00","s":5,"f":"BARRIO ATL."},{"h":1102,"v":1109,"d":"2026-03-28T10:00","s":5,"f":"LA SUERTE 1"},{"h":1142,"v":1144,"d":"2026-03-28T11:00","s":5,"f":"BARRIO ATL."},{"h":1151,"v":1119,"d":"2026-03-28T12:30","s":5,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1126,"v":1112,"d":"2026-03-29T10:00","s":5,"f":"LAS TORRES 2"},{"h":1113,"v":1127,"d":"2026-03-29T10:00","s":5,"f":"LOMO APOLINARIO"},{"h":1161,"v":1110,"d":"2026-03-29T10:00","s":5,"f":"EL PILAR 1"}]},{"n":"Jornada 18","g":339,"m":[{"h":1116,"v":1124,"d":"","s":1,"f":""},{"h":1137,"v":1139,"d":"2026-04-11T09:00","s":5,"f":"BARRIO ATL."},{"h":1114,"v":1101,"d":"2026-04-11T10:00","s":5,"f":"BARRIO ATL."},{"h":1150,"v":1163,"d":"2026-04-11T10:00","s":5,"f":"LA SUERTE 1"},{"h":1141,"v":1100,"d":"2026-04-11T11:00","s":5,"f":"LA SUERTE 1"},{"h":1107,"v":1135,"d":"2026-04-11T11:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1125,"v":1123,"d":"2026-04-12T11:00","s":5,"f":"LAS TORRES 1"},{"h":1118,"v":1140,"d":"2026-04-12T12:00","s":5,"f":"LOMO APOLINARIO"},{"h":1143,"v":1152,"d":"","s":1,"f":""},{"h":1144,"v":1151,"d":"","s":1,"f":""},{"h":1110,"v":1113,"d":"2026-04-11T12:30","s":5,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1109,"v":1128,"d":"2026-04-12T09:00","s":5,"f":"EL BATAN 1 "},{"h":1119,"v":1102,"d":"2026-04-12T10:00","s":5,"f":"LOMO APOLINARIO"},{"h":1112,"v":1142,"d":"2026-04-12T10:00","s":5,"f":"EL BATAN 1 "},{"h":1127,"v":1126,"d":"2026-04-12T10:00","s":5,"f":"LAS TORRES 2"},{"h":1161,"v":1108,"d":"2026-04-12T11:00","s":5,"f":"EL PILAR 1"}]},{"n":"Jornada 19","g":339,"m":[{"h":1124,"v":1125,"d":"","s":1,"f":""},{"h":1139,"v":1141,"d":"2026-04-18T10:00","s":1,"f":"BARRIO ATL."},{"h":1123,"v":1150,"d":"2026-04-18T10:00","s":1,"f":"LA SUERTE 1"},{"h":1163,"v":1107,"d":"2026-04-18T12:30","s":1,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1100,"v":1118,"d":"2026-04-19T09:00","s":1,"f":"LOMO APOLINARIO"},{"h":1135,"v":1137,"d":"2026-04-19T11:00","s":1,"f":"EL BATAN 2"},{"h":1101,"v":1116,"d":"2026-04-19T11:00","s":1,"f":"LAS TORRES 1"},{"h":1140,"v":1114,"d":"2026-04-19T12:00","s":1,"f":"EL BATAN 2"},{"h":1152,"v":1109,"d":"","s":1,"f":""},{"h":1108,"v":1143,"d":"2026-04-18T10:30","s":1,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1128,"v":1119,"d":"2026-04-19T10:00","s":1,"f":"LOMO APOLINARIO"},{"h":1126,"v":1110,"d":"2026-04-19T10:00","s":1,"f":"LAS TORRES 2"},{"h":1102,"v":1144,"d":"2026-04-19T11:00","s":1,"f":"EL PILAR 2"},{"h":1151,"v":1112,"d":"2026-04-19T11:00","s":1,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1142,"v":1127,"d":"2026-04-19T11:00","s":1,"f":"EL BATAN 1 "},{"h":1113,"v":1161,"d":"2026-04-19T11:00","s":1,"f":"EL PILAR 1"}]},{"n":"Jornada 20","g":339,"m":[{"h":1141,"v":1137,"d":"2026-04-25T09:00","s":1,"f":"BARRIO ATL."},{"h":1118,"v":1139,"d":"2026-04-26T09:00","s":1,"f":"LOMO APOLINARIO"},{"h":1163,"v":1135,"d":"2026-04-26T09:00","s":1,"f":"EL BATAN 1 "},{"h":1125,"v":1101,"d":"2026-04-26T10:00","s":1,"f":"LAS TORRES 2"},{"h":1107,"v":1123,"d":"2026-04-26T10:00","s":1,"f":"EL BATAN 1 "},{"h":1116,"v":1140,"d":"2026-04-26T11:00","s":1,"f":"EL BATAN 1 "},{"h":1150,"v":1124,"d":"2026-04-26T11:00","s":1,"f":"LAS TORRES 1"},{"h":1114,"v":1100,"d":"2026-04-26T12:00","s":1,"f":"ALFONSO SILVA 1"},{"h":1119,"v":1152,"d":"","s":1,"f":""},{"h":1151,"v":1127,"d":"2026-04-25T10:00","s":1,"f":"POLIGONO SAN CRISTOBAL F7"},{"h":1113,"v":1108,"d":"2026-04-25T10:00","s":1,"f":"BARRIO ATL."},{"h":1109,"v":1143,"d":"2026-04-25T10:30","s":1,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1144,"v":1128,"d":"2026-04-25T11:00","s":1,"f":"BARRIO ATL."},{"h":1110,"v":1142,"d":"2026-04-25T11:30","s":1,"f":"NARANJO SOSA - LAS ARENAS"},{"h":1161,"v":1126,"d":"2026-04-26T10:00","s":1,"f":"EL PILAR 1"},{"h":1112,"v":1102,"d":"2026-04-26T12:00","s":1,"f":"ALFONSO SILVA 2"}]},{"n":"Jornada 21","g":339,"m":[{"h":1135,"v":1141,"d":"","s":1,"f":""},{"h":1137,"v":1118,"d":"","s":1,"f":""},{"h":1139,"v":1114,"d":"","s":1,"f":""},{"h":1100,"v":1116,"d":"","s":1,"f":""},{"h":1140,"v":1125,"d":"","s":1,"f":""},{"h":1101,"v":1150,"d":"","s":1,"f":""},{"h":1124,"v":1107,"d":"","s":1,"f":""},{"h":1123,"v":1163,"d":"","s":1,"f":""},{"h":1108,"v":1109,"d":"","s":1,"f":""},{"h":1143,"v":1119,"d":"","s":1,"f":""},{"h":1152,"v":1144,"d":"","s":1,"f":""},{"h":1128,"v":1112,"d":"","s":1,"f":""},{"h":1102,"v":1127,"d":"","s":1,"f":""},{"h":1151,"v":1110,"d":"","s":1,"f":""},{"h":1142,"v":1161,"d":"","s":1,"f":""},{"h":1126,"v":1113,"d":"","s":1,"f":""}]},{"n":"Jornada 22","g":339,"m":[{"h":1118,"v":1141,"d":"","s":1,"f":""},{"h":1114,"v":1137,"d":"","s":1,"f":""},{"h":1116,"v":1139,"d":"","s":1,"f":""},{"h":1125,"v":1100,"d":"","s":1,"f":""},{"h":1150,"v":1140,"d":"","s":1,"f":""},{"h":1107,"v":1101,"d":"","s":1,"f":""},{"h":1163,"v":1124,"d":"","s":1,"f":""},{"h":1123,"v":1135,"d":"","s":1,"f":""},{"h":1119,"v":1109,"d":"","s":1,"f":""},{"h":1144,"v":1143,"d":"","s":1,"f":""},{"h":1112,"v":1152,"d":"","s":1,"f":""},{"h":1127,"v":1128,"d":"","s":1,"f":""},{"h":1110,"v":1102,"d":"","s":1,"f":""},{"h":1161,"v":1151,"d":"","s":1,"f":""},{"h":1113,"v":1142,"d":"","s":1,"f":""},{"h":1126,"v":1108,"d":"","s":1,"f":""}]},{"n":"Jornada 23","g":339,"m":[{"h":1135,"v":1118,"d":"","s":1,"f":""},{"h":1141,"v":1114,"d":"","s":1,"f":""},{"h":1137,"v":1116,"d":"","s":1,"f":""},{"h":1139,"v":1125,"d":"","s":1,"f":""},{"h":1100,"v":1150,"d":"","s":1,"f":""},{"h":1140,"v":1107,"d":"","s":1,"f":""},{"h":1101,"v":1163,"d":"","s":1,"f":""},{"h":1124,"v":1123,"d":"","s":1,"f":""},{"h":1108,"v":1119,"d":"","s":1,"f":""},{"h":1109,"v":1144,"d":"","s":1,"f":""},{"h":1143,"v":1112,"d":"","s":1,"f":""},{"h":1152,"v":1127,"d":"","s":1,"f":""},{"h":1128,"v":1110,"d":"","s":1,"f":""},{"h":1102,"v":1161,"d":"","s":1,"f":""},{"h":1151,"v":1113,"d":"","s":1,"f":""},{"h":1142,"v":1126,"d":"","s":1,"f":""}]},{"n":"Jornada 24","g":339,"m":[{"h":1114,"v":1118,"d":"","s":1,"f":""},{"h":1116,"v":1141,"d":"","s":1,"f":""},{"h":1125,"v":1137,"d":"","s":1,"f":""},{"h":1150,"v":1139,"d":"","s":1,"f":""},{"h":1107,"v":1100,"d":"","s":1,"f":""},{"h":1163,"v":1140,"d":"","s":1,"f":""},{"h":1123,"v":1101,"d":"","s":1,"f":""},{"h":1124,"v":1135,"d":"","s":1,"f":""},{"h":1144,"v":1119,"d":"","s":1,"f":""},{"h":1112,"v":1109,"d":"","s":1,"f":""},{"h":1127,"v":1143,"d":"","s":1,"f":""},{"h":1110,"v":1152,"d":"","s":1,"f":""},{"h":1161,"v":1128,"d":"","s":1,"f":""},{"h":1113,"v":1102,"d":"","s":1,"f":""},{"h":1126,"v":1151,"d":"","s":1,"f":""},{"h":1142,"v":1108,"d":"","s":1,"f":""}]},{"n":"Jornada 25","g":339,"m":[{"h":1135,"v":1114,"d":"","s":1,"f":""},{"h":1118,"v":1116,"d":"","s":1,"f":""},{"h":1141,"v":1125,"d":"","s":1,"f":""},{"h":1137,"v":1150,"d":"","s":1,"f":""},{"h":1139,"v":1107,"d":"","s":1,"f":""},{"h":1100,"v":1163,"d":"","s":1,"f":""},{"h":1140,"v":1123,"d":"","s":1,"f":""},{"h":1101,"v":1124,"d":"","s":1,"f":""},{"h":1108,"v":1144,"d":"","s":1,"f":""},{"h":1119,"v":1112,"d":"","s":1,"f":""},{"h":1109,"v":1127,"d":"","s":1,"f":""},{"h":1143,"v":1110,"d":"","s":1,"f":""},{"h":1152,"v":1161,"d":"","s":1,"f":""},{"h":1128,"v":1113,"d":"","s":1,"f":""},{"h":1102,"v":1126,"d":"","s":1,"f":""},{"h":1151,"v":1142,"d":"","s":1,"f":""}]},{"n":"Jornada 26","g":339,"m":[{"h":1116,"v":1114,"d":"","s":1,"f":""},{"h":1125,"v":1118,"d":"","s":1,"f":""},{"h":1150,"v":1141,"d":"","s":1,"f":""},{"h":1107,"v":1137,"d":"","s":1,"f":""},{"h":1163,"v":1139,"d":"","s":1,"f":""},{"h":1123,"v":1100,"d":"","s":1,"f":""},{"h":1124,"v":1140,"d":"","s":1,"f":""},{"h":1101,"v":1135,"d":"","s":1,"f":""},{"h":1112,"v":1144,"d":"","s":1,"f":""},{"h":1127,"v":1119,"d":"","s":1,"f":""},{"h":1110,"v":1109,"d":"","s":1,"f":""},{"h":1161,"v":1143,"d":"","s":1,"f":""},{"h":1113,"v":1152,"d":"","s":1,"f":""},{"h":1126,"v":1128,"d":"","s":1,"f":""},{"h":1142,"v":1102,"d":"","s":1,"f":""},{"h":1151,"v":1108,"d":"","s":1,"f":""}]},{"n":"Jornada 27","g":339,"m":[{"h":1135,"v":1116,"d":"","s":1,"f":""},{"h":1114,"v":1125,"d":"","s":1,"f":""},{"h":1118,"v":1150,"d":"","s":1,"f":""},{"h":1141,"v":1107,"d":"","s":1,"f":""},{"h":1137,"v":1163,"d":"","s":1,"f":""},{"h":1139,"v":1123,"d":"","s":1,"f":""},{"h":1100,"v":1124,"d":"","s":1,"f":""},{"h":1140,"v":1101,"d":"","s":1,"f":""},{"h":1108,"v":1112,"d":"","s":1,"f":""},{"h":1144,"v":1127,"d":"","s":1,"f":""},{"h":1119,"v":1110,"d":"","s":1,"f":""},{"h":1109,"v":1161,"d":"","s":1,"f":""},{"h":1143,"v":1113,"d":"","s":1,"f":""},{"h":1152,"v":1126,"d":"","s":1,"f":""},{"h":1128,"v":1142,"d":"","s":1,"f":""},{"h":1102,"v":1151,"d":"","s":1,"f":""}]},{"n":"Jornada 28","g":339,"m":[{"h":1125,"v":1116,"d":"","s":1,"f":""},{"h":1150,"v":1114,"d":"","s":1,"f":""},{"h":1107,"v":1118,"d":"","s":1,"f":""},{"h":1163,"v":1141,"d":"","s":1,"f":""},{"h":1123,"v":1137,"d":"","s":1,"f":""},{"h":1124,"v":1139,"d":"","s":1,"f":""},{"h":1101,"v":1100,"d":"","s":1,"f":""},{"h":1140,"v":1135,"d":"","s":1,"f":""},{"h":1127,"v":1112,"d":"","s":1,"f":""},{"h":1110,"v":1144,"d":"","s":1,"f":""},{"h":1161,"v":1119,"d":"","s":1,"f":""},{"h":1113,"v":1109,"d":"","s":1,"f":""},{"h":1126,"v":1143,"d":"","s":1,"f":""},{"h":1142,"v":1152,"d":"","s":1,"f":""},{"h":1151,"v":1128,"d":"","s":1,"f":""},{"h":1102,"v":1108,"d":"","s":1,"f":""}]},{"n":"Jornada 29","g":339,"m":[{"h":1125,"v":1135,"d":"","s":1,"f":""},{"h":1116,"v":1150,"d":"","s":1,"f":""},{"h":1114,"v":1107,"d":"","s":1,"f":""},{"h":1118,"v":1163,"d":"","s":1,"f":""},{"h":1141,"v":1123,"d":"","s":1,"f":""},{"h":1137,"v":1124,"d":"","s":1,"f":""},{"h":1139,"v":1101,"d":"","s":1,"f":""},{"h":1100,"v":1140,"d":"","s":1,"f":""},{"h":1127,"v":1108,"d":"","s":1,"f":""},{"h":1112,"v":1110,"d":"","s":1,"f":""},{"h":1144,"v":1161,"d":"","s":1,"f":""},{"h":1119,"v":1113,"d":"","s":1,"f":""},{"h":1109,"v":1126,"d":"","s":1,"f":""},{"h":1143,"v":1142,"d":"","s":1,"f":""},{"h":1152,"v":1151,"d":"","s":1,"f":""},{"h":1128,"v":1102,"d":"","s":1,"f":""}]},{"n":"Jornada 30","g":339,"m":[{"h":1150,"v":1125,"d":"","s":1,"f":""},{"h":1107,"v":1116,"d":"","s":1,"f":""},{"h":1163,"v":1114,"d":"","s":1,"f":""},{"h":1123,"v":1118,"d":"","s":1,"f":""},{"h":1124,"v":1141,"d":"","s":1,"f":""},{"h":1101,"v":1137,"d":"","s":1,"f":""},{"h":1140,"v":1139,"d":"","s":1,"f":""},{"h":1135,"v":1100,"d":"","s":1,"f":""},{"h":1110,"v":1127,"d":"","s":1,"f":""},{"h":1161,"v":1112,"d":"","s":1,"f":""},{"h":1113,"v":1144,"d":"","s":1,"f":""},{"h":1126,"v":1119,"d":"","s":1,"f":""},{"h":1142,"v":1109,"d":"","s":1,"f":""},{"h":1151,"v":1143,"d":"","s":1,"f":""},{"h":1102,"v":1152,"d":"","s":1,"f":""},{"h":1108,"v":1128,"d":"","s":1,"f":""}]}];
-
-// ── STATIC TEAMS ──────────────────────────────────────────
-const MT={"1103":"C.F. UNION VIERA A","1104":"C.F. UNION VIERA B","1106":"CF Veteranos del Pilar","1115":"UD TAMARACEITE","1117":"FUNDACIÓN CANARIA GUINIGUADA","1120":"UD LAS PALMAS A","1121":"UD LAS PALMAS B","1122":"UD LAS PALMAS C","1138":"REAL CLUB VICTORIA","1148":"ACODETTI CF","1154":"REAL SPORTING SAN JOSE","1155":"C. D. SAN LAZARO","1156":"ARBOL BONITO MIGUEL LEON","1157":"CORAZÓN DE MARÍA A","1158":"CORAZÓN DE MARÍA B","1159":"AD HURACAN","1160":"ATL. GRAN CANARIA"};
-const PT={"1100":{"n":"C.F. UNION VIERA A","g":"A"},"1101":{"n":"C.F. UNION VIERA B","g":"A"},"1102":{"n":"C.F. UNION VIERA C","g":"B"},"1107":{"n":"CF VETERANOS DEL PILAR A","g":"A"},"1108":{"n":"VETERANOS DEL PILAR  B","g":"B"},"1109":{"n":"VETERANOS DEL PILAR  C","g":"B"},"1110":{"n":"VETERANOS DEL PILAR D","g":"B"},"1112":{"n":"AD HURACAN","g":"B"},"1113":{"n":"C.D Heidelberg","g":"B"},"1114":{"n":"REAL SPORTING SAN JOSE","g":"A"},"1116":{"n":"UD TAMARACEITE","g":"A"},"1118":{"n":"CD GUINIGUADA APOLINARIO","g":"A"},"1119":{"n":"FUNDACIÓN CANARIA GUINIGUADA","g":"B"},"1123":{"n":"UD LAS PALMAS A","g":"A"},"1124":{"n":"UD LAS PALMAS B","g":"A"},"1125":{"n":"UD LAS PALMAS C","g":"A"},"1126":{"n":"UD LAS PALMAS D","g":"B"},"1127":{"n":"UD LAS PALMAS E","g":"B"},"1128":{"n":"UD LAS PALMAS F","g":"B"},"1135":{"n":"ATL. GRAN CANARIA","g":"A"},"1137":{"n":"REAL CLUB VICTORIA","g":"A"},"1139":{"n":"U.D. PEDRO HIDALGO","g":"A"},"1140":{"n":"CORAZÓN DE MARÍA A","g":"A"},"1141":{"n":"CORAZÓN DE MARÍA B","g":"A"},"1142":{"n":"CORAZÓN DE MARÍA D","g":"B"},"1143":{"n":"CORAZÓN DE MARÍA C","g":"B"},"1144":{"n":"ATLÉTICO ISLETA","g":"B"},"1150":{"n":"ACODETTI CF","g":"A"},"1151":{"n":"ARBOL BONITO MIGUEL LEON","g":"B"},"1152":{"n":"U.D. SAN LAZARO","g":"B"},"1161":{"n":"INTER CANARIAS","g":"B"},"1163":{"n":"CD LOMO BLANCO","g":"A"}};
-
-const NOW = new Date();
-const FAVES_MINI = new Set([1159]); // AD HURACAN mini
-const FAVES_PRE  = new Set([1112]); // AD HURACAN pre
-const FAVES_DIM  = new Set([1120]); // UD LAS PALMAS A (resaltado suave)
-const S = {mini:{jIdx:0},pre:{jIdx:0,grp:"A"}};
-
-function validDate(d){return d&&d.length>4&&parseInt(d)>2000;}
-function fmtTime(d){if(!validDate(d))return"–";const dt=new Date(d);return dt.toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit"});}
-function fmtDay(d){if(!validDate(d))return"Sin fecha";const dt=new Date(d);return dt.toLocaleDateString("es-ES",{weekday:"short",day:"numeric",month:"short"});}
-function fmtShort(d){if(!validDate(d))return"–";const dt=new Date(d);return dt.toLocaleDateString("es-ES",{day:"numeric",month:"short"});}
-function initials(n){return(n||"").split(/[\s.]+/).filter(Boolean).map(w=>w[0]).join("").slice(0,2).toUpperCase();}
-function tname(id,league){if(id<0)return null;return league==="mini"?MT[id]:(PT[id]||{}).n||null;}
-function avCls(id,league){if(league==="mini")return"m";const g=(PT[id]||{}).g;return g==="A"?"pa":"pb";}
-
-// ── JORNADAS ──────────────────────────────────────────────
-function getJorns(league){
-  if(league==="mini")return MINI_MATCHES;
-  return PRE_MATCHES.map(j=>({
-    ...j,
-    m:j.m.filter(m=>m.s===10||(PT[m.h]?.g===S.pre.grp&&PT[m.v]?.g===S.pre.grp))
-  })).filter(j=>j.m.some(m=>m.s!==10));
-}
-function bestIdx(data){
-  for(let i=0;i<data.length;i++){
-    if(data[i].m.some(m=>validDate(m.d)&&new Date(m.d)>=NOW))return i;
-  }
-  let best=0;
-  for(let i=0;i<data.length;i++){if(data[i].m.some(m=>validDate(m.d)))best=i;}
-  return best;
-}
-
-function buildSel(league){
-  const jorns=getJorns(league);
-  const sel=document.getElementById(`${league}-sel`);
-  sel.innerHTML=jorns.map((j,i)=>{
-    const played=j.m.filter(m=>validDate(m.d)&&new Date(m.d)<NOW&&m.s!==10).length;
-    const total=j.m.filter(m=>m.s!==10).length;
-    return`<option value="${i}">${j.n}  (${played}/${total})</option>`;
-  }).join("");
-  sel.value=S[league].jIdx;
-}
-
-function renderJorn(league,idx){
-  const jorns=getJorns(league);
-  if(!jorns.length)return;
-  idx=Math.max(0,Math.min(idx,jorns.length-1));
-  S[league].jIdx=idx;
-  document.getElementById(`${league}-sel`).value=idx;
-  document.getElementById(`${league}-prev`).disabled=idx===0;
-  document.getElementById(`${league}-next`).disabled=idx===jorns.length-1;
-  const jorn=jorns[idx];
-  const played=jorn.m.filter(m=>validDate(m.d)&&new Date(m.d)<NOW&&m.s!==10).length;
-  const pend=jorn.m.filter(m=>m.s!==10&&(!validDate(m.d)||new Date(m.d)>=NOW)).length;
-  const byes=jorn.m.filter(m=>m.s===10).length;
-  document.getElementById(`${league}-meta`).textContent=
-    `${played} jugados · ${pend} pendientes${byes?` · ${byes} descanso`:""}`;
-
-  const sorted=[...jorn.m].sort((a,b)=>{
-    if(a.s===10&&b.s!==10)return 1;if(b.s===10&&a.s!==10)return -1;
-    const dA=validDate(a.d)?new Date(a.d):null,dB=validDate(b.d)?new Date(b.d):null;
-    const fA=dA&&dA>=NOW,fB=dB&&dB>=NOW;
-    if(fA&&!fB)return -1;if(!fA&&fB)return 1;
-    if(dA&&dB)return dA-dB;if(dA&&!dB)return 1;if(!dA&&dB)return -1;
-    return 0;
-  });
-  const firstUpcoming=sorted.find(m=>validDate(m.d)&&new Date(m.d)>=NOW&&m.s!==10);
-
-  let html="";
-  for(const m of sorted){
-    const isBye=m.s===10;
-    const home=tname(m.h,league);
-    const away=tname(m.v,league);
-    const d=validDate(m.d)?new Date(m.d):null;
-    const isPlayed=d&&d<NOW;
-    const isNext=m===firstUpcoming;
-    const cls=isBye?"bye":isPlayed?"played":isNext?"nxt":"";
-    const hFav=(league==="mini"&&FAVES_MINI.has(m.h))||(league==="pre"&&FAVES_PRE.has(m.h));
-    const vFav=(league==="mini"&&FAVES_MINI.has(m.v))||(league==="pre"&&FAVES_PRE.has(m.v));
-    const hDim=league==="mini"&&FAVES_DIM.has(m.h);
-    const vDim=league==="mini"&&FAVES_DIM.has(m.v);
-    const isFav=hFav||vFav;
-    const isDim=!isFav&&(hDim||vDim);
-
-    if(isBye){
-      html+=`<div class="mc bye"><div class="mc-bye-inner">
-        <span class="sb-bye">⏸ Descanso</span>
-        <span style="font-size:.8rem;color:var(--t3);font-weight:600">${home||away||""}</span>
-      </div></div>`;
-      continue;
-    }
-
-    const badge=isPlayed?`<span class="sbadge sb-played">✓ Jugado</span>`
-      :isNext?`<span class="sbadge sb-nxt">⚡ Próximo</span>`
-      :`<span class="sbadge sb-pend">Pendiente</span>`;
-
-    const hCls=(m.h>0?avCls(m.h,league):"neu")+(hFav?" fav-av":hDim?" fav-dim-av":"");
-    const vCls=(m.v>0?avCls(m.v,league):"neu")+(vFav?" fav-av":vDim?" fav-dim-av":"");
-    const hClick=m.h>0?`onclick="openTeam(${m.h},'${league}')"` :"";
-    const vClick=m.v>0?`onclick="openTeam(${m.v},'${league}')"` :"";
-    const hLabel=hFav?`<span class="fav-name">★ ${home}</span>`:hDim?`<span class="fav-dim-name">${home}</span>`:home||"–";
-    const vLabel=vFav?`<span class="fav-name">★ ${away}</span>`:vDim?`<span class="fav-dim-name">${away}</span>`:away||"–";
-
-    html+=`<div class="mc ${cls}${isFav?" fav":isDim?" fav-dim":""}">
-      <div class="mc-body">
-        <div class="mc-side" ${hClick}>
-          <div class="mc-av ${hCls}">${initials(home)}</div>
-          <div class="mc-tname${m.h>0?" clickable":""}">${hLabel}</div>
-        </div>
-        <div class="mc-ctr">
-          <div class="mc-day">${d?fmtDay(m.d):"Sin fecha"}</div>
-          <div class="${d?"mc-time":"mc-vs"}">${d?fmtTime(m.d):"vs"}</div>
-          ${badge}
-        </div>
-        <div class="mc-side right" ${vClick}>
-          <div class="mc-av ${vCls}">${initials(away)}</div>
-          <div class="mc-tname${m.v>0?" clickable":""}">${vLabel}</div>
-        </div>
-      </div>
-      ${m.f?`<div class="mc-field"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> ${m.f}</div>`:""}
-    </div>`;
-  }
-  document.getElementById(`${league}-matches`).innerHTML=html||`<div class="no-data">Sin partidos en esta jornada.</div>`;
-}
-
-function chJorn(l,dir){
-  const newIdx=S[l].jIdx+dir;
-  const max=getJorns(l).length-1;
-  if(newIdx>=0&&newIdx<=max)renderJorn(l,newIdx);
-}
-
-function switchGrp(g){
-  S.pre.grp=g;
-  document.getElementById("gA").className="gfbtn"+(g==="A"?" on-a":"");
-  document.getElementById("gB").className="gfbtn"+(g==="B"?" on-b":"");
-  buildSel("pre");const idx=bestIdx(getJorns("pre"));S.pre.jIdx=idx;renderJorn("pre",idx);renderTeams("pre");
-}
-
-// ── TEAMS ─────────────────────────────────────────────────
-function renderTeams(league){
-  const el=document.getElementById(`${league}-teams`);
-  const entries=league==="mini"
-    ?Object.entries(MT).map(([id,n])=>[id,{n,g:""}])
-    :Object.entries(PT).filter(([,t])=>t.g===S.pre.grp).map(([id,t])=>[id,t]);
-  entries.sort((a,b)=>a[1].n.localeCompare(b[1].n,"es"));
-  el.innerHTML=entries.map(([id,t])=>{
-    const tid=+id;
-    const g=t.g||"";
-    const cls=league==="mini"?"m":g==="A"?"pa":"pb";
-    const grpBadge=g?`<span class="tgrp ${g==="A"?"ga":"gb"}">Grupo ${g}</span>`:"";
-    const isFavT=(league==="mini"&&FAVES_MINI.has(tid))||(league==="pre"&&FAVES_PRE.has(tid));
-    const isDimT=league==="mini"&&FAVES_DIM.has(tid);
-    const avExtra=isFavT?" fav-av":isDimT?" fav-dim-av":"";
-    const nameExtra=isFavT?` class="tname fav-name"`:isDimT?` class="tname fav-dim-name"`:` class="tname"`;
-    const starPrefix=isFavT?"★ ":"";
-    const cardExtra=isFavT?" tcrd-fav":isDimT?" tcrd-dim":"";
-    return`<div class="tcrd${cardExtra}" onclick="openTeam(${id},'${league}')">
-      <div class="tav ${cls}${avExtra}">${initials(t.n)}</div>
-      <div><div${nameExtra}>${starPrefix}${t.n}</div>${grpBadge}</div>
-    </div>`;
-  }).join("");
-}
-
-// ── MODAL ─────────────────────────────────────────────────
-function openTeam(teamId,league){
-  teamId=+teamId;
-  const t=league==="mini"?{n:MT[teamId],g:""}:PT[teamId];
-  if(!t)return;
-  const cls=league==="mini"?"m":t.g==="A"?"pa":"pb";
-  document.getElementById("mav").className=`mav ${cls}`;
-  document.getElementById("mav").textContent=initials(t.n);
-  document.getElementById("mname").textContent=t.n;
-  document.getElementById("msub").textContent=(league==="mini"?"Miniprebenjamín":"Prebenjamín")+(t.g?` · Grupo ${t.g}`:"");
-
-  const allRounds=league==="mini"?MINI_MATCHES:PRE_MATCHES;
-  const myMatches=[];
-  for(const jorn of allRounds){
-    for(const m of jorn.m){
-      if(m.s===10)continue;
-      if(m.h===teamId||m.v===teamId) myMatches.push({jorn,m});
-    }
-  }
-  const played=myMatches.filter(({m})=>validDate(m.d)&&new Date(m.d)<NOW).length;
-  const pend=myMatches.length-played;
-  document.getElementById("mstats").innerHTML=`
-    <div class="mstat"><div class="v">${myMatches.length}</div><div class="l">Total</div></div>
-    <div class="mstat"><div class="v">${played}</div><div class="l">Jugados</div></div>
-    <div class="mstat"><div class="v">${pend}</div><div class="l">Pendientes</div></div>`;
-
-  const jornIdx=new Map(allRounds.map((j,i)=>[j,i]));
-  const sorted=[...myMatches].sort((a,b)=>jornIdx.get(a.jorn)-jornIdx.get(b.jorn));
-
-  let html="";
-  for(const{jorn,m}of sorted){
-    const isHome=m.h===teamId;
-    const oppId=isHome?m.v:m.h;
-    const oppName=oppId>0?(league==="mini"?MT[oppId]:(PT[oppId]||{}).n)||`Equipo ${oppId}`:"–";
-    const d=validDate(m.d)?new Date(m.d):null;
-    const fut=!d||d>=NOW;
-    const dotCls=fut?"nxt":"ok";
-    const loc=isHome?"🏠":"✈️";
-    html+=`<div class="mr">
-      <div class="mrdot ${dotCls}"></div>
-      <div class="mrbody">
-        <div class="mrt">${loc} vs <span class="opp">${oppName}</span></div>
-        ${m.f?`<div class="mrsub">📍 ${m.f}</div>`:""}
-      </div>
-      <div class="mrright">
-        <div class="mrd">${fmtShort(m.d)}</div>
-        <div class="mrj">${jorn.n.replace("Jornada","J")}</div>
-      </div>
-    </div>`;
-  }
-  document.getElementById("mmatches").innerHTML=html||`<div class="no-data">Sin partidos.</div>`;
-  document.getElementById("mbg").classList.add("on");
-  document.body.style.overflow="hidden";
-}
-function closeMod(e){if(e&&e.target!==document.getElementById("mbg"))return;document.getElementById("mbg").classList.remove("on");document.body.style.overflow="";}
-
-// ── TABS & LEAGUE NAV ─────────────────────────────────────
-function switchTab(l,tab,btn){
-  document.querySelectorAll(`#sec-${l} .itab`).forEach(b=>b.classList.remove("on"));
-  if(btn)btn.classList.add("on");
-  [`${l}-cal`,`${l}-eq`].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove("on");});
-  document.getElementById(`${l}-${tab}`).classList.add("on");
-}
-function showLeague(w,btn,fromDrawer){
-  document.querySelectorAll(".lsec").forEach(s=>s.classList.remove("on"));
-  document.getElementById(`sec-${w}`).classList.add("on");
-  document.querySelectorAll(".npill").forEach(b=>b.classList.remove("on"));
-  const nb=document.querySelector(`.npill.${w}`);if(nb)nb.classList.add("on");
-  if(fromDrawer){document.querySelectorAll(".drow").forEach(b=>b.classList.remove("on"));if(btn)btn.classList.add("on");closeDr();}
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-const ov=document.getElementById("ov"),dr=document.getElementById("dr");
-function closeDr(){dr.classList.remove("on");ov.classList.remove("on");}
-document.getElementById("ham").addEventListener("click",()=>{const o=!dr.classList.contains("on");dr.classList.toggle("on",o);ov.classList.toggle("on",o);});
-ov.addEventListener("click",closeDr);
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeMod();closeDr();}});
-
-// ── INIT ──────────────────────────────────────────────────
-(function init(){
-  S.mini.jIdx=bestIdx(MINI_MATCHES);
-  buildSel("mini");renderJorn("mini",S.mini.jIdx);renderTeams("mini");
-  buildSel("pre");S.pre.jIdx=bestIdx(getJorns("pre"));buildSel("pre");renderJorn("pre",S.pre.jIdx);renderTeams("pre");
-})();
-
-</script>
+  <script src="./app.js"></script>
 </body>
 </html>
