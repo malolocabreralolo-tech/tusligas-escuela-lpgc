@@ -5,8 +5,9 @@ and generates lightweight JSON files consumed by the static frontend.
 """
 
 import json
-import urllib.request
+import time
 import urllib.error
+import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -21,10 +22,19 @@ HURACAN_MINI_ID = 1159
 HURACAN_PRE_ID = 1112
 
 
-def fetch(url):
-    req = urllib.request.Request(url, headers=HEADERS)
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.loads(r.read())
+def fetch(url, retries=3, backoff=2.0):
+    """GET JSON with retries on transient failures."""
+    last_err = None
+    for attempt in range(retries):
+        try:
+            req = urllib.request.Request(url, headers=HEADERS)
+            with urllib.request.urlopen(req, timeout=30) as r:
+                return json.loads(r.read())
+        except (urllib.error.URLError, TimeoutError) as e:
+            last_err = e
+            if attempt < retries - 1:
+                time.sleep(backoff * (attempt + 1))
+    raise last_err
 
 
 def fmt_date(value):
@@ -75,6 +85,17 @@ def transform_matches(jornadas_data):
     return result
 
 
+BYE_NAME = "Descansa"
+
+
+def _resolve_team(team_id, team_map, is_pre):
+    if team_id == -1:
+        return {"name": BYE_NAME, "group": "-"}
+    if is_pre:
+        return team_map.get(team_id, {"name": f"#{team_id}", "group": "-"})
+    return {"name": team_map.get(team_id, f"#{team_id}"), "group": "-"}
+
+
 def extract_team_matches(jornadas_data, team_id, team_map, is_pre=False):
     out = []
     for jornada in jornadas_data:
@@ -83,8 +104,8 @@ def extract_team_matches(jornadas_data, team_id, team_map, is_pre=False):
             away = m.get("idVisitorTeam") or -1
             if team_id not in (home, away):
                 continue
-            home_team = team_map.get(home, {"name": f"#{home}", "group": "-"}) if is_pre else {"name": team_map.get(home, f"#{home}"), "group": "-"}
-            away_team = team_map.get(away, {"name": f"#{away}", "group": "-"}) if is_pre else {"name": team_map.get(away, f"#{away}"), "group": "-"}
+            home_team = _resolve_team(home, team_map, is_pre)
+            away_team = _resolve_team(away, team_map, is_pre)
             field = m.get("field") or {}
             out.append({
                 "jornada": jornada.get("name", ""),
@@ -107,6 +128,26 @@ def save_json(name, payload):
     (DATA_DIR / name).write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
+def infer_season(jornadas):
+    """Find earliest startTime year in jornadas; return 'YYYY / YYYY+1'."""
+    for j in jornadas:
+        for m in j.get("matches", []):
+            d = m.get("startTime") or ""
+            if d[:4].isdigit():
+                y = int(d[:4])
+                if 2000 <= y <= 2100:
+                    return f"{y} / {y + 1}"
+    return "2025 / 2026"
+
+
+def count_pre_groups(pre_team_map):
+    counts = {"A": 0, "B": 0}
+    for t in pre_team_map.values():
+        g = t.get("group", "A")
+        counts[g] = counts.get(g, 0) + 1
+    return counts
+
+
 def main():
     print("Fetching match and team data from mygol.es API...")
     mini_raw = fetch(f"{BASE}/matches/fortournament/85")
@@ -121,7 +162,25 @@ def main():
     mini_payload = {"updated_at": updated_at, "tournament": {"id": 85, "name": "Miniprebenjamín Escuela"}, "teams": mini_team_map, "jornadas": transform_matches(mini_raw)}
     pre_payload = {"updated_at": updated_at, "tournament": {"id": 87, "name": "Prebenjamín Escuela"}, "teams": pre_team_map, "jornadas": transform_matches(pre_raw)}
     huracan_payload = {"updated_at": updated_at, "mini": extract_team_matches(mini_raw, HURACAN_MINI_ID, mini_team_map, False), "pre": extract_team_matches(pre_raw, HURACAN_PRE_ID, pre_team_map, True)}
-    meta_payload = {"updated_at": updated_at, "leagues": {"mini": {"label": "Miniprebenjamín", "teams": len(mini_team_map), "jornadas": len(mini_payload['jornadas'])}, "pre": {"label": "Prebenjamín", "teams": len(pre_team_map), "jornadas": len(pre_payload['jornadas'])}}}
+    season = infer_season(mini_raw)
+    pre_groups = count_pre_groups(pre_team_map)
+    meta_payload = {
+        "updated_at": updated_at,
+        "season": season,
+        "leagues": {
+            "mini": {
+                "label": "Miniprebenjamín",
+                "teams": len(mini_team_map),
+                "jornadas": len(mini_payload['jornadas']),
+            },
+            "pre": {
+                "label": "Prebenjamín",
+                "teams": len(pre_team_map),
+                "jornadas": len(pre_payload['jornadas']),
+                "groups": pre_groups,
+            },
+        },
+    }
 
     save_json("mini.json", mini_payload)
     save_json("pre.json", pre_payload)

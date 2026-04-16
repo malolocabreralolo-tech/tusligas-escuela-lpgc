@@ -3,7 +3,7 @@
     {
       "jornada": "Jornada 1",
       "home": -1,
-      "home_name": "#-1",
+      "home_name": "Descansa",
       "away": 1159,
       "away_name": "AD HURACAN",
       "date": "",
@@ -410,5 +410,5 @@
     }
   ],
   "pre": [],
-  "updated": "2026-04-15T20:52:23.407725"
+  "updated": "2026-04-16T09:43:58.838363"
 }

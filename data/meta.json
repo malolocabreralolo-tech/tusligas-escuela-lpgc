@@ -1,5 +1,6 @@
 {
-  "updated_at": "2026-04-15T20:52:23.345946+00:00",
+  "updated_at": "2026-04-16T08:43:56.004088+00:00",
+  "season": "2025 / 2026",
   "leagues": {
     "mini": {
       "label": "Miniprebenjamín",
@@ -9,7 +10,11 @@
     "pre": {
       "label": "Prebenjamín",
       "teams": 32,
-      "jornadas": 30
+      "jornadas": 30,
+      "groups": {
+        "A": 16,
+        "B": 16
+      }
     }
   }
 }

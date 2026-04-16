@@ -1,1 +1,301 @@
-const state={league:'mini',preGroup:'A',tab:{mini:'cal',pre:'cal'},idx:{mini:0,pre:0},data:{mini:null,pre:null,huracan:null,meta:null}};const STATUS={1:'Pendiente',5:'Programado',10:'Descansa',20:'Finalizado'};const $=id=>document.getElementById(id);const esc=s=>String(s??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');const initials=n=>(n.split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase()||'EQ');function fmtDate(v){if(!v)return'Sin fecha';try{return new Date(v).toLocaleString('es-ES',{weekday:'short',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}catch{return v}}function isPlayed(m){return m.home_score!==null&&m.home_score!==undefined&&m.away_score!==null&&m.away_score!==undefined}function isFuture(m){if(!m.date)return false;const ts=Date.parse(m.date);return !Number.isNaN(ts)&&ts>=Date.now()}function teamName(kind,id){const teams=state.data[kind]?.teams||{};if(kind==='mini')return teams[id]||`#${id}`;return teams[id]?.name||`#${id}`}function teamGroup(kind,id){if(kind!=='pre')return'-';return state.data.pre?.teams?.[id]?.group||'A'}function getJornadas(kind){const jornadas=state.data[kind]?.jornadas||[];if(kind!=='pre')return jornadas;return jornadas.filter(j=>(j.matches||[]).some(m=>{const home=state.data.pre?.teams?.[m.home];const away=state.data.pre?.teams?.[m.away];return (home?.group||away?.group||'A')===state.preGroup}))}function getMatches(kind,jornada){if(!jornada)return[];let matches=jornada.matches||[];if(kind==='pre'){matches=matches.filter(m=>{const home=state.data.pre?.teams?.[m.home];const away=state.data.pre?.teams?.[m.away];return (home?.group||away?.group||'A')===state.preGroup})}return matches}function renderSummary(){const hur=state.data.huracan,meta=state.data.meta;if(!hur||!meta)return;const upcoming=[...(hur.mini||[])].filter(m=>isFuture(m)||m.status===1||m.status===5).sort((a,b)=>(a.date||'').localeCompare(b.date||''))[0];const recent=[...(hur.mini||[])].filter(isPlayed).sort((a,b)=>(b.date||'').localeCompare(a.date||'')).slice(0,3);$('summary-next').innerHTML=upcoming?`<div class="summary-match"><div class="fixture">${esc(upcoming.home_name)} vs ${esc(upcoming.away_name)}</div><div class="summary-meta"><div class="meta-box"><b>Fecha</b>${esc(fmtDate(upcoming.date))}</div><div class="meta-box"><b>Estado</b>${esc(STATUS[upcoming.status]||upcoming.status)}</div><div class="meta-box"><b>Campo</b>${esc(upcoming.field||'Sin campo')}</div><div class="meta-box"><b>Jornada</b>${esc(upcoming.jornada||'—')}</div></div></div>`:'<div class="no-data">No hay próximo partido detectado para Huracán.</div>';const alerts=[`Última actualización: ${fmtDate(meta.updated_at)}`,'Alertas activas por Telegram para el Huracán mini','Seguimiento rápido del próximo partido y resultados'];$('summary-alerts').innerHTML=alerts.map(t=>`<div class="alert-item"><div class="title">${esc(t)}</div><div class="sub">Sistema preparado para avisar cuando cambie fecha, campo, estado o resultado.</div></div>`).join('');$('summary-results').innerHTML=recent.length?recent.map(m=>`<div class="result-item"><div class="title">${esc(m.home_name)} ${m.home_score}-${m.away_score} ${esc(m.away_name)}</div><div class="sub">${esc(m.jornada||'Jornada')} · ${esc(fmtDate(m.date))}</div></div>`).join(''):'<div class="no-data">Todavía no hay resultados cerrados del Huracán mini.</div>';$('kpi-mini-teams').textContent=meta.leagues.mini.teams;$('kpi-mini-jornadas').textContent=meta.leagues.mini.jornadas;$('kpi-huracan-matches').textContent=(hur.mini||[]).length}function renderLeague(kind){const jornadas=getJornadas(kind);if(!jornadas.length)return;if(state.idx[kind]>=jornadas.length)state.idx[kind]=jornadas.length-1;if(state.idx[kind]<0)state.idx[kind]=0;const sel=$(`${kind}-sel`);sel.innerHTML=jornadas.map((j,i)=>`<option value="${i}">${esc(j.name)}</option>`).join('');sel.value=state.idx[kind];renderJornada(kind,state.idx[kind]);renderTeams(kind)}function renderJornada(kind,idx){state.idx[kind]=idx;const jornadas=getJornadas(kind);const jornada=jornadas[idx];const matches=getMatches(kind,jornada);$(`${kind}-prev`).disabled=idx<=0;$(`${kind}-next`).disabled=idx>=jornadas.length-1;$(`${kind}-meta`).textContent=`${jornada?.name||'—'} · ${matches.length} partidos`;const target=$(`${kind}-matches`);if(!matches.length){target.innerHTML='<div class="no-data">No hay partidos disponibles para esta jornada.</div>';return}target.innerHTML=matches.map(m=>renderMatchCard(kind,m)).join('')}function renderMatchCard(kind,m){const home=teamName(kind,m.home),away=teamName(kind,m.away),played=isPlayed(m),future=isFuture(m)&&!played,huracan=home==='AD HURACAN'||away==='AD HURACAN';const cls=['mc'];if(played)cls.push('played');if(future)cls.push('nxt');if(huracan)cls.push('fav');if(m.status===10||m.home===-1||m.away===-1)cls.push('bye');const score=played?`${m.home_score} - ${m.away_score}`:'vs';const badge=played?'<span class="sb sb-played">Finalizado</span>':future?'<span class="sb sb-nxt">Próximo</span>':`<span class="sb sb-pend">${esc(STATUS[m.status]||'Pendiente')}</span>`;return `<article class="${cls.join(' ')}"><div class="mc-body"><div class="mc-side"><div class="mc-av ${kind==='mini'?'m':teamGroup(kind,m.home)==='A'?'pa':'pb'}">${esc(initials(home))}</div><div class="mc-tname">${esc(home)}</div></div><div class="mc-ctr"><div class="mc-day">${esc(fmtDate(m.date))}</div><div class="mc-time">${esc(score)}</div>${badge}</div><div class="mc-side"><div class="mc-av ${kind==='mini'?'m':teamGroup(kind,m.away)==='A'?'pa':'pb'}">${esc(initials(away))}</div><div class="mc-tname">${esc(away)}</div></div></div><div class="mc-field">${esc(m.field||'Campo pendiente')}</div></article>`}function renderTeams(kind){const teams=Object.entries(state.data[kind]?.teams||{}).map(([id,val])=>kind==='mini'?{id:+id,name:val,group:'-'}:{id:+id,name:val.name,group:val.group||'A'}).filter(t=>kind!=='pre'||t.group===state.preGroup).sort((a,b)=>a.name.localeCompare(b.name));$(`${kind}-teams`).innerHTML=teams.map(t=>`<div class="tcrd"><div class="tav ${kind==='mini'?'m':t.group==='A'?'pa':'pb'}">${esc(initials(t.name))}</div><div><div class="tname">${esc(t.name)}</div>${kind==='pre'?`<span class="tgrp ${t.group==='A'?'ga':'gb'}">Grupo ${t.group}</span>`:''}</div></div>`).join('')}function showLeague(kind){state.league=kind;$('sec-mini').classList.toggle('on',kind==='mini');$('sec-pre').classList.toggle('on',kind==='pre');document.querySelectorAll('.npill').forEach(el=>el.classList.remove('on'));document.querySelector(`.npill.${kind}`)?.classList.add('on')}function switchTab(kind,tab,btn){state.tab[kind]=tab;document.querySelectorAll(`#sec-${kind} .itab`).forEach(el=>el.classList.remove('on'));btn.classList.add('on');document.querySelectorAll(`#sec-${kind} .panel`).forEach(el=>el.classList.remove('on'));$(`${kind}-${tab}`).classList.add('on')}function switchGrp(group){state.preGroup=group;$('gA').classList.toggle('on-a',group==='A');$('gB').classList.toggle('on-b',group==='B');state.idx.pre=0;renderLeague('pre')}function chJorn(kind,delta){renderJornada(kind,state.idx[kind]+delta);$(`${kind}-sel`).value=state.idx[kind]}async function loadData(){const [mini,pre,huracan,meta]=await Promise.all([fetch('./data/mini.json').then(r=>r.json()),fetch('./data/pre.json').then(r=>r.json()),fetch('./data/huracan.json').then(r=>r.json()),fetch('./data/meta.json').then(r=>r.json())]);state.data={mini,pre,huracan,meta}}async function init(){await loadData();renderSummary();renderLeague('mini');renderLeague('pre');showLeague('mini')}window.showLeague=showLeague;window.switchTab=switchTab;window.switchGrp=switchGrp;window.chJorn=chJorn;window.renderJornada=renderJornada;init().catch(err=>{console.error(err);document.body.innerHTML='<div class="no-data" style="margin-top:120px">Error cargando la web. Revisa los JSON generados.</div>'});
+const state = {
+  league: 'mini',
+  preGroup: 'A',
+  tab: { mini: 'cal', pre: 'cal' },
+  idx: { mini: 0, pre: 0 },
+  data: { mini: null, pre: null, huracan: null, meta: null },
+};
+
+const STATUS = { 1: 'Pendiente', 5: 'Programado', 10: 'Descansa', 20: 'Finalizado' };
+const BYE_NAME = 'Descansa';
+
+const $ = (id) => document.getElementById(id);
+
+const esc = (s) => String(s ?? '')
+  .replaceAll('&', '&amp;')
+  .replaceAll('<', '&lt;')
+  .replaceAll('>', '&gt;')
+  .replaceAll('"', '&quot;');
+
+const initials = (n) =>
+  (n.split(/\s+/).filter(Boolean).slice(0, 2).map((x) => x[0]).join('').toUpperCase() || 'EQ');
+
+function fmtDate(v) {
+  if (!v) return 'Sin fecha';
+  try {
+    return new Date(v).toLocaleString('es-ES', {
+      weekday: 'short', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit',
+    });
+  } catch {
+    return v;
+  }
+}
+
+function isPlayed(m) {
+  return m.home_score !== null && m.home_score !== undefined
+      && m.away_score !== null && m.away_score !== undefined;
+}
+
+function isFuture(m) {
+  if (!m.date) return false;
+  const ts = Date.parse(m.date);
+  return !Number.isNaN(ts) && ts >= Date.now();
+}
+
+function teamName(kind, id) {
+  if (id === -1) return BYE_NAME;
+  const teams = state.data[kind]?.teams || {};
+  if (kind === 'mini') return teams[id] || `#${id}`;
+  return teams[id]?.name || `#${id}`;
+}
+
+function teamGroup(kind, id) {
+  if (kind !== 'pre') return '-';
+  return state.data.pre?.teams?.[id]?.group || 'A';
+}
+
+function getJornadas(kind) {
+  const jornadas = state.data[kind]?.jornadas || [];
+  if (kind !== 'pre') return jornadas;
+  return jornadas.filter((j) => (j.matches || []).some((m) => {
+    const home = state.data.pre?.teams?.[m.home];
+    const away = state.data.pre?.teams?.[m.away];
+    return (home?.group || away?.group || 'A') === state.preGroup;
+  }));
+}
+
+function getMatches(kind, jornada) {
+  if (!jornada) return [];
+  let matches = jornada.matches || [];
+  if (kind === 'pre') {
+    matches = matches.filter((m) => {
+      const home = state.data.pre?.teams?.[m.home];
+      const away = state.data.pre?.teams?.[m.away];
+      return (home?.group || away?.group || 'A') === state.preGroup;
+    });
+  }
+  return matches;
+}
+
+function renderHeaders() {
+  const meta = state.data.meta;
+  if (!meta) return;
+  const mini = meta.leagues.mini;
+  const pre = meta.leagues.pre;
+  const season = meta.season || '2025 / 2026';
+
+  const setText = (id, value) => { const el = $(id); if (el) el.textContent = value; };
+  setText('nav-season', `Escuela · ${season}`);
+  setText('hero-season', `Temporada ${season}`);
+  setText('hbtn-mini-count', `${mini.teams} eq.`);
+  setText('hbtn-pre-count', `${pre.teams} eq.`);
+  setText('lhdr-mini-meta', `${mini.teams} equipos · ${mini.jornadas} jornadas`);
+
+  const groups = pre.groups || { A: 0, B: 0 };
+  setText('lhdr-pre-meta', `${pre.teams} equipos · Grupo A (${groups.A}) + Grupo B (${groups.B})`);
+}
+
+function renderSummary() {
+  const hur = state.data.huracan;
+  const meta = state.data.meta;
+  if (!hur || !meta) return;
+
+  const upcoming = [...(hur.mini || [])]
+    .filter((m) => isFuture(m) || m.status === 1 || m.status === 5)
+    .sort((a, b) => (a.date || '').localeCompare(b.date || ''))[0];
+
+  const recent = [...(hur.mini || [])]
+    .filter(isPlayed)
+    .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
+    .slice(0, 3);
+
+  $('summary-next').innerHTML = upcoming
+    ? `<div class="summary-match">
+         <div class="fixture">${esc(upcoming.home_name)} vs ${esc(upcoming.away_name)}</div>
+         <div class="summary-meta">
+           <div class="meta-box"><b>Fecha</b>${esc(fmtDate(upcoming.date))}</div>
+           <div class="meta-box"><b>Estado</b>${esc(STATUS[upcoming.status] || upcoming.status)}</div>
+           <div class="meta-box"><b>Campo</b>${esc(upcoming.field || 'Sin campo')}</div>
+           <div class="meta-box"><b>Jornada</b>${esc(upcoming.jornada || '—')}</div>
+         </div>
+       </div>`
+    : '<div class="no-data">No hay próximo partido detectado para Huracán.</div>';
+
+  const alerts = [
+    `Última actualización: ${fmtDate(meta.updated_at)}`,
+    'Alertas activas por Telegram para el Huracán mini',
+    'Seguimiento rápido del próximo partido y resultados',
+  ];
+  $('summary-alerts').innerHTML = alerts.map((t) =>
+    `<div class="alert-item">
+       <div class="title">${esc(t)}</div>
+       <div class="sub">Sistema preparado para avisar cuando cambie fecha, campo, estado o resultado.</div>
+     </div>`).join('');
+
+  $('summary-results').innerHTML = recent.length
+    ? recent.map((m) =>
+        `<div class="result-item">
+           <div class="title">${esc(m.home_name)} ${m.home_score}-${m.away_score} ${esc(m.away_name)}</div>
+           <div class="sub">${esc(m.jornada || 'Jornada')} · ${esc(fmtDate(m.date))}</div>
+         </div>`).join('')
+    : '<div class="no-data">Todavía no hay resultados cerrados del Huracán mini.</div>';
+
+  $('kpi-mini-teams').textContent = meta.leagues.mini.teams;
+  $('kpi-mini-jornadas').textContent = meta.leagues.mini.jornadas;
+  $('kpi-huracan-matches').textContent = (hur.mini || []).length;
+}
+
+function renderLeague(kind) {
+  const jornadas = getJornadas(kind);
+  if (!jornadas.length) return;
+  if (state.idx[kind] >= jornadas.length) state.idx[kind] = jornadas.length - 1;
+  if (state.idx[kind] < 0) state.idx[kind] = 0;
+
+  const sel = $(`${kind}-sel`);
+  sel.innerHTML = jornadas.map((j, i) => `<option value="${i}">${esc(j.name)}</option>`).join('');
+  sel.value = state.idx[kind];
+  renderJornada(kind, state.idx[kind]);
+  renderTeams(kind);
+}
+
+function renderJornada(kind, idx) {
+  state.idx[kind] = idx;
+  const jornadas = getJornadas(kind);
+  const jornada = jornadas[idx];
+  const matches = getMatches(kind, jornada);
+
+  $(`${kind}-prev`).disabled = idx <= 0;
+  $(`${kind}-next`).disabled = idx >= jornadas.length - 1;
+  $(`${kind}-meta`).textContent = `${jornada?.name || '—'} · ${matches.length} partidos`;
+
+  const target = $(`${kind}-matches`);
+  if (!matches.length) {
+    target.innerHTML = '<div class="no-data">No hay partidos disponibles para esta jornada.</div>';
+    return;
+  }
+  target.innerHTML = matches.map((m) => renderMatchCard(kind, m)).join('');
+}
+
+function renderMatchCard(kind, m) {
+  const home = teamName(kind, m.home);
+  const away = teamName(kind, m.away);
+  const played = isPlayed(m);
+  const future = isFuture(m) && !played;
+  const huracan = home === 'AD HURACAN' || away === 'AD HURACAN';
+
+  const cls = ['mc'];
+  if (played) cls.push('played');
+  if (future) cls.push('nxt');
+  if (huracan) cls.push('fav');
+  if (m.status === 10 || m.home === -1 || m.away === -1) cls.push('bye');
+
+  const score = played ? `${m.home_score} - ${m.away_score}` : 'vs';
+  const badge = played
+    ? '<span class="sb sb-played">Finalizado</span>'
+    : future
+      ? '<span class="sb sb-nxt">Próximo</span>'
+      : `<span class="sb sb-pend">${esc(STATUS[m.status] || 'Pendiente')}</span>`;
+
+  const avClass = (k, id) =>
+    k === 'mini' ? 'm' : teamGroup(k, id) === 'A' ? 'pa' : 'pb';
+
+  return `<article class="${cls.join(' ')}">
+    <div class="mc-body">
+      <div class="mc-side">
+        <div class="mc-av ${avClass(kind, m.home)}">${esc(initials(home))}</div>
+        <div class="mc-tname">${esc(home)}</div>
+      </div>
+      <div class="mc-ctr">
+        <div class="mc-day">${esc(fmtDate(m.date))}</div>
+        <div class="mc-time">${esc(score)}</div>
+        ${badge}
+      </div>
+      <div class="mc-side">
+        <div class="mc-av ${avClass(kind, m.away)}">${esc(initials(away))}</div>
+        <div class="mc-tname">${esc(away)}</div>
+      </div>
+    </div>
+    <div class="mc-field">${esc(m.field || 'Campo pendiente')}</div>
+  </article>`;
+}
+
+function renderTeams(kind) {
+  const teams = Object.entries(state.data[kind]?.teams || {})
+    .map(([id, val]) => kind === 'mini'
+      ? { id: +id, name: val, group: '-' }
+      : { id: +id, name: val.name, group: val.group || 'A' })
+    .filter((t) => kind !== 'pre' || t.group === state.preGroup)
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  $(`${kind}-teams`).innerHTML = teams.map((t) =>
+    `<div class="tcrd">
+       <div class="tav ${kind === 'mini' ? 'm' : t.group === 'A' ? 'pa' : 'pb'}">${esc(initials(t.name))}</div>
+       <div>
+         <div class="tname">${esc(t.name)}</div>
+         ${kind === 'pre' ? `<span class="tgrp ${t.group === 'A' ? 'ga' : 'gb'}">Grupo ${t.group}</span>` : ''}
+       </div>
+     </div>`).join('');
+}
+
+function showLeague(kind) {
+  state.league = kind;
+  $('sec-mini').classList.toggle('on', kind === 'mini');
+  $('sec-pre').classList.toggle('on', kind === 'pre');
+  document.querySelectorAll('.npill').forEach((el) => el.classList.remove('on'));
+  document.querySelector(`.npill.${kind}`)?.classList.add('on');
+}
+
+function switchTab(kind, tab, btn) {
+  state.tab[kind] = tab;
+  document.querySelectorAll(`#sec-${kind} .itab`).forEach((el) => el.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll(`#sec-${kind} .panel`).forEach((el) => el.classList.remove('on'));
+  $(`${kind}-${tab}`).classList.add('on');
+}
+
+function switchGrp(group) {
+  state.preGroup = group;
+  $('gA').classList.toggle('on-a', group === 'A');
+  $('gB').classList.toggle('on-b', group === 'B');
+  state.idx.pre = 0;
+  renderLeague('pre');
+}
+
+function chJorn(kind, delta) {
+  renderJornada(kind, state.idx[kind] + delta);
+  $(`${kind}-sel`).value = state.idx[kind];
+}
+
+async function loadData() {
+  const bust = Date.now();
+  const load = (name) =>
+    fetch(`./data/${name}?v=${bust}`, { cache: 'no-store' }).then((r) => r.json());
+  const [mini, pre, huracan, meta] = await Promise.all([
+    load('mini.json'),
+    load('pre.json'),
+    load('huracan.json'),
+    load('meta.json'),
+  ]);
+  state.data = { mini, pre, huracan, meta };
+}
+
+async function init() {
+  await loadData();
+  renderHeaders();
+  renderSummary();
+  renderLeague('mini');
+  renderLeague('pre');
+  showLeague('mini');
+}
+
+window.showLeague = showLeague;
+window.switchTab = switchTab;
+window.switchGrp = switchGrp;
+window.chJorn = chJorn;
+window.renderJornada = renderJornada;
+
+init().catch((err) => {
+  console.error(err);
+  document.body.innerHTML =
+    '<div class="no-data" style="margin-top:120px">Error cargando la web. Revisa los JSON generados.</div>';
+});

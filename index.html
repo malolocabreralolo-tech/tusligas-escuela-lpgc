@@ -12,7 +12,7 @@
 <body>
   <nav class="nav">
     <div class="nav-mark">⚽</div>
-    <div class="nav-copy"><b>Tus Ligas Canarias</b><small>Escuela · 2025 / 2026</small></div>
+    <div class="nav-copy"><b>Tus Ligas Canarias</b><small id="nav-season">Escuela · 2025 / 2026</small></div>
     <div class="nav-pills">
       <button class="npill mini on" onclick="showLeague('mini')">Miniprebenjamín</button>
       <button class="npill pre" onclick="showLeague('pre')">Prebenjamín</button>
@@ -21,12 +21,12 @@
 
   <div class="page">
     <section class="hero">
-      <div class="hero-badge"><span class="pulse-dot"></span> Temporada 2025 · 2026</div>
+      <div class="hero-badge"><span class="pulse-dot"></span> <span id="hero-season">Temporada 2025 · 2026</span></div>
       <h1>Liga <span class="gtext">Escolar</span><br>Las Palmas</h1>
       <p class="hero-sub">Calendario, jornadas e información de cada equipo. Ahora con panel rápido del Huracán y arquitectura más limpia con datos JSON.</p>
       <div class="hero-btns">
-        <div class="hbtn mini" onclick="showLeague('mini')">🔵 Miniprebenjamín <span class="cnt">17 eq.</span></div>
-        <div class="hbtn pre" onclick="showLeague('pre')">🟡 Prebenjamín <span class="cnt">32 eq.</span></div>
+        <div class="hbtn mini" onclick="showLeague('mini')">🔵 Miniprebenjamín <span class="cnt" id="hbtn-mini-count">—</span></div>
+        <div class="hbtn pre" onclick="showLeague('pre')">🟡 Prebenjamín <span class="cnt" id="hbtn-pre-count">—</span></div>
       </div>
     </section>
 
@@ -58,7 +58,7 @@
       <section class="lsec on" id="sec-mini">
         <div class="lhdr mini">
           <div class="lhdr-ico">🔵</div>
-          <div><h2>Miniprebenjamín Escuela</h2><small>17 equipos · 34 jornadas</small></div>
+          <div><h2>Miniprebenjamín Escuela</h2><small id="lhdr-mini-meta">—</small></div>
           <div class="badge-live">Activo</div>
         </div>
         <div class="itabs mini">
@@ -82,7 +82,7 @@
       <section class="lsec" id="sec-pre">
         <div class="lhdr pre">
           <div class="lhdr-ico">🟡</div>
-          <div><h2>Prebenjamín Escuela</h2><small>32 equipos · Grupo A (16) + Grupo B (16)</small></div>
+          <div><h2>Prebenjamín Escuela</h2><small id="lhdr-pre-meta">—</small></div>
           <div class="badge-live">Activo</div>
         </div>
         <div class="itabs pre">

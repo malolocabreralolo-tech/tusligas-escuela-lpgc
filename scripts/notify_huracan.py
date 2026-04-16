@@ -7,9 +7,12 @@ Defaults to monitoring miniprebenjamín only, but can also watch prebenjamín
 through environment variables.
 """
 
+import html as htmllib
 import json
 import os
 import sys
+import time
+import urllib.error
 import urllib.request
 from datetime import datetime
 from pathlib import Path
@@ -46,10 +49,27 @@ STATUS_LABELS = {
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────
-def fetch(url):
-    req = urllib.request.Request(url, headers=HEADERS)
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.loads(r.read())
+BYE_NAME = "Descansa"
+
+
+def fetch(url, retries=3, backoff=2.0):
+    """GET JSON with retries on transient failures."""
+    last_err = None
+    for attempt in range(retries):
+        try:
+            req = urllib.request.Request(url, headers=HEADERS)
+            with urllib.request.urlopen(req, timeout=30) as r:
+                return json.loads(r.read())
+        except (urllib.error.URLError, TimeoutError) as e:
+            last_err = e
+            if attempt < retries - 1:
+                time.sleep(backoff * (attempt + 1))
+    raise last_err
+
+
+def esc(s):
+    """Escape text for Telegram HTML parse_mode."""
+    return htmllib.escape(str(s), quote=False)
 
 
 def fmt_date(s):
@@ -127,9 +147,9 @@ def extract_huracan_matches(jornadas, team_id, teams_data):
                 matches.append({
                     "jornada": jname,
                     "home": home,
-                    "home_name": team_names.get(home, f"#{home}"),
+                    "home_name": BYE_NAME if home == -1 else team_names.get(home, f"#{home}"),
                     "away": away,
-                    "away_name": team_names.get(away, f"#{away}"),
+                    "away_name": BYE_NAME if away == -1 else team_names.get(away, f"#{away}"),
                     "date": fmt_date(m.get("startTime", "")),
                     "field": (m.get("field") or {}).get("name", "") or "",
                     "status": m.get("status", 5),
@@ -186,23 +206,23 @@ def diff_matches(old_list, new_list):
 
 # ── Build notification message ────────────────────────────────────────────
 def build_section(title, changes):
-    lines = [f"<b>{title}</b>"]
+    lines = [f"<b>{esc(title)}</b>"]
     for c in changes:
         m = c["match"]
-        fixture = f"{m['home_name']} vs {m['away_name']}"
-        jornada = m["jornada"]
+        fixture = f"{esc(m['home_name'])} vs {esc(m['away_name'])}"
+        jornada = esc(m["jornada"])
 
         if c["type"] == "new":
             lines.append(f"\n• Nuevo partido · {jornada}")
             lines.append(f"  {fixture}")
-            lines.append(f"  {fmt_date_human(m['date'])}")
+            lines.append(f"  {esc(fmt_date_human(m['date']))}")
             if m["field"]:
-                lines.append(f"  {m['field']}")
+                lines.append(f"  {esc(m['field'])}")
         elif c["type"] == "changed":
             lines.append(f"\n• Cambio detectado · {jornada}")
             lines.append(f"  {fixture}")
             for d in c["diffs"]:
-                lines.append(f"  {d}")
+                lines.append(f"  {esc(d)}")
         elif c["type"] == "removed":
             lines.append(f"\n• Partido eliminado o no visible")
             lines.append(f"  {fixture}")

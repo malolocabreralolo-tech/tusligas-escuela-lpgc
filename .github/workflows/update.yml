@@ -28,6 +28,7 @@ jobs:
         run: python scripts/generate.py
 
       - name: Check Huracán matches and notify on changes
+        continue-on-error: true
         run: python scripts/notify_huracan.py
 
       - name: Commit and push if data changed
