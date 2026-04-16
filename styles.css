@@ -852,6 +852,20 @@ a {
   color: var(--t3);
   border-color: var(--b2);
 }
+.mc-av.has-logo,
+.tav.has-logo {
+  background: #fff;
+  border-color: rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+  padding: 3px;
+}
+.mc-av.has-logo img,
+.tav.has-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
 .mc-tname {
   font-size: 0.72rem;
   font-weight: 600;

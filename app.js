@@ -9,6 +9,55 @@ const state = {
 const STATUS = { 1: 'Pendiente', 5: 'Programado', 10: 'Descansa', 20: 'Finalizado' };
 const BYE_NAME = 'Descansa';
 
+const LOGOS = {
+  'ACODETTI CF': 'acodetti.png',
+  'AD HURACAN': 'huracan.png',
+  'ATL. GRAN CANARIA': 'atleticograncanaria19-20.png',
+  'ATLÉTICO ISLETA': 'isletaEscudo.png',
+  'C. D. SAN LAZARO': 'sanlazaro.png',
+  'U.D. SAN LAZARO': 'sanlazaro.png',
+  'C.D HEIDELBERG': 'heidelberg.png',
+  'C.F. UNION VIERA A': 'unionviera.png',
+  'C.F. UNION VIERA B': 'unionviera.png',
+  'C.F. UNION VIERA C': 'unionviera.png',
+  'CD GUINIGUADA APOLINARIO': 'guiniguada2016.png',
+  'FUNDACIÓN CANARIA GUINIGUADA': 'guiniguada2016.png',
+  'CD LOMO BLANCO': 'lomoblanco.png',
+  'CF VETERANOS DEL PILAR A': 'interPilar.png',
+  'CF VETERANOS DEL PILAR': 'interPilar.png',
+  'VETERANOS DEL PILAR  B': 'interPilar.png',
+  'VETERANOS DEL PILAR  C': 'interPilar.png',
+  'VETERANOS DEL PILAR D': 'interPilar.png',
+  'CORAZÓN DE MARÍA A': 'claret.png',
+  'CORAZÓN DE MARÍA B': 'claret.png',
+  'CORAZÓN DE MARÍA C': 'claret.png',
+  'CORAZÓN DE MARÍA D': 'claret.png',
+  'REAL CLUB VICTORIA': 'victoria.png',
+  'REAL SPORTING SAN JOSE': 'sportingEscudo2025.png',
+  'U.D. PEDRO HIDALGO': 'pedrohidalgo.png',
+  'UD LAS PALMAS A': 'lasPalmasEscudo.png',
+  'UD LAS PALMAS B': 'lasPalmasEscudo.png',
+  'UD LAS PALMAS C': 'lasPalmasEscudo.png',
+  'UD LAS PALMAS D': 'lasPalmasEscudo.png',
+  'UD LAS PALMAS E': 'lasPalmasEscudo.png',
+  'UD LAS PALMAS F': 'lasPalmasEscudo.png',
+  'UD TAMARACEITE': 'tamaraceite.png',
+};
+
+function logoFor(name) {
+  if (!name) return null;
+  const key = name.toUpperCase().trim();
+  return LOGOS[key] || null;
+}
+
+function avatarHTML(cls, name) {
+  const logo = logoFor(name);
+  if (logo) {
+    return `<div class="${cls} has-logo"><img src="./logos/${logo}" alt="${esc(name)}" loading="lazy"/></div>`;
+  }
+  return `<div class="${cls}">${esc(initials(name))}</div>`;
+}
+
 const $ = (id) => document.getElementById(id);
 
 const esc = (s) => String(s ?? '')
@@ -161,7 +210,7 @@ function renderMatchCard(kind, m) {
   return `<article class="${cls.join(' ')}">
     <div class="mc-body">
       <div class="mc-side">
-        <div class="mc-av ${avClass(kind, m.home)}">${esc(initials(home))}</div>
+        ${avatarHTML(`mc-av ${avClass(kind, m.home)}`, home)}
         <div class="mc-tname">${esc(home)}</div>
       </div>
       <div class="mc-ctr">
@@ -170,7 +219,7 @@ function renderMatchCard(kind, m) {
         ${badge}
       </div>
       <div class="mc-side">
-        <div class="mc-av ${avClass(kind, m.away)}">${esc(initials(away))}</div>
+        ${avatarHTML(`mc-av ${avClass(kind, m.away)}`, away)}
         <div class="mc-tname">${esc(away)}</div>
       </div>
     </div>
@@ -210,7 +259,7 @@ function renderHuracanCard(m) {
   return `<article class="${cls.join(' ')}">
     <div class="mc-body">
       <div class="mc-side">
-        <div class="mc-av m">${esc(initials(m.home_name))}</div>
+        ${avatarHTML('mc-av m', m.home_name)}
         <div class="mc-tname">${esc(m.home_name)}</div>
       </div>
       <div class="mc-ctr">
@@ -219,7 +268,7 @@ function renderHuracanCard(m) {
         ${badge}
       </div>
       <div class="mc-side">
-        <div class="mc-av m">${esc(initials(m.away_name))}</div>
+        ${avatarHTML('mc-av m', m.away_name)}
         <div class="mc-tname">${esc(m.away_name)}</div>
       </div>
     </div>
@@ -288,7 +337,7 @@ function renderTeams(kind) {
 
   $(`${kind}-teams`).innerHTML = teams.map((t) =>
     `<div class="tcrd">
-       <div class="tav ${kind === 'mini' ? 'm' : t.group === 'A' ? 'pa' : 'pb'}">${esc(initials(t.name))}</div>
+       ${avatarHTML(`tav ${kind === 'mini' ? 'm' : t.group === 'A' ? 'pa' : 'pb'}`, t.name)}
        <div>
          <div class="tname">${esc(t.name)}</div>
          ${kind === 'pre' ? `<span class="tgrp ${t.group === 'A' ? 'ga' : 'gb'}">Grupo ${t.group}</span>` : ''}
