@@ -10,6 +10,11 @@ on:
         type: boolean
         required: false
         default: false
+      telegram_sample:
+        description: 'Enviar ejemplo de alerta realista a Telegram'
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
@@ -38,6 +43,8 @@ jobs:
         run: |
           if [ "${{ inputs.telegram_test }}" = "true" ]; then
             python scripts/notify_huracan.py --test
+          elif [ "${{ inputs.telegram_sample }}" = "true" ]; then
+            python scripts/notify_huracan.py --sample
           else
             python scripts/notify_huracan.py
           fi

@@ -264,6 +264,51 @@ def main():
     print(f"[{datetime.now().isoformat()}] Checking Huracán matches...")
     print(f"  Telegram token: {'set' if TELEGRAM_TOKEN else 'MISSING'} | chat ids: {len(CHAT_IDS)}")
 
+    if "--sample" in sys.argv:
+        print("  Sample mode: sending example notification…")
+        sample_mini = [
+            {
+                "type": "new",
+                "match": {
+                    "jornada": "Jornada 12",
+                    "home_name": "AD HURACAN",
+                    "away_name": "ATL. GRAN CANARIA",
+                    "date": "2026-04-25T11:00:00",
+                    "field": "Campo Municipal de Huracán",
+                },
+            },
+            {
+                "type": "changed",
+                "match": {
+                    "jornada": "Jornada 11",
+                    "home_name": "ACODETTI CF",
+                    "away_name": "AD HURACAN",
+                },
+                "diffs": [
+                    "Fecha: sab 18/04 10:30 → dom 19/04 11:00",
+                    "Campo: Sin campo → Campo Acodetti",
+                ],
+            },
+            {
+                "type": "changed",
+                "match": {
+                    "jornada": "Jornada 10",
+                    "home_name": "AD HURACAN",
+                    "away_name": "INTER CANARIAS",
+                    "home_score": 3,
+                    "away_score": 1,
+                },
+                "diffs": [
+                    "Estado: programado → finalizado",
+                    "Resultado: AD HURACAN 3 - 1 INTER CANARIAS",
+                ],
+            },
+        ]
+        msg = build_message(sample_mini, [])
+        print(msg)
+        send_telegram(msg)
+        return
+
     if "--test" in sys.argv:
         print("  Test mode: probing Telegram API…")
         if not TELEGRAM_TOKEN:
