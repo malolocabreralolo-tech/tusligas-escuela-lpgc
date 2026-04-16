@@ -15,6 +15,10 @@
   --pre-l: #fbbf24;
   --pre-x: #fde68a;
   --pre-g: rgba(217, 119, 6, 0.16);
+  --hur: #dc2626;
+  --hur-l: #f87171;
+  --hur-x: #fca5a5;
+  --hur-g: rgba(220, 38, 38, 0.16);
   --ok: #16a34a;
   --ok-l: #4ade80;
   --ok-g: rgba(22, 163, 74, 0.15);
@@ -135,6 +139,15 @@ a {
   background: rgba(217, 119, 6, 0.1);
   color: var(--pre-l);
 }
+.npill.hur {
+  border-color: rgba(220, 38, 38, 0.35);
+  color: var(--t3);
+}
+.npill.hur.on {
+  border-color: var(--hur);
+  background: rgba(220, 38, 38, 0.14);
+  color: var(--hur-l);
+}
 .page {
   padding-top: var(--nav);
   padding-bottom: 2rem;
@@ -230,6 +243,15 @@ a {
     ellipse at 30% 50%,
     rgba(217, 119, 6, 0.16),
     rgba(217, 119, 6, 0.05)
+  );
+}
+.hbtn.hur {
+  border-color: var(--hur);
+  color: var(--hur-l);
+  background: radial-gradient(
+    ellipse at 30% 50%,
+    rgba(220, 38, 38, 0.18),
+    rgba(220, 38, 38, 0.05)
   );
 }
 .hbtn .cnt {
@@ -411,6 +433,17 @@ a {
   );
   border-color: rgba(217, 119, 6, 0.28);
 }
+.lhdr.hur {
+  background: linear-gradient(
+    135deg,
+    rgba(220, 38, 38, 0.16),
+    rgba(220, 38, 38, 0.05)
+  );
+  border-color: rgba(220, 38, 38, 0.3);
+}
+.lhdr.hur .lhdr-ico {
+  background: rgba(220, 38, 38, 0.22);
+}
 .lhdr-ico {
   width: 46px;
   height: 46px;
@@ -508,6 +541,113 @@ a {
 }
 .pbox.pre {
   border-color: rgba(217, 119, 6, 0.28);
+}
+.pbox.hur {
+  border-color: rgba(220, 38, 38, 0.3);
+  border-radius: 0 0 var(--r) var(--r);
+  padding: 1.4rem 1.2rem 1.6rem;
+}
+.hur-stats {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1.4rem;
+}
+.hur-stat {
+  text-align: center;
+  padding: 0.7rem 0.3rem;
+  background: rgba(220, 38, 38, 0.08);
+  border: 1px solid rgba(220, 38, 38, 0.22);
+  border-radius: 12px;
+}
+.hur-stat .v {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--hur-l);
+  line-height: 1;
+}
+.hur-stat .k {
+  font-size: 0.6rem;
+  color: var(--t3);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-top: 0.28rem;
+  font-weight: 600;
+}
+.hur-section-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--hur-x);
+  margin: 0 0 0.7rem;
+}
+.hur-next-wrap {
+  margin-bottom: 1.5rem;
+}
+.hur-next-card {
+  padding: 1.1rem 1.15rem;
+  border-radius: 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(220, 38, 38, 0.18),
+    rgba(220, 38, 38, 0.05)
+  );
+  border: 1px solid rgba(220, 38, 38, 0.35);
+}
+.hur-next-card .hnc-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 0.9rem;
+}
+.hur-next-card .hnc-jornada {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--hur-l);
+}
+.hur-next-card .hnc-when {
+  font-size: 0.72rem;
+  color: var(--t2);
+  font-weight: 600;
+}
+.hur-next-card .hnc-teams {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.7rem;
+  font-weight: 800;
+  text-align: center;
+  line-height: 1.05;
+  color: var(--t1);
+  margin-bottom: 0.6rem;
+}
+.hur-next-card .hnc-teams .vs {
+  color: var(--hur-l);
+  margin: 0 0.55rem;
+}
+.hur-next-card .hnc-field {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--t2);
+}
+.hur-list-wrap .mc + .mc {
+  margin-top: 0.6rem;
+}
+.hur-empty {
+  text-align: center;
+  padding: 1.1rem;
+  color: var(--t3);
+  font-size: 0.85rem;
+  border: 1px dashed rgba(220, 38, 38, 0.3);
+  border-radius: 14px;
+}
+@media (max-width: 620px) {
+  .hur-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 .jnav {
   display: flex;

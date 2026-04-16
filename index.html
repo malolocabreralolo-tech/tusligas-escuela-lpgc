@@ -16,6 +16,7 @@
     <div class="nav-pills">
       <button class="npill mini on" onclick="showLeague('mini')">Miniprebenjamín</button>
       <button class="npill pre" onclick="showLeague('pre')">Prebenjamín</button>
+      <button class="npill hur" onclick="showLeague('huracan')">Huracán</button>
     </div>
   </nav>
 
@@ -27,6 +28,7 @@
       <div class="hero-btns">
         <div class="hbtn mini" onclick="showLeague('mini')">🔵 Miniprebenjamín <span class="cnt" id="hbtn-mini-count">—</span></div>
         <div class="hbtn pre" onclick="showLeague('pre')">🟡 Prebenjamín <span class="cnt" id="hbtn-pre-count">—</span></div>
+        <div class="hbtn hur" onclick="showLeague('huracan')">🔴 AD Huracán <span class="cnt" id="hbtn-hur-count">—</span></div>
       </div>
     </section>
 
@@ -81,6 +83,25 @@
           </div>
         </div>
         <div class="panel" id="pre-eq"><div class="pbox pre"><div class="tgrid" id="pre-teams"></div></div></div>
+      </section>
+
+      <section class="lsec" id="sec-huracan">
+        <div class="lhdr hur">
+          <div class="lhdr-ico">🔴</div>
+          <div><h2>AD Huracán · Miniprebenjamín</h2><small id="lhdr-hur-meta">—</small></div>
+          <div class="badge-live">Seguimiento</div>
+        </div>
+        <div class="pbox hur">
+          <div class="hur-stats" id="hur-stats"></div>
+          <div class="hur-next-wrap">
+            <div class="hur-section-title">Próximo partido</div>
+            <div id="hur-next"></div>
+          </div>
+          <div class="hur-list-wrap">
+            <div class="hur-section-title">Calendario completo</div>
+            <div id="hur-list"></div>
+          </div>
+        </div>
       </section>
 
       <div class="footer-note">Static site · GitHub Pages · datos externos JSON · panel rápido del Huracán</div>

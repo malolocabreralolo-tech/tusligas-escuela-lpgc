@@ -32,8 +32,7 @@ function fmtDate(v) {
 }
 
 function isPlayed(m) {
-  return m.home_score !== null && m.home_score !== undefined
-      && m.away_score !== null && m.away_score !== undefined;
+  return m.status === 20;
 }
 
 function isFuture(m) {
@@ -89,6 +88,9 @@ function renderHeaders() {
   setText('hero-season', `Temporada ${season}`);
   setText('hbtn-mini-count', `${mini.teams} eq.`);
   setText('hbtn-pre-count', `${pre.teams} eq.`);
+  const hur = state.data.huracan?.mini || [];
+  const hurReal = hur.filter((m) => !(m.home === -1 || m.away === -1));
+  setText('hbtn-hur-count', `${hurReal.length} part.`);
   setText('lhdr-mini-meta', `${mini.teams} equipos · ${mini.jornadas} jornadas`);
 
   const groups = pre.groups || { A: 0, B: 0 };
@@ -169,6 +171,124 @@ function renderMatchCard(kind, m) {
   </article>`;
 }
 
+function computeHuracanStats(matches) {
+  const stats = { J: 0, G: 0, E: 0, P: 0, GF: 0, GC: 0 };
+  for (const m of matches) {
+    if (m.home === -1 || m.away === -1 || !isPlayed(m)) continue;
+    const isHome = m.home_name === 'AD HURACAN';
+    const f = isHome ? m.home_score : m.away_score;
+    const c = isHome ? m.away_score : m.home_score;
+    stats.J += 1;
+    stats.GF += f;
+    stats.GC += c;
+    if (f > c) stats.G += 1;
+    else if (f < c) stats.P += 1;
+    else stats.E += 1;
+  }
+  return stats;
+}
+
+function fmtDateHuman(v) {
+  if (!v) return 'Sin fecha';
+  try {
+    const d = new Date(v);
+    return d.toLocaleString('es-ES', {
+      weekday: 'long', day: '2-digit', month: 'long', hour: '2-digit', minute: '2-digit',
+    });
+  } catch { return v; }
+}
+
+function renderHuracanCard(m) {
+  const played = isPlayed(m);
+  const future = isFuture(m) && !played;
+  const bye = m.status === 10 || m.home === -1 || m.away === -1;
+
+  const cls = ['mc', 'fav'];
+  if (played) cls.push('played');
+  if (future) cls.push('nxt');
+  if (bye) cls.push('bye');
+
+  const score = played ? `${m.home_score} - ${m.away_score}` : bye ? '—' : 'vs';
+  const badge = bye
+    ? '<span class="sb sb-pend">Descansa</span>'
+    : played
+      ? '<span class="sb sb-played">Finalizado</span>'
+      : future
+        ? '<span class="sb sb-nxt">Próximo</span>'
+        : `<span class="sb sb-pend">${esc(STATUS[m.status] || 'Pendiente')}</span>`;
+
+  return `<article class="${cls.join(' ')}">
+    <div class="mc-body">
+      <div class="mc-side">
+        <div class="mc-av m">${esc(initials(m.home_name))}</div>
+        <div class="mc-tname">${esc(m.home_name)}</div>
+      </div>
+      <div class="mc-ctr">
+        <div class="mc-day">${esc(fmtDate(m.date))}</div>
+        <div class="mc-time">${esc(score)}</div>
+        ${badge}
+      </div>
+      <div class="mc-side">
+        <div class="mc-av m">${esc(initials(m.away_name))}</div>
+        <div class="mc-tname">${esc(m.away_name)}</div>
+      </div>
+    </div>
+    <div class="mc-field">${esc(m.jornada || '')}${m.field ? ' · ' + esc(m.field) : ''}</div>
+  </article>`;
+}
+
+function renderHuracan() {
+  const all = state.data.huracan?.mini || [];
+  if (!all.length) {
+    $('hur-list').innerHTML = '<div class="hur-empty">No hay partidos todavía.</div>';
+    return;
+  }
+
+  const stats = computeHuracanStats(all);
+  const dif = stats.GF - stats.GC;
+  const statRow = [
+    { k: 'Jugados', v: stats.J },
+    { k: 'Ganados', v: stats.G },
+    { k: 'Empates', v: stats.E },
+    { k: 'Perdidos', v: stats.P },
+    { k: 'GF', v: stats.GF },
+    { k: 'GC', v: stats.GC },
+    { k: 'Dif', v: (dif >= 0 ? '+' : '') + dif },
+  ];
+  $('hur-stats').innerHTML = statRow.map((s) =>
+    `<div class="hur-stat"><div class="v">${esc(s.v)}</div><div class="k">${esc(s.k)}</div></div>`).join('');
+
+  const FAR = '9999';
+  const next = [...all]
+    .filter((m) => !(m.status === 10 || m.home === -1 || m.away === -1))
+    .filter((m) => !isPlayed(m))
+    .sort((a, b) => (a.date || FAR).localeCompare(b.date || FAR))[0];
+
+  $('hur-next').innerHTML = next
+    ? `<div class="hur-next-card">
+         <div class="hnc-top">
+           <div class="hnc-jornada">${esc(next.jornada || '—')}</div>
+           <div class="hnc-when">${esc(fmtDateHuman(next.date))}</div>
+         </div>
+         <div class="hnc-teams">${esc(next.home_name)} <span class="vs">vs</span> ${esc(next.away_name)}</div>
+         <div class="hnc-field">${esc(next.field || 'Campo por confirmar')}</div>
+       </div>`
+    : '<div class="hur-empty">No hay próximo partido programado.</div>';
+
+  const chronological = [...all].sort((a, b) => {
+    const jna = parseInt((a.jornada || '').match(/\d+/)?.[0] || '0', 10);
+    const jnb = parseInt((b.jornada || '').match(/\d+/)?.[0] || '0', 10);
+    return jna - jnb;
+  });
+  $('hur-list').innerHTML = chronological.map(renderHuracanCard).join('');
+
+  const meta = state.data.meta;
+  if (meta) {
+    const s = `${meta.season} · ${stats.J}/${all.filter((m) => !(m.home === -1 || m.away === -1)).length} partidos jugados`;
+    $('lhdr-hur-meta').textContent = s;
+  }
+}
+
 function renderTeams(kind) {
   const teams = Object.entries(state.data[kind]?.teams || {})
     .map(([id, val]) => kind === 'mini'
@@ -191,8 +311,10 @@ function showLeague(kind) {
   state.league = kind;
   $('sec-mini').classList.toggle('on', kind === 'mini');
   $('sec-pre').classList.toggle('on', kind === 'pre');
+  $('sec-huracan').classList.toggle('on', kind === 'huracan');
   document.querySelectorAll('.npill').forEach((el) => el.classList.remove('on'));
-  document.querySelector(`.npill.${kind}`)?.classList.add('on');
+  const pillKey = kind === 'huracan' ? 'hur' : kind;
+  document.querySelector(`.npill.${pillKey}`)?.classList.add('on');
 }
 
 function switchTab(kind, tab, btn) {
@@ -234,6 +356,7 @@ async function init() {
   renderHeaders();
   renderLeague('mini');
   renderLeague('pre');
+  renderHuracan();
   showLeague('mini');
 }
 
