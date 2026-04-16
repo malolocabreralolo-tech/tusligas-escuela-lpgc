@@ -258,7 +258,28 @@ def main():
     print(f"  Telegram token: {'set' if TELEGRAM_TOKEN else 'MISSING'} | chat ids: {len(CHAT_IDS)}")
 
     if "--test" in sys.argv:
-        print("  Test mode: sending verification message…")
+        print("  Test mode: probing Telegram API…")
+        if not TELEGRAM_TOKEN:
+            print("  ERROR: TELEGRAM_TOKEN env var is empty.")
+            return
+        try:
+            req = urllib.request.Request(
+                f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/getMe"
+            )
+            with urllib.request.urlopen(req, timeout=15) as r:
+                info = json.loads(r.read())
+                bot = info.get("result", {})
+                print(
+                    f"  getMe OK: bot @{bot.get('username','?')} "
+                    f"(id={bot.get('id','?')}, name={bot.get('first_name','?')})"
+                )
+        except urllib.error.HTTPError as e:
+            print(f"  getMe FAILED: HTTP {e.code} — token inválido o revocado.")
+            return
+        except Exception as e:
+            print(f"  getMe FAILED: {e}")
+            return
+        print("  Sending verification message…")
         send_telegram(
             "<b>Alerta Huracán · prueba</b>\nMensaje de verificación del bot. "
             "Si ves esto, las notificaciones funcionan."
