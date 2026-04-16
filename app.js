@@ -255,16 +255,17 @@ function renderHuracan() {
        </div>`
     : '<div class="hur-empty">No hay próximo partido programado.</div>';
 
-  const upcoming = [...all]
+  const pending = [...all]
     .filter((m) => !(m.status === 10 || m.home === -1 || m.away === -1))
     .filter((m) => !isPlayed(m))
     .filter((m) => {
-      if (!m.date) return false;
+      if (!m.date) return true;
       const ts = Date.parse(m.date);
-      return !Number.isNaN(ts) && ts >= now;
-    })
-    .sort((a, b) => a.date.localeCompare(b.date))
-    .slice(1);
+      return Number.isNaN(ts) || ts >= now;
+    });
+  const FAR = '9999';
+  pending.sort((a, b) => (a.date || FAR).localeCompare(b.date || FAR));
+  const upcoming = next ? pending.filter((m) => m !== next) : pending;
   $('hur-current-title').textContent = 'Próximos partidos';
   $('hur-current').innerHTML = upcoming.length
     ? upcoming.map(renderHuracanCard).join('')
