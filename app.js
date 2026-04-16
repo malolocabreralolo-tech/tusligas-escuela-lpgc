@@ -257,16 +257,12 @@ function renderHuracan() {
 
   const jornNum = (m) =>
     parseInt((m.jornada || '').match(/\d+/)?.[0] || '0', 10);
-  const pending = [...all]
+  const nextJorn = next ? jornNum(next) : 0;
+  const upcoming = [...all]
     .filter((m) => !(m.status === 10 || m.home === -1 || m.away === -1))
     .filter((m) => !isPlayed(m))
-    .filter((m) => {
-      if (!m.date) return true;
-      const ts = Date.parse(m.date);
-      return Number.isNaN(ts) || ts >= now;
-    })
+    .filter((m) => jornNum(m) > nextJorn)
     .sort((a, b) => jornNum(a) - jornNum(b));
-  const upcoming = next ? pending.filter((m) => m !== next) : pending;
   $('hur-current-title').textContent = 'Próximos partidos';
   $('hur-current').innerHTML = upcoming.length
     ? upcoming.map(renderHuracanCard).join('')
