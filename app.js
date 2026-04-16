@@ -255,6 +255,8 @@ function renderHuracan() {
        </div>`
     : '<div class="hur-empty">No hay próximo partido programado.</div>';
 
+  const jornNum = (m) =>
+    parseInt((m.jornada || '').match(/\d+/)?.[0] || '0', 10);
   const pending = [...all]
     .filter((m) => !(m.status === 10 || m.home === -1 || m.away === -1))
     .filter((m) => !isPlayed(m))
@@ -262,20 +264,15 @@ function renderHuracan() {
       if (!m.date) return true;
       const ts = Date.parse(m.date);
       return Number.isNaN(ts) || ts >= now;
-    });
-  const FAR = '9999';
-  pending.sort((a, b) => (a.date || FAR).localeCompare(b.date || FAR));
+    })
+    .sort((a, b) => jornNum(a) - jornNum(b));
   const upcoming = next ? pending.filter((m) => m !== next) : pending;
   $('hur-current-title').textContent = 'Próximos partidos';
   $('hur-current').innerHTML = upcoming.length
     ? upcoming.map(renderHuracanCard).join('')
     : '<div class="hur-empty">No hay más partidos próximos.</div>';
 
-  const chronological = [...all].sort((a, b) => {
-    const jna = parseInt((a.jornada || '').match(/\d+/)?.[0] || '0', 10);
-    const jnb = parseInt((b.jornada || '').match(/\d+/)?.[0] || '0', 10);
-    return jna - jnb;
-  });
+  const chronological = [...all].sort((a, b) => jornNum(a) - jornNum(b));
   $('hur-list').innerHTML = chronological.map(renderHuracanCard).join('');
 
   const meta = state.data.meta;
@@ -336,9 +333,13 @@ function chJorn(kind, delta) {
 
 function toggleFull() {
   const list = $('hur-list');
+  const current = $('hur-current');
+  const title = $('hur-current-title');
   const label = $('hur-full-toggle-label');
-  const hidden = list.classList.toggle('hur-full-hidden');
-  label.textContent = hidden ? 'Ver calendario completo' : 'Ocultar calendario completo';
+  const showingFull = list.classList.toggle('hur-full-hidden') === false;
+  current.classList.toggle('hur-full-hidden', showingFull);
+  title.textContent = showingFull ? 'Calendario completo' : 'Próximos partidos';
+  label.textContent = showingFull ? 'Ver próximos partidos' : 'Ver calendario completo';
 }
 
 async function loadData() {

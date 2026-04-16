@@ -656,38 +656,40 @@ a {
   margin-bottom: 1.4rem;
 }
 .hur-current-wrap .mc + .mc,
-.hur-full-wrap .mc + .mc {
+#hur-list .mc + .mc {
   margin-top: 0.6rem;
 }
-.hur-full-wrap {
-  margin-top: 1.2rem;
-  padding-top: 1.2rem;
-  border-top: 1px solid var(--b1);
+.hur-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 0.7rem;
+  flex-wrap: wrap;
+}
+.hur-section-head .hur-section-title {
+  margin: 0;
 }
 .hur-full-toggle {
-  display: block;
-  width: 100%;
-  padding: 0.75rem 1rem;
+  padding: 0.42rem 0.85rem;
   background: rgba(220, 38, 38, 0.1);
   border: 1px solid rgba(220, 38, 38, 0.28);
   color: var(--hur-l);
   font-family: inherit;
   font-weight: 700;
-  font-size: 0.78rem;
-  letter-spacing: 0.6px;
+  font-size: 0.7rem;
+  letter-spacing: 0.4px;
   text-transform: uppercase;
-  border-radius: 12px;
+  border-radius: 100px;
   cursor: pointer;
   transition: background 0.2s;
+  white-space: nowrap;
 }
 .hur-full-toggle:hover {
   background: rgba(220, 38, 38, 0.18);
 }
 .hur-full-hidden {
   display: none;
-}
-#hur-list:not(.hur-full-hidden) {
-  margin-top: 0.9rem;
 }
 .hur-empty {
   text-align: center;
