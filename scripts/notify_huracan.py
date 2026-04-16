@@ -138,6 +138,13 @@ def send_telegram(text):
             })
             try:
                 urllib.request.urlopen(req, timeout=15)
+            except urllib.error.HTTPError as e:
+                body = ""
+                try:
+                    body = e.read().decode("utf-8", errors="replace")
+                except Exception:
+                    pass
+                print(f"Error sending to {chat_id}: HTTP {e.code} — {body}", file=sys.stderr)
             except Exception as e:
                 print(f"Error sending to {chat_id}: {e}", file=sys.stderr)
 
