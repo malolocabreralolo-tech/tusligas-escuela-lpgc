@@ -1,6 +1,6 @@
 const state = {
   league: 'huracan',
-  preGroup: 'A',
+  preGroup: 'B',
   tab: { mini: 'cal', pre: 'cal' },
   idx: { mini: 0, pre: 0 },
   data: { mini: null, pre: null, huracan: null, meta: null },
