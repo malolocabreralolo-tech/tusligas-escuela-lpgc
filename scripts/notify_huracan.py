@@ -203,14 +203,8 @@ def diff_matches(old_list, new_list):
             new_f = m["field"] or "Sin campo"
             diffs.append(f"Campo: {old_f} → {new_f}")
 
-        if old["status"] != m["status"]:
+        if old["status"] != m["status"] and m["status"] != 20:
             diffs.append(f"Estado: {status_label(old['status'])} → {status_label(m['status'])}")
-
-        if old.get("home_score") != m.get("home_score") or old.get("away_score") != m.get("away_score"):
-            hs = m.get("home_score")
-            vs = m.get("away_score")
-            if hs is not None and vs is not None:
-                diffs.append(f"Resultado: {m['home_name']} {hs} - {vs} {m['away_name']}")
 
         if diffs:
             changes.append({"type": "changed", "match": m, "diffs": diffs})
@@ -295,12 +289,9 @@ def main():
                     "jornada": "Jornada 10",
                     "home_name": "AD HURACAN",
                     "away_name": "INTER CANARIAS",
-                    "home_score": 3,
-                    "away_score": 1,
                 },
                 "diffs": [
-                    "Estado: programado → finalizado",
-                    "Resultado: AD HURACAN 3 - 1 INTER CANARIAS",
+                    "Campo: Sin campo → Campo Inter Canarias",
                 ],
             },
         ]
