@@ -84,8 +84,7 @@ function renderHeaders() {
   const season = meta.season || '2025 / 2026';
 
   const setText = (id, value) => { const el = $(id); if (el) el.textContent = value; };
-  setText('nav-season', `Escuela · ${season}`);
-  setText('hero-season', `Temporada ${season}`);
+  setText('nav-season', `Temporada ${season}`);
   setText('lhdr-mini-meta', `${mini.teams} equipos · ${mini.jornadas} jornadas`);
 
   const groups = pre.groups || { A: 0, B: 0 };
@@ -265,7 +264,7 @@ function renderHuracan() {
       return !Number.isNaN(ts) && ts >= now;
     })
     .sort((a, b) => a.date.localeCompare(b.date))
-    .slice(1, 5);
+    .slice(1);
   $('hur-current-title').textContent = 'Próximos partidos';
   $('hur-current').innerHTML = upcoming.length
     ? upcoming.map(renderHuracanCard).join('')

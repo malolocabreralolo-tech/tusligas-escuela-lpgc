@@ -12,7 +12,7 @@
 <body>
   <nav class="nav">
     <div class="nav-mark">⚽</div>
-    <div class="nav-copy"><b>Tus Ligas Canarias</b><small id="nav-season">Escuela · 2025 / 2026</small></div>
+    <div class="nav-copy"><b>Liga <span class="gtext">Escolar</span> Las Palmas</b><small id="nav-season">Temporada 2025 / 2026</small></div>
     <div class="nav-pills">
       <button class="npill mini" onclick="showLeague('mini')">Miniprebenjamín</button>
       <button class="npill pre" onclick="showLeague('pre')">Prebenjamín</button>
@@ -21,11 +21,6 @@
   </nav>
 
   <div class="page">
-    <section class="hero hero-compact">
-      <div class="hero-badge"><span class="pulse-dot"></span> <span id="hero-season">Temporada 2025 · 2026</span></div>
-      <h1 class="hero-title-line">Liga <span class="gtext">Escolar</span> Las Palmas</h1>
-    </section>
-
     <main class="main">
       <section class="lsec" id="sec-mini">
         <div class="lhdr mini">
@@ -91,13 +86,13 @@
             <div id="hur-next"></div>
           </div>
           <div class="hur-current-wrap">
-            <div class="hur-section-title" id="hur-current-title">Jornada actual</div>
+            <div class="hur-section-head">
+              <div class="hur-section-title" id="hur-current-title">Próximos partidos</div>
+              <button type="button" class="hur-full-toggle" id="hur-full-toggle" onclick="toggleFull()">
+                <span id="hur-full-toggle-label">Ver calendario completo</span>
+              </button>
+            </div>
             <div id="hur-current"></div>
-          </div>
-          <div class="hur-full-wrap">
-            <button type="button" class="hur-full-toggle" id="hur-full-toggle" onclick="toggleFull()">
-              <span id="hur-full-toggle-label">Ver calendario completo</span>
-            </button>
             <div id="hur-list" class="hur-full-hidden"></div>
           </div>
         </div>
