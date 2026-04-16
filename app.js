@@ -92,6 +92,19 @@ function renderHeaders() {
   setText('lhdr-pre-meta', `${pre.teams} equipos · Grupo A (${groups.A}) + Grupo B (${groups.B})`);
 }
 
+function findCurrentJornadaIdx(jornadas) {
+  const now = Date.now();
+  for (let i = 0; i < jornadas.length; i += 1) {
+    const hasFuture = (jornadas[i].matches || []).some((m) => {
+      if (!m.date) return false;
+      const ts = Date.parse(m.date);
+      return !Number.isNaN(ts) && ts >= now;
+    });
+    if (hasFuture) return i;
+  }
+  return jornadas.length - 1;
+}
+
 function renderLeague(kind) {
   const jornadas = getJornadas(kind);
   if (!jornadas.length) return;
@@ -243,6 +256,21 @@ function renderHuracan() {
        </div>`
     : '<div class="hur-empty">No hay próximo partido programado.</div>';
 
+  const upcoming = [...all]
+    .filter((m) => !(m.status === 10 || m.home === -1 || m.away === -1))
+    .filter((m) => !isPlayed(m))
+    .filter((m) => {
+      if (!m.date) return false;
+      const ts = Date.parse(m.date);
+      return !Number.isNaN(ts) && ts >= now;
+    })
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .slice(1, 5);
+  $('hur-current-title').textContent = 'Próximos partidos';
+  $('hur-current').innerHTML = upcoming.length
+    ? upcoming.map(renderHuracanCard).join('')
+    : '<div class="hur-empty">No hay más partidos próximos.</div>';
+
   const chronological = [...all].sort((a, b) => {
     const jna = parseInt((a.jornada || '').match(/\d+/)?.[0] || '0', 10);
     const jnb = parseInt((b.jornada || '').match(/\d+/)?.[0] || '0', 10);
@@ -297,13 +325,20 @@ function switchGrp(group) {
   state.preGroup = group;
   $('gA').classList.toggle('on-a', group === 'A');
   $('gB').classList.toggle('on-b', group === 'B');
-  state.idx.pre = 0;
+  state.idx.pre = findCurrentJornadaIdx(getJornadas('pre'));
   renderLeague('pre');
 }
 
 function chJorn(kind, delta) {
   renderJornada(kind, state.idx[kind] + delta);
   $(`${kind}-sel`).value = state.idx[kind];
+}
+
+function toggleFull() {
+  const list = $('hur-list');
+  const label = $('hur-full-toggle-label');
+  const hidden = list.classList.toggle('hur-full-hidden');
+  label.textContent = hidden ? 'Ver calendario completo' : 'Ocultar calendario completo';
 }
 
 async function loadData() {
@@ -322,6 +357,8 @@ async function loadData() {
 async function init() {
   await loadData();
   renderHeaders();
+  state.idx.mini = findCurrentJornadaIdx(getJornadas('mini'));
+  state.idx.pre = findCurrentJornadaIdx(getJornadas('pre'));
   renderLeague('mini');
   renderLeague('pre');
   renderHuracan();
@@ -333,6 +370,7 @@ window.switchTab = switchTab;
 window.switchGrp = switchGrp;
 window.chJorn = chJorn;
 window.renderJornada = renderJornada;
+window.toggleFull = toggleFull;
 
 init().catch((err) => {
   console.error(err);
