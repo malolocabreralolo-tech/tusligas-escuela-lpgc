@@ -42,6 +42,8 @@ const LOGOS = {
   'UD LAS PALMAS E': 'lasPalmasEscudo.png',
   'UD LAS PALMAS F': 'lasPalmasEscudo.png',
   'UD TAMARACEITE': 'tamaraceite.png',
+  'ARBOL BONITO MIGUEL LEON': 'arbolbonito.jpg',
+  'INTER CANARIAS': 'intercanarias.jpg',
 };
 
 function logoFor(name) {
