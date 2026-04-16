@@ -95,56 +95,6 @@ function renderHeaders() {
   setText('lhdr-pre-meta', `${pre.teams} equipos · Grupo A (${groups.A}) + Grupo B (${groups.B})`);
 }
 
-function renderSummary() {
-  const hur = state.data.huracan;
-  const meta = state.data.meta;
-  if (!hur || !meta) return;
-
-  const upcoming = [...(hur.mini || [])]
-    .filter((m) => isFuture(m) || m.status === 1 || m.status === 5)
-    .sort((a, b) => (a.date || '').localeCompare(b.date || ''))[0];
-
-  const recent = [...(hur.mini || [])]
-    .filter(isPlayed)
-    .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
-    .slice(0, 3);
-
-  $('summary-next').innerHTML = upcoming
-    ? `<div class="summary-match">
-         <div class="fixture">${esc(upcoming.home_name)} vs ${esc(upcoming.away_name)}</div>
-         <div class="summary-meta">
-           <div class="meta-box"><b>Fecha</b>${esc(fmtDate(upcoming.date))}</div>
-           <div class="meta-box"><b>Estado</b>${esc(STATUS[upcoming.status] || upcoming.status)}</div>
-           <div class="meta-box"><b>Campo</b>${esc(upcoming.field || 'Sin campo')}</div>
-           <div class="meta-box"><b>Jornada</b>${esc(upcoming.jornada || '—')}</div>
-         </div>
-       </div>`
-    : '<div class="no-data">No hay próximo partido detectado para Huracán.</div>';
-
-  const alerts = [
-    `Última actualización: ${fmtDate(meta.updated_at)}`,
-    'Alertas activas por Telegram para el Huracán mini',
-    'Seguimiento rápido del próximo partido y resultados',
-  ];
-  $('summary-alerts').innerHTML = alerts.map((t) =>
-    `<div class="alert-item">
-       <div class="title">${esc(t)}</div>
-       <div class="sub">Sistema preparado para avisar cuando cambie fecha, campo, estado o resultado.</div>
-     </div>`).join('');
-
-  $('summary-results').innerHTML = recent.length
-    ? recent.map((m) =>
-        `<div class="result-item">
-           <div class="title">${esc(m.home_name)} ${m.home_score}-${m.away_score} ${esc(m.away_name)}</div>
-           <div class="sub">${esc(m.jornada || 'Jornada')} · ${esc(fmtDate(m.date))}</div>
-         </div>`).join('')
-    : '<div class="no-data">Todavía no hay resultados cerrados del Huracán mini.</div>';
-
-  $('kpi-mini-teams').textContent = meta.leagues.mini.teams;
-  $('kpi-mini-jornadas').textContent = meta.leagues.mini.jornadas;
-  $('kpi-huracan-matches').textContent = (hur.mini || []).length;
-}
-
 function renderLeague(kind) {
   const jornadas = getJornadas(kind);
   if (!jornadas.length) return;
@@ -282,7 +232,6 @@ async function loadData() {
 async function init() {
   await loadData();
   renderHeaders();
-  renderSummary();
   renderLeague('mini');
   renderLeague('pre');
   showLeague('mini');
