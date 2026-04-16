@@ -32,10 +32,21 @@ WATCH_MINI = os.getenv("WATCH_HURACAN_MINI", "true").lower() in ("1", "true", "y
 WATCH_PRE = os.getenv("WATCH_HURACAN_PRE", "false").lower() in ("1", "true", "yes", "on")
 
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN", "").strip()
+
+
+def _parse_chat_id(value):
+    value = value.strip()
+    if not value:
+        return None
+    try:
+        return int(value)
+    except ValueError:
+        return value
+
+
 CHAT_IDS = [
-    int(x.strip())
-    for x in os.getenv("TELEGRAM_CHAT_IDS", "1556920272").split(",")
-    if x.strip()
+    cid for cid in (_parse_chat_id(x) for x in os.getenv("TELEGRAM_CHAT_IDS", "1556920272").split(","))
+    if cid is not None
 ]
 
 SNAPSHOT_DIR = Path(__file__).parent / "snapshots"
@@ -244,6 +255,15 @@ def build_message(mini_changes, pre_changes):
 # ── Main ──────────────────────────────────────────────────────────────────
 def main():
     print(f"[{datetime.now().isoformat()}] Checking Huracán matches...")
+    print(f"  Telegram token: {'set' if TELEGRAM_TOKEN else 'MISSING'} | chat ids: {len(CHAT_IDS)}")
+
+    if "--test" in sys.argv:
+        print("  Test mode: sending verification message…")
+        send_telegram(
+            "<b>Alerta Huracán · prueba</b>\nMensaje de verificación del bot. "
+            "Si ves esto, las notificaciones funcionan."
+        )
+        return
 
     try:
         old = {"mini": [], "pre": []}

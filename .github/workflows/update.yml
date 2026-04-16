@@ -4,6 +4,12 @@ on:
   schedule:
     - cron: '0 8,12,16,20 * * *'   # 8h, 12h, 16h, 20h UTC (horario diurno Canarias)
   workflow_dispatch:
+    inputs:
+      telegram_test:
+        description: 'Enviar mensaje de prueba a Telegram'
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
@@ -29,7 +35,12 @@ jobs:
 
       - name: Check Huracán matches and notify on changes
         continue-on-error: true
-        run: python scripts/notify_huracan.py
+        run: |
+          if [ "${{ inputs.telegram_test }}" = "true" ]; then
+            python scripts/notify_huracan.py --test
+          else
+            python scripts/notify_huracan.py
+          fi
 
       - name: Commit and push if data changed
         run: |
