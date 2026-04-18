@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-18T08:54:01.729171+00:00",
+  "updated_at": "2026-04-18T13:06:31.905091+00:00",
   "tournament": {
     "id": 85,
     "name": "Miniprebenjamín Escuela"
@@ -1493,7 +1493,7 @@
           "home": 1160,
           "away": 1148,
           "date": "2026-04-18T11:00",
-          "status": 1,
+          "status": 5,
           "field": "LA SUERTE 1",
           "home_score": 0,
           "away_score": 0
