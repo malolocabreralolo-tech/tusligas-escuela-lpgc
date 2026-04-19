@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-18T20:39:20.619996+00:00",
+  "updated_at": "2026-04-19T08:56:41.056075+00:00",
   "tournament": {
     "id": 85,
     "name": "Miniprebenjamín Escuela"
@@ -1511,7 +1511,7 @@
           "home": 1155,
           "away": 1106,
           "date": "2026-04-19T11:00",
-          "status": 1,
+          "status": 5,
           "field": "LOMO APOLINARIO",
           "home_score": 0,
           "away_score": 0
