@@ -212,7 +212,7 @@
       "away_name": "ARBOL BONITO MIGUEL LEON",
       "date": "2026-04-19T12:00",
       "field": "POLIGONO SAN CRISTOBAL F7",
-      "status": 1,
+      "status": 5,
       "home_score": 0,
       "away_score": 0
     },
@@ -410,5 +410,5 @@
     }
   ],
   "pre": [],
-  "updated": "2026-04-19T08:56:41.147676"
+  "updated": "2026-04-19T13:05:33.816993"
 }

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-19T08:56:41.056075+00:00",
+  "updated_at": "2026-04-19T13:05:33.716713+00:00",
   "tournament": {
     "id": 87,
     "name": "Prebenjamín Escuela"
@@ -2879,7 +2879,7 @@
           "home": 1163,
           "away": 1107,
           "date": "2026-04-18T12:30",
-          "status": 1,
+          "status": 5,
           "field": "NARANJO SOSA - LAS ARENAS",
           "home_score": 0,
           "away_score": 0
@@ -2888,7 +2888,7 @@
           "home": 1100,
           "away": 1118,
           "date": "2026-04-19T09:00",
-          "status": 1,
+          "status": 5,
           "field": "LOMO APOLINARIO",
           "home_score": 0,
           "away_score": 0
@@ -2897,7 +2897,7 @@
           "home": 1135,
           "away": 1137,
           "date": "2026-04-19T11:00",
-          "status": 1,
+          "status": 5,
           "field": "EL BATAN 2",
           "home_score": 0,
           "away_score": 0
@@ -2915,7 +2915,7 @@
           "home": 1140,
           "away": 1114,
           "date": "2026-04-19T12:00",
-          "status": 1,
+          "status": 5,
           "field": "EL BATAN 2",
           "home_score": 0,
           "away_score": 0
@@ -2933,7 +2933,7 @@
           "home": 1108,
           "away": 1143,
           "date": "2026-04-18T10:30",
-          "status": 1,
+          "status": 5,
           "field": "NARANJO SOSA - LAS ARENAS",
           "home_score": 0,
           "away_score": 0
@@ -2942,7 +2942,7 @@
           "home": 1128,
           "away": 1119,
           "date": "2026-04-19T10:00",
-          "status": 1,
+          "status": 5,
           "field": "LOMO APOLINARIO",
           "home_score": 0,
           "away_score": 0
@@ -2951,7 +2951,7 @@
           "home": 1126,
           "away": 1110,
           "date": "2026-04-19T10:00",
-          "status": 1,
+          "status": 5,
           "field": "LAS TORRES 2",
           "home_score": 0,
           "away_score": 0
@@ -2960,7 +2960,7 @@
           "home": 1102,
           "away": 1144,
           "date": "2026-04-19T11:00",
-          "status": 1,
+          "status": 5,
           "field": "EL PILAR 2",
           "home_score": 0,
           "away_score": 0
@@ -2969,7 +2969,7 @@
           "home": 1151,
           "away": 1112,
           "date": "2026-04-19T11:00",
-          "status": 1,
+          "status": 5,
           "field": "POLIGONO SAN CRISTOBAL F7",
           "home_score": 0,
           "away_score": 0
@@ -2978,7 +2978,7 @@
           "home": 1142,
           "away": 1127,
           "date": "2026-04-19T11:00",
-          "status": 1,
+          "status": 5,
           "field": "EL BATAN 1 ",
           "home_score": 0,
           "away_score": 0
@@ -2987,7 +2987,7 @@
           "home": 1113,
           "away": 1161,
           "date": "2026-04-19T11:00",
-          "status": 1,
+          "status": 5,
           "field": "EL PILAR 1",
           "home_score": 0,
           "away_score": 0
