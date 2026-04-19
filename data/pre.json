@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-19T13:05:33.716713+00:00",
+  "updated_at": "2026-04-19T16:42:54.425954+00:00",
   "tournament": {
     "id": 87,
     "name": "Prebenjamín Escuela"
@@ -2906,7 +2906,7 @@
           "home": 1101,
           "away": 1116,
           "date": "2026-04-19T11:00",
-          "status": 1,
+          "status": 5,
           "field": "LAS TORRES 1",
           "home_score": 0,
           "away_score": 0
