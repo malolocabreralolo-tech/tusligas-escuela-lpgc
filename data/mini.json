@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-20T13:46:26.965836+00:00",
+  "updated_at": "2026-04-20T17:05:31.220059+00:00",
   "tournament": {
     "id": 85,
     "name": "Miniprebenjamín Escuela"
@@ -1586,15 +1586,6 @@
           "away_score": 0
         },
         {
-          "home": 1106,
-          "away": 1160,
-          "date": "2026-04-25T12:30",
-          "status": 1,
-          "field": "NARANJO SOSA - LAS ARENAS",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
           "home": 1117,
           "away": 1157,
           "date": "2026-04-26T10:00",
@@ -1627,6 +1618,15 @@
           "date": "2026-04-26T12:00",
           "status": 1,
           "field": "EL BATAN 1 ",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1106,
+          "away": 1160,
+          "date": "2026-04-26T12:00",
+          "status": 1,
+          "field": "LOMO APOLINARIO",
           "home_score": 0,
           "away_score": 0
         },
