@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-20T17:05:31.220059+00:00",
+  "updated_at": "2026-04-20T20:50:50.197803+00:00",
   "tournament": {
     "id": 85,
     "name": "Miniprebenjamín Escuela"
@@ -1502,7 +1502,7 @@
           "home": 1157,
           "away": 1158,
           "date": "2026-04-18T11:00",
-          "status": 1,
+          "status": 5,
           "field": "BARRIO ATL.",
           "home_score": 0,
           "away_score": 0
@@ -1547,7 +1547,7 @@
           "home": 1104,
           "away": 1117,
           "date": "2026-04-19T12:00",
-          "status": 1,
+          "status": 5,
           "field": "LOMO APOLINARIO",
           "home_score": 0,
           "away_score": 0
@@ -1568,18 +1568,18 @@
       "group_id": 341,
       "matches": [
         {
-          "home": 1156,
-          "away": 1104,
+          "home": 1148,
+          "away": 1103,
           "date": "2026-04-25T11:00",
           "status": 1,
-          "field": "POLIGONO SAN CRISTOBAL F7",
+          "field": "BARRIO ATL.",
           "home_score": 0,
           "away_score": 0
         },
         {
-          "home": 1148,
-          "away": 1103,
-          "date": "2026-04-25T12:00",
+          "home": 1156,
+          "away": 1104,
+          "date": "2026-04-25T11:00",
           "status": 1,
           "field": "POLIGONO SAN CRISTOBAL F7",
           "home_score": 0,
@@ -1604,15 +1604,6 @@
           "away_score": 0
         },
         {
-          "home": 1120,
-          "away": 1122,
-          "date": "2026-04-26T11:00",
-          "status": 1,
-          "field": "LAS TORRES 2",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
           "home": 1115,
           "away": 1155,
           "date": "2026-04-26T12:00",
@@ -1627,6 +1618,15 @@
           "date": "2026-04-26T12:00",
           "status": 1,
           "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1120,
+          "away": 1122,
+          "date": "2026-04-26T12:00",
+          "status": 1,
+          "field": "LAS TORRES 2",
           "home_score": 0,
           "away_score": 0
         },
@@ -1646,83 +1646,74 @@
       "group_id": 341,
       "matches": [
         {
-          "home": 1121,
-          "away": -1,
-          "date": "",
-          "status": 10,
-          "field": "",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
-          "home": 1103,
-          "away": 1160,
-          "date": "",
-          "status": 1,
-          "field": "",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
           "home": 1155,
           "away": 1148,
-          "date": "",
+          "date": "2026-05-09T11:00",
           "status": 1,
-          "field": "",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
-          "home": 1154,
-          "away": 1115,
-          "date": "",
-          "status": 1,
-          "field": "",
+          "field": "LA SUERTE 1",
           "home_score": 0,
           "away_score": 0
         },
         {
           "home": 1104,
           "away": 1106,
-          "date": "",
+          "date": "2026-05-09T11:00",
           "status": 1,
-          "field": "",
+          "field": "BARRIO ATL.",
           "home_score": 0,
           "away_score": 0
         },
         {
           "home": 1157,
           "away": 1156,
-          "date": "",
+          "date": "2026-05-09T11:00",
           "status": 1,
-          "field": "",
+          "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1115,
+          "away": 1121,
+          "date": "2026-05-10T11:00",
+          "status": 1,
+          "field": "JUAN GUEDES",
           "home_score": 0,
           "away_score": 0
         },
         {
           "home": 1138,
           "away": 1117,
-          "date": "",
+          "date": "2026-05-10T11:00",
           "status": 1,
-          "field": "",
+          "field": "LOMO APOLINARIO",
           "home_score": 0,
           "away_score": 0
         },
         {
           "home": 1122,
           "away": 1158,
-          "date": "",
+          "date": "2026-05-10T11:00",
           "status": 1,
-          "field": "",
+          "field": "LAS TORRES 2",
           "home_score": 0,
           "away_score": 0
         },
         {
           "home": 1159,
           "away": 1120,
-          "date": "",
+          "date": "2026-05-10T11:00",
           "status": 1,
-          "field": "",
+          "field": "EL BATAN 1 ",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1103,
+          "away": 1160,
+          "date": "2026-05-10T12:00",
+          "status": 1,
+          "field": "EL BATAN 1 ",
           "home_score": 0,
           "away_score": 0
         }

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-20T17:05:31.220059+00:00",
+  "updated_at": "2026-04-20T20:50:50.197803+00:00",
   "tournament": {
     "id": 87,
     "name": "Prebenjamín Escuela"
@@ -3098,20 +3098,20 @@
           "away_score": 0
         },
         {
-          "home": 1144,
-          "away": 1128,
-          "date": "2026-04-25T11:00",
-          "status": 1,
-          "field": "BARRIO ATL.",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
           "home": 1110,
           "away": 1142,
           "date": "2026-04-25T11:30",
           "status": 1,
           "field": "NARANJO SOSA - LAS ARENAS",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1144,
+          "away": 1128,
+          "date": "2026-04-26T10:00",
+          "status": 1,
+          "field": "LAS TORRES 1",
           "home_score": 0,
           "away_score": 0
         },
@@ -3140,146 +3140,137 @@
       "group_id": 339,
       "matches": [
         {
-          "home": 1135,
-          "away": 1141,
-          "date": "",
-          "status": 1,
-          "field": "",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
-          "home": 1137,
-          "away": 1118,
-          "date": "",
-          "status": 1,
-          "field": "",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
           "home": 1139,
           "away": 1114,
-          "date": "",
+          "date": "2026-05-09T10:00",
           "status": 1,
-          "field": "",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
-          "home": 1100,
-          "away": 1116,
-          "date": "",
-          "status": 1,
-          "field": "",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
-          "home": 1140,
-          "away": 1125,
-          "date": "",
-          "status": 1,
-          "field": "",
+          "field": "BARRIO ATL.",
           "home_score": 0,
           "away_score": 0
         },
         {
           "home": 1101,
           "away": 1150,
-          "date": "",
+          "date": "2026-05-09T10:00",
           "status": 1,
-          "field": "",
+          "field": "LA SUERTE 1",
           "home_score": 0,
           "away_score": 0
         },
         {
-          "home": 1124,
-          "away": 1107,
-          "date": "",
+          "home": 1137,
+          "away": 1118,
+          "date": "2026-05-10T09:00",
           "status": 1,
-          "field": "",
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1100,
+          "away": 1116,
+          "date": "2026-05-10T09:00",
+          "status": 1,
+          "field": "JUAN GUEDES",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1135,
+          "away": 1141,
+          "date": "2026-05-10T10:00",
+          "status": 1,
+          "field": "LOMO APOLINARIO",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1140,
+          "away": 1125,
+          "date": "2026-05-10T10:00",
+          "status": 1,
+          "field": "JUAN GUEDES",
           "home_score": 0,
           "away_score": 0
         },
         {
           "home": 1123,
           "away": 1163,
-          "date": "",
+          "date": "2026-05-10T11:00",
           "status": 1,
-          "field": "",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
-          "home": 1108,
-          "away": 1109,
-          "date": "",
-          "status": 1,
-          "field": "",
+          "field": "LAS TORRES 1",
           "home_score": 0,
           "away_score": 0
         },
         {
           "home": 1143,
           "away": 1119,
-          "date": "",
+          "date": "2026-05-09T09:00",
           "status": 1,
-          "field": "",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
-          "home": 1152,
-          "away": 1144,
-          "date": "",
-          "status": 1,
-          "field": "",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
-          "home": 1128,
-          "away": 1112,
-          "date": "",
-          "status": 1,
-          "field": "",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
-          "home": 1102,
-          "away": 1127,
-          "date": "",
-          "status": 1,
-          "field": "",
+          "field": "BARRIO ATL.",
           "home_score": 0,
           "away_score": 0
         },
         {
           "home": 1151,
           "away": 1110,
-          "date": "",
+          "date": "2026-05-09T10:00",
           "status": 1,
-          "field": "",
+          "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1108,
+          "away": 1109,
+          "date": "2026-05-09T11:30",
+          "status": 1,
+          "field": "NARANJO SOSA - LAS ARENAS",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1107,
+          "away": 1144,
+          "date": "2026-05-09T12:30",
+          "status": 1,
+          "field": "NARANJO SOSA - LAS ARENAS",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1102,
+          "away": 1127,
+          "date": "2026-05-10T09:00",
+          "status": 1,
+          "field": "EL BATAN 1 ",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1128,
+          "away": 1112,
+          "date": "2026-05-10T10:00",
+          "status": 1,
+          "field": "LAS TORRES 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1113,
+          "away": 1126,
+          "date": "2026-05-10T10:00",
+          "status": 1,
+          "field": "EL BATAN 1 ",
           "home_score": 0,
           "away_score": 0
         },
         {
           "home": 1142,
           "away": 1161,
-          "date": "",
+          "date": "2026-05-10T11:00",
           "status": 1,
-          "field": "",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
-          "home": 1126,
-          "away": 1113,
-          "date": "",
-          "status": 1,
-          "field": "",
+          "field": "EL PILAR 2",
           "home_score": 0,
           "away_score": 0
         }
