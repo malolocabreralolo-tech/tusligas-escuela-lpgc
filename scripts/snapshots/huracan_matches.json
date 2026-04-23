@@ -258,8 +258,8 @@
       "home_name": "AD HURACAN",
       "away": 1117,
       "away_name": "FUNDACIÓN CANARIA GUINIGUADA",
-      "date": "",
-      "field": "",
+      "date": "2026-06-07T11:00",
+      "field": "LOMO APOLINARIO",
       "status": 1,
       "home_score": 0,
       "away_score": 0
@@ -410,5 +410,5 @@
     }
   ],
   "pre": [],
-  "updated": "2026-04-23T13:48:22.142217"
+  "updated": "2026-04-23T17:22:45.659987"
 }
