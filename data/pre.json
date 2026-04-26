@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-25T20:40:50.782017+00:00",
+  "updated_at": "2026-04-26T09:03:11.382107+00:00",
   "tournament": {
     "id": 87,
     "name": "Prebenjamín Escuela"
@@ -3011,7 +3011,7 @@
           "home": 1118,
           "away": 1139,
           "date": "2026-04-26T09:00",
-          "status": 1,
+          "status": 5,
           "field": "LOMO APOLINARIO",
           "home_score": 0,
           "away_score": 0
@@ -3020,7 +3020,7 @@
           "home": 1163,
           "away": 1135,
           "date": "2026-04-26T09:00",
-          "status": 1,
+          "status": 5,
           "field": "EL BATAN 1 ",
           "home_score": 0,
           "away_score": 0
@@ -3038,7 +3038,7 @@
           "home": 1107,
           "away": 1123,
           "date": "2026-04-26T10:00",
-          "status": 1,
+          "status": 5,
           "field": "EL BATAN 1 ",
           "home_score": 0,
           "away_score": 0
