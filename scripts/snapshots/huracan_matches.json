@@ -224,7 +224,7 @@
       "away_name": "AD HURACAN",
       "date": "2026-04-26T12:00",
       "field": "LAS TORRES 1",
-      "status": 1,
+      "status": 5,
       "home_score": 0,
       "away_score": 0
     },
@@ -410,5 +410,5 @@
     }
   ],
   "pre": [],
-  "updated": "2026-04-26T09:03:11.468822"
+  "updated": "2026-04-26T13:11:13.534878"
 }
