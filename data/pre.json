@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-04T14:05:21.237444+00:00",
+  "updated_at": "2026-05-04T17:42:06.270524+00:00",
   "tournament": {
     "id": 87,
     "name": "Prebenjamín Escuela"
@@ -3212,20 +3212,20 @@
           "away_score": 0
         },
         {
-          "home": 1151,
-          "away": 1110,
-          "date": "2026-05-09T10:00",
-          "status": 1,
-          "field": "POLIGONO SAN CRISTOBAL F7",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
           "home": 1108,
           "away": 1109,
           "date": "2026-05-09T11:30",
           "status": 1,
           "field": "NARANJO SOSA - LAS ARENAS",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1151,
+          "away": 1110,
+          "date": "2026-05-09T11:30",
+          "status": 1,
+          "field": "POLIGONO SAN CRISTOBAL F7",
           "home_score": 0,
           "away_score": 0
         },
