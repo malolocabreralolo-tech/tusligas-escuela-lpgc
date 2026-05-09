@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-09T09:20:36.127324+00:00",
+  "updated_at": "2026-05-09T13:21:11.132218+00:00",
   "tournament": {
     "id": 87,
     "name": "Prebenjamín Escuela"
@@ -3170,7 +3170,7 @@
           "home": 1100,
           "away": 1116,
           "date": "2026-05-10T09:00",
-          "status": 1,
+          "status": 5,
           "field": "ALFONSO SILVA 2",
           "home_score": 0,
           "away_score": 0
@@ -3215,7 +3215,7 @@
           "home": 1108,
           "away": 1109,
           "date": "2026-05-09T11:30",
-          "status": 1,
+          "status": 5,
           "field": "NARANJO SOSA - LAS ARENAS",
           "home_score": 0,
           "away_score": 0
@@ -3224,7 +3224,7 @@
           "home": 1151,
           "away": 1110,
           "date": "2026-05-09T11:30",
-          "status": 1,
+          "status": 5,
           "field": "POLIGONO SAN CRISTOBAL F7",
           "home_score": 0,
           "away_score": 0
@@ -3326,15 +3326,6 @@
           "away_score": 0
         },
         {
-          "home": 1107,
-          "away": 1101,
-          "date": "2026-05-17T10:00",
-          "status": 1,
-          "field": "ALFONSO SILVA 2",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
           "home": 1163,
           "away": 1112,
           "date": "2026-05-17T10:00",
@@ -3349,6 +3340,15 @@
           "date": "2026-05-17T11:00",
           "status": 1,
           "field": "LAS TORRES 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1107,
+          "away": 1101,
+          "date": "2026-05-17T12:00",
+          "status": 1,
+          "field": "LOMO APOLINARIO",
           "home_score": 0,
           "away_score": 0
         },
