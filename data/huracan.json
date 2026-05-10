@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-10T09:39:28.623415+00:00",
+  "updated_at": "2026-05-10T13:22:08.294025+00:00",
   "mini": [
     {
       "jornada": "Jornada 1",
@@ -255,7 +255,7 @@
       "home_name": "AD HURACAN",
       "away_name": "UD LAS PALMAS A",
       "date": "2026-05-10T11:00",
-      "status": 1,
+      "status": 5,
       "field": "EL BATAN 1 ",
       "home_score": 0,
       "away_score": 0,
@@ -712,7 +712,7 @@
       "home_name": "UD LAS PALMAS F",
       "away_name": "AD HURACAN",
       "date": "2026-05-10T09:00",
-      "status": 1,
+      "status": 5,
       "field": "LAS TORRES 2",
       "home_score": 0,
       "away_score": 0,
