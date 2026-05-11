@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-11T14:57:07.789016+00:00",
+  "updated_at": "2026-05-11T17:55:14.267720+00:00",
   "tournament": {
     "id": 85,
     "name": "Miniprebenjamín Escuela"
@@ -1751,15 +1751,6 @@
           "away_score": 0
         },
         {
-          "home": 1106,
-          "away": 1157,
-          "date": "2026-05-17T11:00",
-          "status": 1,
-          "field": "EL PILAR 1",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
           "home": 1117,
           "away": 1122,
           "date": "2026-05-17T11:00",
@@ -1787,6 +1778,15 @@
           "away_score": 0
         },
         {
+          "home": 1106,
+          "away": 1157,
+          "date": "2026-05-17T12:00",
+          "status": 1,
+          "field": "LAS TORRES 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
           "home": 1120,
           "away": 1121,
           "date": "2026-05-17T12:00",
@@ -1802,15 +1802,6 @@
       "group_id": 341,
       "matches": [
         {
-          "home": 1155,
-          "away": 1103,
-          "date": "2026-06-06T10:00",
-          "status": 1,
-          "field": "POLIGONO SAN CRISTOBAL F7",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
           "home": 1156,
           "away": 1122,
           "date": "2026-06-06T11:00",
@@ -1825,6 +1816,15 @@
           "date": "2026-06-06T12:30",
           "status": 1,
           "field": "NARANJO SOSA - LAS ARENAS",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1155,
+          "away": 1103,
+          "date": "2026-06-07T11:00",
+          "status": 1,
+          "field": "LOPEZ SOCAS 1",
           "home_score": 0,
           "away_score": 0
         },
