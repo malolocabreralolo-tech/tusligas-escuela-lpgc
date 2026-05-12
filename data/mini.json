@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-11T21:18:53.629958+00:00",
+  "updated_at": "2026-05-12T10:32:40.027311+00:00",
   "tournament": {
     "id": 85,
     "name": "Miniprebenjamín Escuela"
@@ -1724,15 +1724,6 @@
       "group_id": 341,
       "matches": [
         {
-          "home": 1148,
-          "away": 1103,
-          "date": "2026-05-16T11:00",
-          "status": 1,
-          "field": "LA SUERTE 1",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
           "home": 1115,
           "away": 1104,
           "date": "2026-05-16T11:00",
@@ -1747,6 +1738,15 @@
           "date": "2026-05-16T11:00",
           "status": 1,
           "field": "POLIGONO SAN CRISTOBAL F7",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1160,
+          "away": 1155,
+          "date": "2026-05-17T11:00",
+          "status": 1,
+          "field": "LOPEZ SOCAS 1",
           "home_score": 0,
           "away_score": 0
         },
@@ -1769,8 +1769,8 @@
           "away_score": 0
         },
         {
-          "home": 1160,
-          "away": 1155,
+          "home": 1148,
+          "away": 1103,
           "date": "2026-05-17T12:00",
           "status": 1,
           "field": "EL BATAN 1 ",
@@ -1824,7 +1824,7 @@
           "away": 1103,
           "date": "2026-06-07T11:00",
           "status": 1,
-          "field": "LOPEZ SOCAS 1",
+          "field": "",
           "home_score": 0,
           "away_score": 0
         },
