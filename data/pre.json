@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-13T21:26:36.653496+00:00",
+  "updated_at": "2026-05-14T10:19:46.525018+00:00",
   "tournament": {
     "id": 87,
     "name": "Prebenjamín Escuela"
@@ -3281,20 +3281,20 @@
       "group_id": 339,
       "matches": [
         {
-          "home": 1116,
-          "away": 1139,
-          "date": "2026-05-16T09:00",
-          "status": 1,
-          "field": "LA SUERTE 2",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
           "home": 1150,
           "away": 1140,
           "date": "2026-05-16T10:00",
           "status": 1,
           "field": "LA SUERTE 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1116,
+          "away": 1139,
+          "date": "2026-05-16T12:00",
+          "status": 1,
+          "field": "NARANJO SOSA- LAS ARENAS 2",
           "home_score": 0,
           "away_score": 0
         },
@@ -3371,20 +3371,20 @@
           "away_score": 0
         },
         {
-          "home": 1113,
-          "away": 1142,
-          "date": "2026-05-16T10:00",
-          "status": 1,
-          "field": "LA SUERTE 2",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
           "home": 1110,
           "away": 1102,
           "date": "2026-05-16T11:30",
           "status": 1,
           "field": "NARANJO SOSA - LAS ARENAS",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1113,
+          "away": 1142,
+          "date": "2026-05-16T13:00",
+          "status": 1,
+          "field": "NARANJO SOSA- LAS ARENAS 2",
           "home_score": 0,
           "away_score": 0
         },
