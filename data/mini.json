@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-16T09:41:49.441530+00:00",
+  "updated_at": "2026-05-16T13:25:46.553813+00:00",
   "tournament": {
     "id": 85,
     "name": "Miniprebenjamín Escuela"
@@ -1727,7 +1727,7 @@
           "home": 1156,
           "away": 1138,
           "date": "2026-05-16T11:00",
-          "status": 1,
+          "status": 5,
           "field": "POLIGONO SAN CRISTOBAL F7",
           "home_score": 0,
           "away_score": 0
