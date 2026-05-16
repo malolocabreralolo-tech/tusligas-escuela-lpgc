@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-16T13:25:46.553813+00:00",
+  "updated_at": "2026-05-16T16:59:49.996052+00:00",
   "tournament": {
     "id": 87,
     "name": "Prebenjamín Escuela"
@@ -3284,7 +3284,7 @@
           "home": 1150,
           "away": 1140,
           "date": "2026-05-16T10:00",
-          "status": 1,
+          "status": 5,
           "field": "LA SUERTE 1",
           "home_score": 0,
           "away_score": 0
@@ -3356,7 +3356,7 @@
           "home": 1144,
           "away": 1143,
           "date": "2026-05-16T09:00",
-          "status": 1,
+          "status": 5,
           "field": "LA SUERTE 1",
           "home_score": 0,
           "away_score": 0
