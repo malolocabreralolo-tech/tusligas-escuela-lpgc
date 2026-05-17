@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-16T20:51:03.880582+00:00",
+  "updated_at": "2026-05-17T09:47:48.750899+00:00",
   "tournament": {
     "id": 87,
     "name": "Prebenjamín Escuela"
@@ -3302,7 +3302,7 @@
           "home": 1118,
           "away": 1141,
           "date": "2026-05-17T09:00",
-          "status": 1,
+          "status": 5,
           "field": "LOMO APOLINARIO",
           "home_score": 0,
           "away_score": 0
