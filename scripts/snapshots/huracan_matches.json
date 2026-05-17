@@ -248,7 +248,7 @@
       "away_name": "AD HURACAN",
       "date": "2026-05-17T11:00",
       "field": "EL BATAN 1 ",
-      "status": 1,
+      "status": 5,
       "home_score": 0,
       "away_score": 0
     },
@@ -410,5 +410,5 @@
     }
   ],
   "pre": [],
-  "updated": "2026-05-17T09:47:48.827063"
+  "updated": "2026-05-17T13:24:05.526206"
 }

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-17T09:47:48.750899+00:00",
+  "updated_at": "2026-05-17T13:24:05.416680+00:00",
   "tournament": {
     "id": 85,
     "name": "Miniprebenjamín Escuela"
@@ -1754,7 +1754,7 @@
           "home": 1117,
           "away": 1122,
           "date": "2026-05-17T11:00",
-          "status": 1,
+          "status": 5,
           "field": "LOMO APOLINARIO",
           "home_score": 0,
           "away_score": 0
@@ -1763,7 +1763,7 @@
           "home": 1158,
           "away": 1159,
           "date": "2026-05-17T11:00",
-          "status": 1,
+          "status": 5,
           "field": "EL BATAN 1 ",
           "home_score": 0,
           "away_score": 0
@@ -1772,7 +1772,7 @@
           "home": 1148,
           "away": 1103,
           "date": "2026-05-17T12:00",
-          "status": 1,
+          "status": 5,
           "field": "EL BATAN 1 ",
           "home_score": 0,
           "away_score": 0
@@ -1781,7 +1781,7 @@
           "home": 1106,
           "away": 1157,
           "date": "2026-05-17T12:00",
-          "status": 1,
+          "status": 5,
           "field": "LAS TORRES 2",
           "home_score": 0,
           "away_score": 0
@@ -1790,7 +1790,7 @@
           "home": 1120,
           "away": 1121,
           "date": "2026-05-17T12:00",
-          "status": 1,
+          "status": 5,
           "field": "LAS TORRES 1",
           "home_score": 0,
           "away_score": 0

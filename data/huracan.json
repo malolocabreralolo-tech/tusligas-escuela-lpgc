@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-17T09:47:48.750899+00:00",
+  "updated_at": "2026-05-17T13:24:05.416680+00:00",
   "mini": [
     {
       "jornada": "Jornada 1",
@@ -268,7 +268,7 @@
       "home_name": "CORAZÓN DE MARÍA B",
       "away_name": "AD HURACAN",
       "date": "2026-05-17T11:00",
-      "status": 1,
+      "status": 5,
       "field": "EL BATAN 1 ",
       "home_score": 0,
       "away_score": 0,
@@ -725,7 +725,7 @@
       "home_name": "CD LOMO BLANCO",
       "away_name": "AD HURACAN",
       "date": "2026-05-17T10:00",
-      "status": 1,
+      "status": 5,
       "field": "EL BATAN 1 ",
       "home_score": 0,
       "away_score": 0,

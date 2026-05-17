@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-17T09:47:48.750899+00:00",
+  "updated_at": "2026-05-17T13:24:05.416680+00:00",
   "tournament": {
     "id": 87,
     "name": "Prebenjamín Escuela"
@@ -3311,7 +3311,7 @@
           "home": 1114,
           "away": 1137,
           "date": "2026-05-17T09:00",
-          "status": 1,
+          "status": 5,
           "field": "EL BATAN 1 ",
           "home_score": 0,
           "away_score": 0
@@ -3320,7 +3320,7 @@
           "home": 1125,
           "away": 1100,
           "date": "2026-05-17T10:00",
-          "status": 1,
+          "status": 5,
           "field": "LAS TORRES 1",
           "home_score": 0,
           "away_score": 0
@@ -3329,7 +3329,7 @@
           "home": 1163,
           "away": 1112,
           "date": "2026-05-17T10:00",
-          "status": 1,
+          "status": 5,
           "field": "EL BATAN 1 ",
           "home_score": 0,
           "away_score": 0
@@ -3338,7 +3338,7 @@
           "home": 1123,
           "away": 1135,
           "date": "2026-05-17T11:00",
-          "status": 1,
+          "status": 5,
           "field": "LAS TORRES 2",
           "home_score": 0,
           "away_score": 0
@@ -3347,7 +3347,7 @@
           "home": 1107,
           "away": 1101,
           "date": "2026-05-17T12:00",
-          "status": 1,
+          "status": 5,
           "field": "LOMO APOLINARIO",
           "home_score": 0,
           "away_score": 0
@@ -3392,7 +3392,7 @@
           "home": 1119,
           "away": 1109,
           "date": "2026-05-17T10:00",
-          "status": 1,
+          "status": 5,
           "field": "LOMO APOLINARIO",
           "home_score": 0,
           "away_score": 0
@@ -3401,7 +3401,7 @@
           "home": 1127,
           "away": 1128,
           "date": "2026-05-17T10:00",
-          "status": 1,
+          "status": 5,
           "field": "LAS TORRES 2",
           "home_score": 0,
           "away_score": 0
@@ -3410,7 +3410,7 @@
           "home": 1126,
           "away": 1108,
           "date": "2026-05-17T11:00",
-          "status": 1,
+          "status": 5,
           "field": "LAS TORRES 1",
           "home_score": 0,
           "away_score": 0
