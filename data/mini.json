@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-18T11:45:25.522563+00:00",
+  "updated_at": "2026-05-18T15:35:52.899065+00:00",
   "tournament": {
     "id": 85,
     "name": "Miniprebenjamín Escuela"
@@ -1745,7 +1745,7 @@
           "home": 1160,
           "away": 1155,
           "date": "2026-05-17T11:00",
-          "status": 1,
+          "status": 5,
           "field": "LOPEZ SOCAS 1",
           "home_score": 0,
           "away_score": 0
