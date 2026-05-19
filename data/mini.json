@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-19T11:19:54.527723+00:00",
+  "updated_at": "2026-05-19T15:27:40.693914+00:00",
   "tournament": {
     "id": 85,
     "name": "Miniprebenjamín Escuela"
@@ -1820,15 +1820,6 @@
           "away_score": 0
         },
         {
-          "home": 1155,
-          "away": 1103,
-          "date": "2026-06-07T11:00",
-          "status": 1,
-          "field": "",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
           "home": 1104,
           "away": 1148,
           "date": "2026-06-07T11:00",
@@ -1852,6 +1843,15 @@
           "date": "2026-06-07T11:00",
           "status": 1,
           "field": "LAS TORRES 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1155,
+          "away": 1103,
+          "date": "2026-06-07T12:00",
+          "status": 1,
+          "field": "ALFONSO SILVA 2",
           "home_score": 0,
           "away_score": 0
         },
