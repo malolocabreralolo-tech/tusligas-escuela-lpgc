@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-26T21:46:20.422911+00:00",
+  "updated_at": "2026-05-27T15:48:44.823911+00:00",
   "tournament": {
     "id": 85,
     "name": "Miniprebenjamín Escuela"
@@ -1658,7 +1658,7 @@
           "home": 1155,
           "away": 1148,
           "date": "2026-05-09T11:00",
-          "status": 1,
+          "status": 5,
           "field": "LA SUERTE 1",
           "home_score": 0,
           "away_score": 0
@@ -1833,7 +1833,7 @@
           "away": 1117,
           "date": "2026-06-07T11:00",
           "status": 1,
-          "field": "LOMO APOLINARIO",
+          "field": "",
           "home_score": 0,
           "away_score": 0
         },
