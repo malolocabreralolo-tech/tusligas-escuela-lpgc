@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-27T21:56:43.995362+00:00",
+  "updated_at": "2026-05-28T11:39:20.823445+00:00",
   "tournament": {
     "id": 85,
     "name": "Miniprebenjamín Escuela"
@@ -1802,6 +1802,33 @@
       "group_id": 341,
       "matches": [
         {
+          "home": 1104,
+          "away": 1148,
+          "date": "2026-06-06T11:00",
+          "status": 1,
+          "field": "ALFONSO SILVA 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1157,
+          "away": 1115,
+          "date": "2026-06-06T11:00",
+          "status": 1,
+          "field": "EL PILAR 1",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
+          "home": 1138,
+          "away": 1106,
+          "date": "2026-06-06T11:00",
+          "status": 1,
+          "field": "EL PILAR 2",
+          "home_score": 0,
+          "away_score": 0
+        },
+        {
           "home": 1156,
           "away": 1122,
           "date": "2026-06-06T11:00",
@@ -1811,65 +1838,38 @@
           "away_score": 0
         },
         {
-          "home": 1138,
-          "away": 1106,
-          "date": "2026-06-06T12:30",
-          "status": 1,
-          "field": "NARANJO SOSA - LAS ARENAS",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
-          "home": 1104,
-          "away": 1148,
-          "date": "2026-06-07T11:00",
-          "status": 1,
-          "field": "ALFONSO SILVA 1",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
           "home": 1159,
           "away": 1117,
-          "date": "2026-06-07T11:00",
+          "date": "2026-06-06T11:00",
           "status": 1,
-          "field": "",
-          "home_score": 0,
-          "away_score": 0
-        },
-        {
-          "home": 1121,
-          "away": 1158,
-          "date": "2026-06-07T11:00",
-          "status": 1,
-          "field": "LAS TORRES 2",
+          "field": "LOPEZ SOCAS 2",
           "home_score": 0,
           "away_score": 0
         },
         {
           "home": 1155,
           "away": 1103,
-          "date": "2026-06-07T12:00",
+          "date": "2026-06-06T12:00",
           "status": 1,
-          "field": "ALFONSO SILVA 2",
+          "field": "LOPEZ SOCAS 2",
           "home_score": 0,
           "away_score": 0
         },
         {
           "home": 1160,
           "away": 1120,
-          "date": "2026-06-07T12:00",
+          "date": "2026-06-06T12:00",
           "status": 1,
-          "field": "LAS TORRES 1",
+          "field": "ALFONSO SILVA 2",
           "home_score": 0,
           "away_score": 0
         },
         {
-          "home": 1157,
-          "away": 1115,
-          "date": "2026-06-07T12:00",
+          "home": 1121,
+          "away": 1158,
+          "date": "2026-06-06T12:00",
           "status": 1,
-          "field": "EL BATAN 1 ",
+          "field": "LAS TORRES 2",
           "home_score": 0,
           "away_score": 0
         }
