@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-06T10:05:21.637275+00:00",
+  "updated_at": "2026-06-06T13:47:01.414443+00:00",
   "tournament": {
     "id": 87,
     "name": "Prebenjamín Escuela"
@@ -3461,7 +3461,7 @@
           "home": 1141,
           "away": 1114,
           "date": "2026-06-06T11:00",
-          "status": 1,
+          "status": 5,
           "field": "LOPEZ SOCAS 1",
           "home_score": 0,
           "away_score": 0
@@ -3470,7 +3470,7 @@
           "home": 1100,
           "away": 1150,
           "date": "2026-06-06T11:00",
-          "status": 1,
+          "status": 5,
           "field": "ALFONSO SILVA 2",
           "home_score": 0,
           "away_score": 0
@@ -3479,7 +3479,7 @@
           "home": 1127,
           "away": 1123,
           "date": "2026-06-06T11:00",
-          "status": 1,
+          "status": 5,
           "field": "LAS TORRES 1",
           "home_score": 0,
           "away_score": 0
@@ -3488,7 +3488,7 @@
           "home": 1140,
           "away": 1107,
           "date": "2026-06-06T12:00",
-          "status": 1,
+          "status": 5,
           "field": "LAS TORRES 1",
           "home_score": 0,
           "away_score": 0
@@ -3524,7 +3524,7 @@
           "home": 1102,
           "away": 1161,
           "date": "2026-06-06T10:00",
-          "status": 1,
+          "status": 5,
           "field": "EL PILAR 1",
           "home_score": 0,
           "away_score": 0
@@ -3533,7 +3533,7 @@
           "home": 1113,
           "away": 1151,
           "date": "2026-06-06T10:00",
-          "status": 1,
+          "status": 5,
           "field": "POLIGONO SAN CRISTOBAL F7",
           "home_score": 0,
           "away_score": 0
@@ -3551,7 +3551,7 @@
           "home": 1143,
           "away": 1112,
           "date": "2026-06-06T12:00",
-          "status": 1,
+          "status": 5,
           "field": "LOPEZ SOCAS 1",
           "home_score": 0,
           "away_score": 0

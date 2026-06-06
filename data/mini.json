@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-06T10:05:21.637275+00:00",
+  "updated_at": "2026-06-06T13:47:01.414443+00:00",
   "tournament": {
     "id": 85,
     "name": "Miniprebenjamín Escuela"
@@ -1805,7 +1805,7 @@
           "home": 1104,
           "away": 1148,
           "date": "2026-06-06T11:00",
-          "status": 1,
+          "status": 5,
           "field": "ALFONSO SILVA 1",
           "home_score": 0,
           "away_score": 0
@@ -1814,7 +1814,7 @@
           "home": 1157,
           "away": 1115,
           "date": "2026-06-06T11:00",
-          "status": 1,
+          "status": 5,
           "field": "EL PILAR 1",
           "home_score": 0,
           "away_score": 0
@@ -1832,7 +1832,7 @@
           "home": 1156,
           "away": 1122,
           "date": "2026-06-06T11:00",
-          "status": 1,
+          "status": 5,
           "field": "POLIGONO SAN CRISTOBAL F7",
           "home_score": 0,
           "away_score": 0
@@ -1841,7 +1841,7 @@
           "home": 1159,
           "away": 1117,
           "date": "2026-06-06T11:00",
-          "status": 1,
+          "status": 5,
           "field": "LOPEZ SOCAS 2",
           "home_score": 0,
           "away_score": 0
@@ -1859,7 +1859,7 @@
           "home": 1160,
           "away": 1120,
           "date": "2026-06-06T12:00",
-          "status": 1,
+          "status": 5,
           "field": "ALFONSO SILVA 2",
           "home_score": 0,
           "away_score": 0
