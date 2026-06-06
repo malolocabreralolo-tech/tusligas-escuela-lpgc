@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-05T21:26:30.939434+00:00",
+  "updated_at": "2026-06-06T10:05:21.637275+00:00",
   "tournament": {
     "id": 87,
     "name": "Prebenjamín Escuela"
@@ -3425,7 +3425,7 @@
           "home": 1137,
           "away": 1116,
           "date": "2026-06-06T09:00",
-          "status": 1,
+          "status": 5,
           "field": "LOPEZ SOCAS 1",
           "home_score": 0,
           "away_score": 0
@@ -3434,7 +3434,7 @@
           "home": 1135,
           "away": 1118,
           "date": "2026-06-06T10:00",
-          "status": 1,
+          "status": 5,
           "field": "LOPEZ SOCAS 2",
           "home_score": 0,
           "away_score": 0
@@ -3443,7 +3443,7 @@
           "home": 1139,
           "away": 1125,
           "date": "2026-06-06T10:00",
-          "status": 1,
+          "status": 5,
           "field": "LOPEZ SOCAS 1",
           "home_score": 0,
           "away_score": 0
@@ -3452,7 +3452,7 @@
           "home": 1101,
           "away": 1163,
           "date": "2026-06-06T10:00",
-          "status": 1,
+          "status": 5,
           "field": "ALFONSO SILVA 2",
           "home_score": 0,
           "away_score": 0
@@ -3497,7 +3497,7 @@
           "home": 1109,
           "away": 1144,
           "date": "2026-06-06T09:00",
-          "status": 1,
+          "status": 5,
           "field": "ALFONSO SILVA 1",
           "home_score": 0,
           "away_score": 0
